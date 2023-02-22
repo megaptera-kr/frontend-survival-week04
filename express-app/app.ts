@@ -7,7 +7,7 @@ const restaurants = {
       id: '1',
       category: '중식',
       name: '메가반점',
-      menu: [
+      menus: [
         { id: '1', name: '짜장면', price: 8000 },
         { id: '2', name: '짬뽕', price: 8000 },
         { id: '3', name: '차돌짬뽕', price: 9000 },
@@ -18,7 +18,7 @@ const restaurants = {
       id: '2',
       category: '한식',
       name: '메리김밥',
-      menu: [
+      menus: [
         { id: '5', name: '김밥', price: 3500 },
         { id: '6', name: '참치김밥', price: 4500 },
         { id: '7', name: '제육김밥', price: 5000 },
@@ -29,7 +29,7 @@ const restaurants = {
       id: '3',
       category: '일식',
       name: '혹등고래카레',
-      menu: [
+      menus: [
         { id: '9', name: '기본카레', price: 9000 },
         { id: '10', name: '가라아게카레', price: 14000 },
         { id: '11', name: '소시지카레', price: 13000 },
@@ -51,13 +51,13 @@ app.get('/restaurants', (_, res) => {
 });
 
 app.post('/orders', (req, res) => {
-  const { menu, totalPrice } = req.body;
+  const { menus, totalPrice } = req.body;
 
   const receiptId = new Date().getTime();
 
   res.status(201).send({
     id: receiptId,
-    menu,
+    menus,
     totalPrice,
   });
 });
