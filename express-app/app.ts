@@ -59,5 +59,5 @@ app.get('/restaurants', (_, res) => {
 
 app.post('/orders', (req, res) => {
   req.body.id = Date.now().toString();
-  res.send(req.body);
+  res.status(200).send(req.body);
 });
