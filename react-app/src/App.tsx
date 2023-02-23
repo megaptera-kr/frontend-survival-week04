@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, import/no-extraneous-dependencies
-import fetch from 'node-fetch';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'whatwg-fetch';
 import Kiosk from './pages/KioskIndex';
 
 export default function App() {
