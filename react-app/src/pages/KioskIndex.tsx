@@ -1,17 +1,19 @@
 import { ChangeEvent, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import useFetchRestaurants from '../hooks/useFetchRestaurants';
-import { Menu, ReceiptProps, Restaurnant } from '../types/restaurants';
+import { Menu, ReceiptProps } from '../types/restaurants';
 import Carts from '../components/Carts';
 import SearchInput from '../components/SearchInput';
 import CategoryButtons from '../components/CategoryButtons';
 import RestaurantList from '../components/RestaurantList';
 import Receipt from '../components/Receipt';
+import useFilteredRestaurant from '../hooks/useFilteredRestaurant';
 
 export default function Kiosk() {
-  const restaurants = useFetchRestaurants();
   const [shopName, setShopName] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('전체');
+
+  const restaurants = useFetchRestaurants();
+  const { setSelectedCategory, filteredRestaurant } = useFilteredRestaurant('전체', restaurants, shopName);
   const [carts, setCarts] = useLocalStorage<Menu[]>('carts', []);
   const [receipt, setReceipt] = useLocalStorage<ReceiptProps>('receipts', {
     id: '',
@@ -21,12 +23,6 @@ export default function Kiosk() {
 
   const categoryNames = ['전체', ...new Set(restaurants?.map((shop: { category: string; }) => shop.category))];
   const totalPrice = carts.reduce((a, b) => a + b.price, 0);
-
-  const filteredRestaurant = selectedCategory === '전체'
-    ? restaurants.filter((s:Restaurnant) => s.name.includes(shopName))
-    : restaurants.filter((s:Restaurnant) => (
-      s.category === selectedCategory && s.name.includes(shopName)
-    ));
 
   const inputShopName = (e: ChangeEvent<HTMLInputElement>) => setShopName(e.target.value.trim());
 
