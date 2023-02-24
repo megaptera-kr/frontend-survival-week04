@@ -25,5 +25,5 @@ npm start
 ```shell
 npm start
 
-npm codeceptjs
+npm run codeceptjs
 ```

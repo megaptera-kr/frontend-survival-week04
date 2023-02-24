@@ -1,14 +1,22 @@
+import { Dispatch, SetStateAction } from 'react';
+import { Restaurnant } from '../types/restaurants';
+
 interface CategoryProps {
-    categoryNames:string[],
-    setSelectedCategory:React.Dispatch<React.SetStateAction<string>>
+    restaurants: Restaurnant[],
+    setSelectedCategory:Dispatch<SetStateAction<string>>
 }
 
-export default function CategoryButtons({ categoryNames, setSelectedCategory }:CategoryProps) {
+export default function CategoryButtons({ restaurants, setSelectedCategory }:CategoryProps) {
+  const categoryNames = [
+    '전체',
+    ...new Set(restaurants?.map((shop: { category: string; }) => shop.category)),
+  ];
+
   return (
     <ul style={{ display: 'flex', padding: 0, listStyle: 'none' }}>
-      {categoryNames.map((shop) => (
-        <li key={shop} style={{ marginRight: '1rem' }}>
-          <button type="button" onClick={() => setSelectedCategory(shop)}>{shop}</button>
+      {categoryNames.map((name) => (
+        <li key={name} style={{ marginRight: '1rem' }}>
+          <button type="button" onClick={() => setSelectedCategory(name)}>{name}</button>
         </li>
       ))}
     </ul>

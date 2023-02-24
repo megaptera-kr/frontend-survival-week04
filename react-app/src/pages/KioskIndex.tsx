@@ -1,13 +1,16 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
-import useFetchRestaurants from '../hooks/useFetchRestaurants';
-import { Menu, ReceiptProps } from '../types/restaurants';
+
 import Carts from '../components/Carts';
 import SearchInput from '../components/SearchInput';
 import CategoryButtons from '../components/CategoryButtons';
 import RestaurantList from '../components/RestaurantList';
 import Receipt from '../components/Receipt';
+
 import useFilteredRestaurant from '../hooks/useFilteredRestaurant';
+import useFetchRestaurants from '../hooks/useFetchRestaurants';
+import { Menu, ReceiptProps } from '../types/restaurants';
+import order from '../network/api';
 
 export default function Kiosk() {
   const [shopName, setShopName] = useState('');
@@ -21,11 +24,7 @@ export default function Kiosk() {
     totalPrice: 0,
   });
 
-  const categoryNames = ['전체', ...new Set(restaurants?.map((shop: { category: string; }) => shop.category))];
   const totalPrice = carts.reduce((a, b) => a + b.price, 0);
-
-  const inputShopName = (e: ChangeEvent<HTMLInputElement>) => setShopName(e.target.value.trim());
-
   const addCart = (item: Menu) => {
     setCarts([...carts, item]);
   };
@@ -35,19 +34,9 @@ export default function Kiosk() {
     setCarts(carts);
   };
 
-  const order = () => {
-    fetch('http://localhost:3000/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        menu: carts,
-        totalPrice,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => setReceipt(data));
+  const onClickOrder = () => {
+    order(carts, totalPrice)
+      .then((res:ReceiptProps) => setReceipt(res));
   };
 
   const endReceipt = () => {
@@ -64,21 +53,26 @@ export default function Kiosk() {
       <h1>푸드코트 키오스크</h1>
       <h2>Cart</h2>
 
+      <Receipt
+        receipt={receipt}
+        endReceipt={endReceipt}
+      />
+
       <Carts
         carts={carts}
         totalPrice={totalPrice}
         cancelOrder={cancelOrder}
-        order={order}
+        onClickOrder={onClickOrder}
         setCarts={setCarts}
       />
 
       <SearchInput
         shopName={shopName}
-        inputShopName={inputShopName}
+        setShopName={setShopName}
       />
 
       <CategoryButtons
-        categoryNames={categoryNames}
+        restaurants={restaurants}
         setSelectedCategory={setSelectedCategory}
       />
 
@@ -87,10 +81,7 @@ export default function Kiosk() {
         addCart={addCart}
       />
 
-      <Receipt
-        receipt={receipt}
-        endReceipt={endReceipt}
-      />
+      <div style={{ color: '#e5e5e5' }}>영수증 나오는 곳</div>
 
     </>
   );

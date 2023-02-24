@@ -9,6 +9,7 @@ export default function MenuList({ shop, addCart }:MenuProps) {
   const {
     name, category, menu,
   } = shop;
+
   return (
     <tr>
       <td>{name}</td>

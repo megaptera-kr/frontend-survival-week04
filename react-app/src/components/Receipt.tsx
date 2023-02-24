@@ -7,7 +7,7 @@ interface Receipt {
  endReceipt:()=>void
 }
 
-export default function Receipt({ receipt, endReceipt }:Receipt) {
+export default function ReceiptIndex({ receipt, endReceipt }:Receipt) {
   useInterval(endReceipt, receipt?.menu.length ? 3000 : null);
 
   return receipt?.menu.length ? (
@@ -43,5 +43,5 @@ export default function Receipt({ receipt, endReceipt }:Receipt) {
       </div>
 
     </div>
-  ) : <div>영수증 나오는 곳</div>;
+  ) : <div />;
 }
