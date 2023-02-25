@@ -24,7 +24,7 @@ function Cart({ order }: CartProps) {
       <h2>점심 바구니</h2>
       <Foods foods={cart} button="삭제" />
       <button type="button" onClick={handleClick}>
-        {`합계 ${total.toLocaleString()}원 주문`}
+        {`합계: ${total.toLocaleString()}원 주문`}
       </button>
     </div>
   );

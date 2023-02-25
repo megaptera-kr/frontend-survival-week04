@@ -1,5 +1,6 @@
 import Food from '../types/Food';
-import CartButton from './CartButton';
+
+import useCart from '../hooks/useCart';
 
 type FoodsProps = {
   foods: Food[];
@@ -7,6 +8,8 @@ type FoodsProps = {
 };
 
 function Foods({ foods, button }: FoodsProps) {
+  const { addCart, removeCart } = useCart();
+
   return (
     <ul style={{ listStyle: 'none' }}>
       {foods.map((food: Food, index) => {
@@ -14,7 +17,19 @@ function Foods({ foods, button }: FoodsProps) {
         return (
           <li key={name}>
             <span>{`${name}(${price.toLocaleString()}원)`}</span>
-            {button && <CartButton type={button} food={food} index={index} />}
+            {button && (
+              <button
+                type="button"
+                name={`#${name}`}
+                onClick={
+                  button === '추가'
+                    ? () => addCart(food)
+                    : () => removeCart(index)
+                }
+              >
+                {button}
+              </button>
+            )}
           </li>
         );
       })}

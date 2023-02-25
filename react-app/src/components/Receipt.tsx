@@ -3,11 +3,11 @@ import sumPrice from '../utils/sumPrice';
 import Foods from './Foods';
 
 type ReceiptProps = {
-  receipt: Receipt;
+  receipt: Receipt | null;
 };
 
 function Receipt({ receipt }: ReceiptProps) {
-  if (!receipt) return null;
+  if (!receipt) return '[영수증 나오는 곳]';
 
   const total = sumPrice(receipt.menu);
 
