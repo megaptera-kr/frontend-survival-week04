@@ -1,1 +1,13 @@
-// TODO: Express 를 이용하여 서버를 만들어 주세요.
+import express from 'express';
+
+const port = 8080;
+
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
