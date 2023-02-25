@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'whatwg-fetch';
 import Bucket from './components/Bucket';
 import FilterableRestaurantTable from './components/FilterableRestaurantTable';
 import ReceiptBox from './components/ReceiptBox';
