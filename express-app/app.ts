@@ -1,10 +1,13 @@
 // TODO: Express 를 이용하여 서버를 만들어 주세요.
 
 import express from 'express';
+import cors from 'cors';
 
 const port = 3000;
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -39,14 +42,45 @@ app.get('/restaurants', (request, response) => {
     },
     {
       id: '3',
+      category: '한식',
+      name: '데브부엌',
+      menu: [
+        { id: '9', name: '제육덮밥', price: 10000 },
+        { id: '10', name: '닭떡국', price: 9000 },
+        { id: '11', name: '닭개장', price: 11000 },
+        { id: '12', name: '돈까스', price: 10000 },
+      ],
+    },
+    {
+      id: '4',
+      category: '일식',
+      name: '로드스시',
+      menu: [
+        { id: '13', name: '모듬초밥', price: 14000 },
+        { id: '14', name: '특선초밥', price: 17900 },
+        { id: '15', name: '스페셜초밥', price: 21000 },
+      ],
+    },
+    {
+      id: '5',
       category: '일식',
       name: '혹등고래카레',
       menu: [
-        { id: '9', name: '기본카레', price: 9000 },
-        { id: '10', name: '가라아게카레', price: 14000 },
-        { id: '11', name: '소시지카레', price: 13000 },
-        { id: '12', name: '돈까스카레', price: 14000 },
-        { id: '13', name: '닭가슴살카레', price: 13000 },
+        { id: '16', name: '기본카레', price: 9000 },
+        { id: '117', name: '가라아게카레', price: 14000 },
+        { id: '18', name: '소시지카레', price: 13000 },
+        { id: '19', name: '돈까스카레', price: 14000 },
+        { id: '20', name: '닭가슴살카레', price: 13000 },
+      ],
+    },
+    {
+      id: '6',
+      category: '한식',
+      name: '메가김치찌개',
+      menu: [
+        { id: '21', name: '김치찌개1인', price: 8000 },
+        { id: '22', name: '된장찌개', price: 8000 },
+        { id: '23', name: '계란말이', price: 6000 },
       ],
     },
   ];
@@ -58,7 +92,7 @@ app.get('/restaurants', (request, response) => {
 
 // 주문 생성
 app.post('/orders', (request, response) => {
-  const order = request.body();
+  const order = request.body;
 
   const id = Date.now().toString();
 
