@@ -1,5 +1,5 @@
 import Foods from './Food';
-import { TRestaurantsResponse } from '../types/restaurant';
+import { TRestaurantsResponse } from '../../types/restaurant';
 
 type RestaurantProps = {
   restaurant: TRestaurantsResponse;

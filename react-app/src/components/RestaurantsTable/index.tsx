@@ -1,4 +1,4 @@
-import { TRestaurantsResponse } from '../types/restaurant';
+import { TRestaurantsResponse } from '../../types/restaurant';
 import RestaurantRow from './RestaurantRow';
 
 type RestaurantsTableProps = {

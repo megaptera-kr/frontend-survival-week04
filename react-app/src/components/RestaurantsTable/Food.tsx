@@ -1,4 +1,4 @@
-import { TRestaurantMenu } from '../types/restaurant';
+import { TRestaurantMenu } from '../../types/restaurant';
 
 type FoodProps = {
   menu: TRestaurantMenu[]
