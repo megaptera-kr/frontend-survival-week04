@@ -55,6 +55,17 @@ app.get('/restaurants', (req, res) => {
   res.send({ restaurants });
 });
 
+app.post('/orders', (req, res) => {
+  const { menu, totalPrice } = req.body;
+
+  const receipt = {
+    id: Date.now().toString(),
+    menu,
+    totalPrice,
+  };
+  res.status(201).send({ receipt });
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
