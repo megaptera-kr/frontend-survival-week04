@@ -7,8 +7,15 @@ type MenuProps = {
 
 function Food({ food, children }: MenuProps) {
   return (
-    <li key={food.id} className="food">
-      <span className="food-price">
+    <li
+      className="food"
+      style={{
+        display: 'flex',
+        paddingBlock: '0.5rem',
+
+      }}
+    >
+      <span style={{ margin: '0 auto' }}>
         {food.name}
         (
         {`${food.price.toLocaleString()}원`}

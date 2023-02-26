@@ -18,19 +18,28 @@ function Menu({ menu }: MenuProps) {
   };
 
   return (
-    <ul className="menu-list">
-      {
-        menu.map((food) => (
-          <Food key={`${food.name}-${food.id}`} food={food}>
+    <ul>
+      {menu.map((food, index) => {
+        const { id } = food;
+
+        const key = `${id}-${index}`;
+
+        return (
+          <Food
+            key={key}
+            food={food}
+          >
             <button
+              style={{ marginLeft: '.5rem' }}
+              name={`#${food.name}`}
               type="button"
               onClick={() => onClickToCart(food)}
             >
               선택
             </button>
           </Food>
-        ))
-      }
+        );
+      })}
     </ul>
   );
 }

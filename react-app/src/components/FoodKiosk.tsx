@@ -30,7 +30,7 @@ function FoodKiosk({ restaurants }: { restaurants: TRestaurantsResponse[] }) {
 
   return (
     <div className="food-kiosk">
-      <Cart onClickPrinter={(selectedMenu) => setReceipt(selectedMenu)} />
+      <Cart setReceipt={setReceipt} />
       <FilterableRestaurantsTable restaurants={restaurants} />
       <Receipt receipt={receipt} />
     </div>

@@ -1,11 +1,6 @@
 import { TReceipt } from '../types/receipt';
 import Food from './RestaurantsTable/Food';
 
-const receiptListStyle = {
-  listStyle: 'none',
-  padding: '0',
-};
-
 function Receipt({ receipt }: { receipt: TReceipt }) {
   if (!receipt.id) {
     return <p>[영수증 나오는 곳]</p>;
@@ -29,7 +24,11 @@ function Receipt({ receipt }: { receipt: TReceipt }) {
       </div>
       <div>
         <h3>주문목록</h3>
-        <ul style={receiptListStyle}>
+        <ul style={{
+          padding: 0,
+          listStyle: 'none',
+        }}
+        >
           {
             menu.map((food, idx) => {
               const key = `${id}-${idx}`;
@@ -41,9 +40,9 @@ function Receipt({ receipt }: { receipt: TReceipt }) {
         </ul>
       </div>
       <div>
-        총가격:
+        총 가격:
         {' '}
-        {totalPrice}
+        {totalPrice.toLocaleString()}
         원
       </div>
 

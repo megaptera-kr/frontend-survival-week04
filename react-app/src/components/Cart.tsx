@@ -1,39 +1,49 @@
 import { useLocalStorage } from 'usehooks-ts';
-import { TRestaurantMenu } from '../types/restaurant';
-import Food from './RestaurantsTable/Food';
+
 import useFetchOrders from '../hooks/useFetchOrders';
+
+import Food from './RestaurantsTable/Food';
 import { TReceipt } from '../types/receipt';
+import { TRestaurantMenu } from '../types/restaurant';
 
 type CartProps = {
-  onClickPrinter: (receipt: TReceipt) => void
+  setReceipt: (receipt: TReceipt) => void;
 }
 
-function Cart({ onClickPrinter }: CartProps) {
-  const [selectedFood, setSelectedFood] = useLocalStorage<TRestaurantMenu[]>('cart', []);
+export default function Cart({ setReceipt }: CartProps) {
+  const [selectedFoods, setFoods] = useLocalStorage<TRestaurantMenu[]>('cart', []);
 
   const { fetchOrder } = useFetchOrders();
 
-  const totalPrice = selectedFood.reduce((acc, cur) => acc + cur.price, 0);
+  const totalPrice = selectedFoods.reduce((acc, cur) => acc + cur.price, 0);
 
-  const onClickCancelOrders = (idx: number) => {
-    const cancelledFood = selectedFood.filter((_, i) => i !== idx);
-    setSelectedFood(cancelledFood);
+  const handleClickCancel = (index: number) => {
+    const foods = selectedFoods.filter((_, i) => i !== index);
+    setFoods(foods);
   };
 
-  const onClickToCart = async () => {
-    if (!selectedFood.length) return;
+  const handleClickOrder = async () => {
+    if (!selectedFoods.length) {
+      return;
+    }
 
-    const receipt = selectedFood ? await fetchOrder(selectedFood, totalPrice) : null;
-    onClickPrinter(receipt);
-    setSelectedFood([]);
+    const receipt = await fetchOrder(selectedFoods, totalPrice);
+
+    setReceipt(receipt);
+
+    setFoods([]);
   };
 
   return (
-    <div className="cart">
-      <h2>점심 바구니</h2>
-      <ul>
-        {selectedFood.map((food, idx) => {
-          const key = `${food.id}-${idx}`;
+    <div style={{ marginBottom: '3rem' }}>
+      <h2>
+        점심 바구니
+      </h2>
+      <ul style={{ width: '20%' }}>
+        {selectedFoods.map((food, index) => {
+          const { id } = food;
+
+          const key = `${id}-${index}`;
 
           return (
             <Food
@@ -41,9 +51,9 @@ function Cart({ onClickPrinter }: CartProps) {
               food={food}
             >
               <button
+                style={{ marginLeft: '.5rem' }}
                 type="button"
-                className="cancel-button"
-                onClick={() => onClickCancelOrders(idx)}
+                onClick={() => handleClickCancel(index)}
               >
                 취소
               </button>
@@ -51,7 +61,10 @@ function Cart({ onClickPrinter }: CartProps) {
           );
         })}
       </ul>
-      <button type="button" className="total-button" onClick={onClickToCart}>
+      <button
+        type="button"
+        onClick={handleClickOrder}
+      >
         합계:
         {' '}
         {totalPrice.toLocaleString()}
@@ -60,5 +73,3 @@ function Cart({ onClickPrinter }: CartProps) {
     </div>
   );
 }
-
-export default Cart;
