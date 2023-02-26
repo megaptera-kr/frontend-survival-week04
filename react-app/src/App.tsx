@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useInterval, useLocalStorage } from 'usehooks-ts';
-import restaurantType from './types/restaurantType';
 import RestaurantTable from './RestaurantTable';
 import FilterComponent from './FilterComponent';
 import menuType from './types/menuType';
 import displayMenu from './functions/displayMenu';
 import Receipt from './Receipt';
+import useFetchRestaurants from './hooks/useFetchRestaurants';
 
-export default function App({ restaurants }: {restaurants: restaurantType[]}) {
+export default function App() {
+  const restaurants = useFetchRestaurants();
   const [cart, setCart] = useLocalStorage<menuType[]>('cart', []);
   const [searchText, setSearchText] = useState<string>('');
   const [categoryText, setCategoryText] = useState<string>('전체');
@@ -37,8 +38,7 @@ export default function App({ restaurants }: {restaurants: restaurantType[]}) {
     setReceipt(data.receipt);
   };
 
-  const newRestaurantsData = restaurants
-    .filter((a) => a.name.includes(searchText.trim()))
+  const newRestaurantsData = restaurants.filter((a) => a.name.includes(searchText.trim()))
     .filter((a) => {
       if (categoryText === '전체') {
         return a;
