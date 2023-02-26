@@ -39,6 +39,6 @@ const restaurants = [
   },
 ];
 
-router.get('/', (req, res) => res.status(200).send(restaurants));
+router.get('/', (req, res) => res.status(200).send({ restaurants }));
 
 export default router;

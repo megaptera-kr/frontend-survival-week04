@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 
-import restaurantsRouter from './routes/restaurants';
-import ordersRouter from './routes/orders';
+import restaurantsRouter from './src/routes/restaurants';
+import ordersRouter from './src/routes/orders';
 
 const port = 3000;
 
