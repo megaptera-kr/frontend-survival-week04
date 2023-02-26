@@ -7,7 +7,7 @@ import GlobalStyle from './GlobalStyles';
 import useFilter from './hooks/useFilter';
 import useOrder from './hooks/useOrder';
 import Order from './components/order/Order';
-import { filterRestaurants } from './utils/filterUtil';
+import filterRestaurants from './utils/filterUtil';
 
 const Container = styled.div`
   display: flex;
