@@ -29,6 +29,7 @@ function Searchbar({
               onClick={() => onClickFilterButton(category)}
             >
               {category}
+
             </button>
           </li>
         ))}

@@ -16,7 +16,6 @@ app.get('/', (req, res) => {
 
 app.get('/restaurants', (req, res) => {
   const restaurants = [
-
     {
       id: '1',
       category: '중식',
@@ -51,7 +50,6 @@ app.get('/restaurants', (req, res) => {
         { id: '13', name: '닭가슴살카레', price: 13000 },
       ],
     },
-
   ];
 
   res.send({ restaurants });

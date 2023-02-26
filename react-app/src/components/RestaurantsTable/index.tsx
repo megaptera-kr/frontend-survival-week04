@@ -10,7 +10,7 @@ function RestaurantsTable({ restaurants }: RestaurantsTableProps) {
     <table>
       <thead>
         <tr>
-          <th>식당 이름</th>
+          <th style={{ padding: '0 2rem' }}>식당 이름</th>
           <th>종류</th>
           <th>메뉴</th>
         </tr>
@@ -19,7 +19,11 @@ function RestaurantsTable({ restaurants }: RestaurantsTableProps) {
       <tbody>
         {
           restaurants.map((restaurant) => (
-            <RestaurantRow key={restaurant.id} restaurant={restaurant} />
+            <RestaurantRow
+              key={restaurant.id}
+              restaurant={restaurant}
+
+            />
           ))
         }
       </tbody>

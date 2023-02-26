@@ -1,13 +1,14 @@
 import './styles.css';
-import { TRestaurantsResponse } from './types/restaurant';
-import FilterableRestaurantsTable
-  from './components/FilterableRestaurantsTable';
+import useFetchRestaurants from './hooks/useFetchRestaurants';
+import FoodKiosk from './components/FoodKiosk';
 
-export default function App({ restaurants }: { restaurants: TRestaurantsResponse[] }) {
+export default function App() {
+  const restaurants = useFetchRestaurants();
+
   return (
-    <div className="food-kiosk">
+    <div className="food-kiosk-app">
       <h1>푸트코트 키오스크</h1>
-      <FilterableRestaurantsTable restaurants={restaurants} />
+      <FoodKiosk restaurants={restaurants} />
     </div>
   );
 }
