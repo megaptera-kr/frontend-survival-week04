@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Searchbar from '../Searchbar';
-import RestaurantsTable from '../RestaurantsTable';
-import findRestaurants from '../../utils/findRestaurants';
-import { TRestaurantsResponse } from '../../types/restaurant';
-import selectCategories from '../../utils/selectCategories';
+import Searchbar from './Searchbar';
+import RestaurantsTable from './RestaurantsTable';
+import findRestaurants from '../utils/findRestaurants';
+import { TRestaurantsResponse } from '../types/restaurant';
+import selectCategories from '../utils/selectCategories';
 
 const DEFAULT_BUTTON_VALUE = '전체';
 

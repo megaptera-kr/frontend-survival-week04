@@ -7,7 +7,7 @@ type MenuProps = {
 
 function Food({ food, children }: MenuProps) {
   return (
-    <li key={food.id}>
+    <li key={food.id} className="food">
       <span className="food-price">
         {food.name}
         (
