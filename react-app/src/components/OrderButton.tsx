@@ -1,4 +1,3 @@
-import { useInterval } from 'usehooks-ts';
 import Menu from '../types/Menu';
 import Receipt from '../types/Receipt';
 

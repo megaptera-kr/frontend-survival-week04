@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import Menu from '../types/Menu';
 import Restaurant from '../types/Restaurant';
 
 import RestaurantsTable from './RestaurantsTable';
@@ -6,10 +7,17 @@ import RestaurantsTable from './RestaurantsTable';
 const context = describe;
 
 let restaurants: Restaurant[];
+let selectedMenus: Menu[];
+
+const setSelectedMenus = jest.fn();
 
 describe('RestaurantsTable', () => {
   function renderRestaurantsTable() {
-    render(<RestaurantsTable restaurants={restaurants} />);
+    render(<RestaurantsTable
+      restaurants={restaurants}
+      selectedMenus={selectedMenus}
+      setSelectedMenus={setSelectedMenus}
+    />);
   }
 
   context('사용자가 페이지에 접속하면', () => {

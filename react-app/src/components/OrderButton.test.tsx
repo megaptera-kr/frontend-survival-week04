@@ -6,11 +6,18 @@ import Menu from '../types/Menu';
 
 let selectedMenus: Menu[];
 
+const setSelectedMenus = jest.fn();
+const setReceipt = jest.fn();
+
 const context = describe;
 
 describe('OrderButton', () => {
   function renderOrderButton() {
-    render(<OrderButton selectedMenus={selectedMenus} />);
+    render(<OrderButton
+      selectedMenus={selectedMenus}
+      setSelectedMenus={setSelectedMenus}
+      setReceipt={setReceipt}
+    />);
   }
 
   context('선택한 메뉴가 없으면', () => {

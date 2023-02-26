@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import Menu from '../types/Menu';
 
 import RestaurantRow from './RestaurantRow';
 
@@ -14,11 +15,20 @@ const restaurant = {
     { id: '13', name: '닭가슴살카레', price: 13000 },
   ],
 };
+
+let selectedMenus: Menu[];
+
+const setSelectedMenus = jest.fn();
+
 const context = describe;
 
 describe('RestaurantRow', () => {
   function renderRestaurantRow() {
-    render(<RestaurantRow restaurant={restaurant} />);
+    render(<RestaurantRow
+      restaurant={restaurant}
+      selectedMenus={selectedMenus}
+      setSelectedMenus={setSelectedMenus}
+    />);
   }
 
   context('사용자가 페이지에 접속했을 때', () => {

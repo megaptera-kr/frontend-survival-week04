@@ -1,14 +1,24 @@
 import { render, screen } from '@testing-library/react';
+import Menu from '../types/Menu';
 
 import SelectedMenu from './SelectedMenu';
 
 const menu = { id: '1', name: '짜장면', price: 8000 };
+let index: number;
+let selectedMenus: Menu[];
+
+const setSelectedMenus = jest.fn();
 
 const context = describe;
 
 describe('SelectedMenu', () => {
   function renderSelectedMenu() {
-    render(<SelectedMenu menu={menu} />);
+    render(<SelectedMenu
+      menu={menu}
+      index={index}
+      selectedMenus={selectedMenus}
+      setSelectedMenus={setSelectedMenus}
+    />);
   }
 
   context('사용자가 메뉴를 선택하면', () => {

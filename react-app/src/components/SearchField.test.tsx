@@ -5,16 +5,22 @@ import SearchField from './SearchField';
 import Restaurant from '../types/Restaurant';
 
 let restaurants: Restaurant[];
+let filterText: string;
 
-const setCategory = jest.fn();
+const setFilterText = jest.fn();
+const setFilterCategory = jest.fn();
 
 const context = describe;
 
 describe('SearchField', () => {
   function renderSearchField() {
-    render(<SearchField restaurants={restaurants} setCategory={setCategory} />);
+    render(<SearchField
+      restaurants={restaurants}
+      filterText={filterText}
+      setFilterText={setFilterText}
+      setFilterCategory={setFilterCategory}
+    />);
   }
-
   context('사용자가 페이지에 접속하면', () => {
     beforeEach(() => {
       restaurants = [
