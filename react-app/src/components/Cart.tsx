@@ -13,12 +13,13 @@ function Cart({ onClickPrinter }: CartProps) {
 
   const { fetchOrder } = useFetchOrders();
 
+  const totalPrice = selectedFood.reduce((acc, cur) => acc + cur.price, 0);
+
   const onClickCancelOrders = (idx: number) => {
     const cancelledFood = selectedFood.filter((_, i) => i !== idx);
     setSelectedFood(cancelledFood);
   };
 
-  const totalPrice = selectedFood.reduce((acc, cur) => acc + cur.price, 0);
   const onClickToCart = async () => {
     if (!selectedFood.length) return;
 

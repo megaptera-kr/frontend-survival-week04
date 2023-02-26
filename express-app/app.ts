@@ -6,12 +6,22 @@ const port = 3000;
 const app = express();
 
 app.use(cors());
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');
+});
+
+app.post('/orders', (req, res) => {
+  const { menu, totalPrice } = req.body;
+
+  const receipt = {
+    id: Date.now().toString(),
+    menu,
+    totalPrice,
+  };
+
+  res.status(201).send({ receipt });
 });
 
 app.get('/restaurants', (req, res) => {
@@ -53,17 +63,6 @@ app.get('/restaurants', (req, res) => {
   ];
 
   res.send({ restaurants });
-});
-
-app.post('/orders', (req, res) => {
-  const { menu, totalPrice } = req.body;
-
-  const receipt = {
-    id: Date.now().toString(),
-    menu,
-    totalPrice,
-  };
-  res.status(201).send({ receipt });
 });
 
 app.listen(port, () => {

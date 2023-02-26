@@ -21,7 +21,13 @@ function Searchbar({
         filterText={filterText}
         onChange={onChange}
       />
-      <ul>
+      <ul style={{
+        listStyle: 'none',
+        display: 'flex',
+        gap: '10px',
+        padding: '0',
+      }}
+      >
         {['전체', ...categories].map((category) => (
           <li key={category}>
             <button
