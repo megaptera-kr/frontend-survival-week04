@@ -1,4 +1,21 @@
 .cart,
 .search-bar {
-    margin-top: 20px;
+	margin-top: 20px;
 }
+
+.search-bar ul {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+
+	padding: 0;
+}
+
+.search-bar ul li {
+	list-style: none;
+}
+
+.input-filed label {
+	padding-right: 10px;
+}
+
