@@ -1,14 +1,16 @@
 import Menu from '../types/Menu';
+import Receipt from '../types/Receipt';
 import OrderButton from './OrderButton';
 import SelectedMenu from './SelectedMenu';
 
 type LunchBasketProps = {
   selectedMenus: Menu[];
   setSelectedMenus: (menus: Menu[]) => void;
+  setReceipt: (receipt: Receipt) => void;
  }
 
 export default function LunchBasket({
-  selectedMenus, setSelectedMenus,
+  selectedMenus, setSelectedMenus, setReceipt,
 }: LunchBasketProps) {
   return (
     <div>
@@ -30,7 +32,11 @@ export default function LunchBasket({
           </ul>
         )
         : null}
-      <OrderButton selectedMenus={selectedMenus} />
+      <OrderButton
+        selectedMenus={selectedMenus}
+        setSelectedMenus={setSelectedMenus}
+        setReceipt={setReceipt}
+      />
     </div>
   );
 }

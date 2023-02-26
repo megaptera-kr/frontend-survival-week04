@@ -67,7 +67,7 @@ app.get('/restaurants', (request, response) => {
       name: '혹등고래카레',
       menu: [
         { id: '16', name: '기본카레', price: 9000 },
-        { id: '117', name: '가라아게카레', price: 14000 },
+        { id: '17', name: '가라아게카레', price: 14000 },
         { id: '18', name: '소시지카레', price: 13000 },
         { id: '19', name: '돈까스카레', price: 14000 },
         { id: '20', name: '닭가슴살카레', price: 13000 },

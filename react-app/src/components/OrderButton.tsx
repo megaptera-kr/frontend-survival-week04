@@ -1,16 +1,26 @@
+import { useInterval } from 'usehooks-ts';
 import Menu from '../types/Menu';
+import Receipt from '../types/Receipt';
 
 import calculateTotalPrice from '../utils/calculateTotalPrice';
 import thousandSeparator from '../utils/thousandSeparator';
 
 type OrderButtonProps = {
     selectedMenus: Menu[];
+    setSelectedMenus: (menus: Menu[]) => void;
+    setReceipt: (receipt: Receipt) => void;
 }
 
-export default function OrderButton({ selectedMenus }: OrderButtonProps) {
+export default function OrderButton({
+  selectedMenus, setSelectedMenus, setReceipt,
+}: OrderButtonProps) {
   const totalPrice = calculateTotalPrice(selectedMenus);
 
   const handleClick = async (data: Menu[]) => {
+    if (!data.length) {
+      return;
+    }
+
     const requestData = { menu: data, totalPrice };
 
     const url = 'http://localhost:3000/orders';
@@ -22,9 +32,9 @@ export default function OrderButton({ selectedMenus }: OrderButtonProps) {
       body: JSON.stringify(requestData),
     });
 
-    console.log(await response.json());
-
-    // const body = await response.json();
+    const receipt = await response.json();
+    setReceipt(receipt);
+    setSelectedMenus([]);
   };
 
   return (
