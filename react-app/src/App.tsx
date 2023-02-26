@@ -1,3 +1,5 @@
+import 'whatwg-fetch';
+
 import Cart from './components/Cart';
 import FilterableRestaurantsTable from './components/FilterableRestaurantsTable';
 import Receipt from './components/Receipt';

@@ -1,12 +1,14 @@
 import { useState } from 'react';
+
 import { useLocalStorage, useInterval } from 'usehooks-ts';
 
 import Food from '../types/Food';
+
 import Receipt from '../types/Receipt';
 
 const useOrder = () => {
   const [receipt, setReceipt] = useState<Receipt | null>(null);
-  const [_, setCart] = useLocalStorage<Food[]>('cart', []);
+  const setCart = useLocalStorage<Food[]>('cart', [])[1];
 
   const order = async (cart: Food[]) => {
     const url = 'http://localhost:3000/orders';
@@ -17,7 +19,8 @@ const useOrder = () => {
       },
       body: JSON.stringify({ cart }),
     });
-    const data = await response.json();
+    const data = await response.json() as {receipt: Receipt};
+
     setReceipt(data.receipt);
     setCart([]);
   };
@@ -28,6 +31,7 @@ const useOrder = () => {
     },
     receipt ? 5000 : null,
   );
+
   return { order, receipt };
 };
 

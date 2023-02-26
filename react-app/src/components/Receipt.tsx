@@ -7,7 +7,7 @@ type ReceiptProps = {
 };
 
 function Receipt({ receipt }: ReceiptProps) {
-  if (!receipt) return '[영수증 나오는 곳]';
+  if (!receipt) return <span>[영수증 나오는 곳]</span>;
 
   const total = sumPrice(receipt.menu);
 
