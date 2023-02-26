@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Order } from '../../types/Order';
 import Receipt from '../../types/Receipt';
-import { reduceOrders } from '../../utils/orderUtils';
+import reduceOrders from '../../utils/orderUtils';
 import Title from '../Title';
 import OrderTable from './OrderTable';
 
