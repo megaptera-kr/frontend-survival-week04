@@ -1,11 +1,7 @@
-import Foods from './Food';
 import { TRestaurantsResponse } from '../../types/restaurant';
+import Menu from './Menu';
 
-type RestaurantProps = {
-  restaurant: TRestaurantsResponse;
-};
-
-function RestaurantRow({ restaurant }: RestaurantProps) {
+function RestaurantRow({ restaurant }: { restaurant: TRestaurantsResponse }) {
   const { name, category, menu } = restaurant;
 
   return (
@@ -17,7 +13,7 @@ function RestaurantRow({ restaurant }: RestaurantProps) {
         {category}
       </td>
       <td>
-        <Foods menu={menu} />
+        <Menu menu={menu} />
       </td>
     </tr>
   );

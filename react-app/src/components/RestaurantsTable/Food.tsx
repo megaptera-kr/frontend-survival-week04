@@ -1,23 +1,22 @@
+import { HTMLAttributes } from 'react';
 import { TRestaurantMenu } from '../../types/restaurant';
 
-type FoodProps = {
-  menu: TRestaurantMenu[]
-}
+type MenuProps = {
+  food: TRestaurantMenu
+} & HTMLAttributes<Element>;
 
-function Food({ menu }: FoodProps) {
+function Food({ food, children }: MenuProps) {
   return (
-    <ul>
-      {
-        menu.map((food) => (
-          <li key={food.id}>
-            {food.name}
-            (
-            {String(food.price)}
-            )
-          </li>
-        ))
-      }
-    </ul>
+    <li key={food.id}>
+      <span className="food-price">
+        {food.name}
+        (
+        {`${food.price.toLocaleString()}원`}
+        )
+      </span>
+      {children}
+    </li>
+
   );
 }
 
