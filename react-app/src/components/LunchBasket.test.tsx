@@ -3,7 +3,7 @@ import Menu from '../types/Menu';
 
 import LunchBasket from './LunchBasket';
 
-let selectedMenus: Menu[];
+const selectedMenus: Menu[] = [];
 
 const setSelectedMenus = jest.fn();
 const setReceipt = jest.fn();
