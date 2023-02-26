@@ -33,10 +33,7 @@ type SelectProps = {
   setSearchCategory: (args: string) => void;
 };
 
-export default function SelectFilter({
-  searchCategory,
-  setSearchCategory,
-}: SelectProps) {
+function SelectFilter({ searchCategory, setSearchCategory }: SelectProps) {
   return (
     <SelectContainer>
       <SelectBox>
@@ -74,3 +71,5 @@ export default function SelectFilter({
     </SelectContainer>
   );
 }
+
+export default SelectFilter;

@@ -15,7 +15,7 @@ type OrderListProps = {
   setReceipt: (arg: Receipt) => void;
 };
 
-export default function OrderList({ order, setReceipt }: OrderListProps) {
+function OrderList({ order, setReceipt }: OrderListProps) {
   const result = reduceOrders(order.menu);
 
   return (
@@ -33,3 +33,5 @@ export default function OrderList({ order, setReceipt }: OrderListProps) {
     </Container>
   );
 }
+
+export default OrderList;

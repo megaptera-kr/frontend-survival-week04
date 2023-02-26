@@ -13,7 +13,7 @@ type MenusProps = {
   setOrder: (arg: Order) => void;
 };
 
-export default function Menus({ menus, order, setOrder }: MenusProps) {
+function Menus({ menus, order, setOrder }: MenusProps) {
   return (
     <MenuContainer>
       {menus.map((menu) => (
@@ -27,3 +27,5 @@ export default function Menus({ menus, order, setOrder }: MenusProps) {
     </MenuContainer>
   );
 }
+
+export default Menus;

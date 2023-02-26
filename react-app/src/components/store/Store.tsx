@@ -22,7 +22,7 @@ type StoreProps = {
   setOrder: (arg: Order) => void;
 };
 
-export default function Store({ restaurant, order, setOrder }: StoreProps) {
+function Store({ restaurant, order, setOrder }: StoreProps) {
   return (
     <StoreContainer>
       <StoreName>{restaurant.name}</StoreName>
@@ -30,3 +30,5 @@ export default function Store({ restaurant, order, setOrder }: StoreProps) {
     </StoreContainer>
   );
 }
+
+export default Store;

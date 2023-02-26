@@ -10,7 +10,7 @@ const OrderContainer = styled.div`
   width: 100%;
 `;
 
-export default function Order({ order }: { order: Order }) {
+function Order({ order }: { order: Order }) {
   const [receipt, setReceipt] = useLocalStorage('receipt', {} as Receipt);
 
   useInterval(() => {
@@ -24,3 +24,5 @@ export default function Order({ order }: { order: Order }) {
     </OrderContainer>
   );
 }
+
+export default Order;

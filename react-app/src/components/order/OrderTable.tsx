@@ -11,11 +11,7 @@ type OrderTableProps = {
   setReceipt: (arg: Receipt) => void;
 };
 
-export default function OrderTable({
-  order,
-  orderMenu,
-  setReceipt,
-}: OrderTableProps) {
+function OrderTable({ order, orderMenu, setReceipt }: OrderTableProps) {
   const { postOrder } = usePostOrder();
 
   const [, setLocalOrder] = useLocalStorage('order', {} as Order);
@@ -75,3 +71,5 @@ export default function OrderTable({
     </div>
   );
 }
+
+export default OrderTable;
