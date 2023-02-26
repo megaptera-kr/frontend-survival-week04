@@ -3,7 +3,7 @@ import usePostOrder from '../../hooks/usePostOrder';
 import Menu from '../../types/Menu';
 import { Order } from '../../types/Order';
 import Receipt from '../../types/Receipt';
-import { reduceOrders } from '../../utils/orderUtils';
+import reduceOrders from '../../utils/orderUtils';
 
 type OrderTableProps = {
   order: Order;
@@ -18,7 +18,7 @@ export default function OrderTable({
 }: OrderTableProps) {
   const { postOrder } = usePostOrder();
 
-  const [localOrder, setLocalOrder] = useLocalStorage('order', {} as Order);
+  const [, setLocalOrder] = useLocalStorage('order', {} as Order);
 
   const handleClickOrder = async () => {
     setLocalOrder({

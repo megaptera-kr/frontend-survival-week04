@@ -28,7 +28,7 @@ function ReceiptList({ receipt }: { receipt: Receipt }) {
             </thead>
             <tbody>
               {receipt.menu?.map((r: Menu, i: number) => (
-                <tr key={i}>
+                <tr key={r.id}>
                   <td>{i + 1}</td>
                   <td>{r.name}</td>
                   <td>
