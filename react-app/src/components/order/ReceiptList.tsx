@@ -32,19 +32,14 @@ function ReceiptList({ receipt }: { receipt: Receipt }) {
                   <td>{i + 1}</td>
                   <td>{r.name}</td>
                   <td>
-                    <span>{r.price.toLocaleString()}</span>
-                    <span>원</span>
+                    <span>{`${r.price.toLocaleString()}원`}</span>
                   </td>
                 </tr>
               ))}
               <tr>
                 <td colSpan={3} />
                 <td>
-                  <span>
-                    총 가격:
-                    {receipt.totalPrice?.toLocaleString()}
-                  </span>
-                  <span>원</span>
+                  <span>{`총 가격: ${receipt.totalPrice?.toLocaleString()}원`}</span>
                 </td>
               </tr>
             </tbody>
