@@ -1,0 +1,34 @@
+.cart,
+.search-bar {
+	margin-top: 20px;
+}
+
+.search-bar ul {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+
+	padding: 0;
+}
+
+.search-bar ul li {
+	list-style: none;
+}
+
+.input-filed label {
+	padding-right: 10px
+}
+
+.menu-list {
+	list-style: none;
+}
+
+.menu-list li {
+	display: flex;
+	padding-block: 0.5rem;
+}
+
+
+.menu-list .food-price {
+	margin: 0 auto;
+}
