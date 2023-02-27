@@ -1,7 +1,16 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'whatwg-fetch';
+import Bucket from './components/Bucket';
+import FilterableRestaurantTable from './components/FilterableRestaurantTable';
+import ReceiptBox from './components/ReceiptBox';
+
 export default function App() {
   return (
-    <p>
-      과제를 진행해 주세요.
-    </p>
+    <div>
+      <h1>푸드코트 키오스크</h1>
+      <Bucket />
+      <FilterableRestaurantTable />
+      <ReceiptBox />
+    </div>
   );
 }
