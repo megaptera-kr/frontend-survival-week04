@@ -1,10 +1,7 @@
 import { render } from '@testing-library/react';
+import FoodCourtKiosk from './FoodCourtKiosk';
 
-import App from './App';
-
-import Restaurant from './types/Restaurant';
-
-const restaurants: Restaurant[] = [
+const restaurants = [
   {
     id: '1',
     category: '중식',
@@ -41,10 +38,8 @@ const restaurants: Restaurant[] = [
   },
 ];
 
-jest.mock('./hooks/useFetchProducts', () => () => restaurants);
-
-describe('App ', () => {
-  it('renders without crash', () => {
-    render(<App />);
+describe('FoodCourtKiosk', () => {
+  it('renders Kiosk', () => {
+    render(<FoodCourtKiosk restaurants={restaurants} />);
   });
 });
