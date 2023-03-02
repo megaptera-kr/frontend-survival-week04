@@ -23,7 +23,7 @@ export default function Receipt({
           </ul>
           <p>
             총 가격:
-            {receipt?.totalPrice.toLocaleString()}
+            {` ${receipt?.totalPrice.toLocaleString()}`}
             원
           </p>
         </div>
