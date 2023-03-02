@@ -3,7 +3,7 @@ import { MenuType } from '../types/restaurants';
 
 type PropTypes = {
   menu: MenuType;
-  children?: ReactElement;
+  children: ReactElement | undefined;
 };
 
 export default function Menu({ menu, children }: PropTypes) {

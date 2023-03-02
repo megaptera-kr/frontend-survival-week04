@@ -17,9 +17,9 @@ export default function MenuCart({
     <div>
       <h2>점심 바구니</h2>
       <div>
-        {menu.map((_menu, index) => (
-          <Menu menu={_menu} key={`${_menu.id}_${index}`}>
-            <button type="button" onClick={() => handleRemove(index)}>
+        {menu.map((_menu, i) => (
+          <Menu menu={_menu} key={`${_menu.id}_${i.toString()}`}>
+            <button type="button" onClick={() => handleRemove(i)}>
               삭제
             </button>
           </Menu>

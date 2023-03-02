@@ -1,7 +1,11 @@
 import { ReceiptType } from '../types/restaurants';
 import Menu from './Menu';
 
-export default function Receipt({ receipt }: { receipt?: ReceiptType }) {
+export default function Receipt({
+  receipt = undefined,
+}: {
+  receipt: ReceiptType | undefined;
+}) {
   return (
     <div>
       <h3>[영수증 나오는 곳]</h3>
@@ -11,8 +15,10 @@ export default function Receipt({ receipt }: { receipt?: ReceiptType }) {
           <p>{receipt?.id}</p>
           <p>주문목록</p>
           <ul>
-            {receipt?.menu.map((menu, index) => (
-              <Menu menu={menu} key={`${menu.id}_${index}`} />
+            {receipt?.menu.map((menu, i) => (
+              <Menu menu={menu} key={`${menu.id}_${i.toString()}`}>
+                <span />
+              </Menu>
             ))}
           </ul>
           <p>
