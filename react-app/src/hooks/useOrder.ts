@@ -6,13 +6,13 @@ import { getTotalPrice } from '../utils/cart';
 
 interface UseOrder {
   receipts: Receipts | null;
-  handleOrderCart: () => void;
+  orderCart: () => void;
 }
 
 export default function useOrder(cartItems: FoodMenu[]): UseOrder {
   const [receipts, setReceipts] = useState<Receipts | null>(null);
 
-  const handleOrderCart = async () => {
+  const orderCart = async () => {
     if (!cartItems.length) return;
 
     const reqData = {
@@ -37,5 +37,5 @@ export default function useOrder(cartItems: FoodMenu[]): UseOrder {
 
   useTimeout(clearReceipts, 5000, receipts);
 
-  return { receipts, handleOrderCart };
+  return { receipts, orderCart };
 }

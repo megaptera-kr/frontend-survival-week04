@@ -15,7 +15,7 @@ export default function Kiosk() {
   const { data: restaurants = [] } = useFetch<Restaurant[]>('http://localhost:3000/restaurants');
   const { filter, handleChangeFilter } = useKioskFilter();
   const { cartItems, addToCart, clearCart } = useCart();
-  const { receipts, handleOrderCart } = useOrder(cartItems);
+  const { receipts, orderCart } = useOrder(cartItems);
 
   useEffect(() => {
     clearCart();
@@ -28,7 +28,7 @@ export default function Kiosk() {
         restaurants={filterRestaurants(restaurants, filter)}
         addToCart={addToCart}
       />
-      <Cart cartItems={cartItems} clearCart={clearCart} orderCartItems={handleOrderCart} />
+      <Cart cartItems={cartItems} clearCart={clearCart} orderCart={orderCart} />
       {receipts ? <OrderResult receipts={receipts} /> : <span>[영수증 나오는 곳]</span>}
     </section>
   );
