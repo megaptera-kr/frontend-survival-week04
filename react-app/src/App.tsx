@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
-
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import { useRestaurants } from './hooks/useRestaurants';
 
