@@ -11,7 +11,7 @@ function TableRow({ restaurant }: Props) {
       <td>{restaurant.name}</td>
       <td>{restaurant.category}</td>
       <td>
-        <ul>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
           {
             restaurant.menu.map((menu) => (
               <li key={menu.id}>

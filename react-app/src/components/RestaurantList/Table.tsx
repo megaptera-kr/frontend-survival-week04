@@ -12,9 +12,9 @@ function Table({ restaurants }: Props) {
       <table>
         <thead>
           <tr>
-            <th>식당 이름</th>
-            <th>종류</th>
-            <th>메뉴</th>
+            <th style={{ width: '100px', textAlign: 'left' }}>식당 이름</th>
+            <th style={{ width: '50px', textAlign: 'left' }}>종류</th>
+            <th style={{ textAlign: 'left' }}>메뉴</th>
           </tr>
         </thead>
         <tbody>
