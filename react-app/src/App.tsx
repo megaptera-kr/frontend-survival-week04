@@ -1,3 +1,4 @@
+import OrderList from './components/OrderList/OrderList';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import { useRestaurants } from './hooks/useRestaurants';
 
@@ -11,7 +12,7 @@ export default function App() {
   return (
     <main>
       <h1>푸드코트 키오스크</h1>
-      {/* 점심 바구니 컴포넌트 */}
+      <OrderList />
       <RestaurantList restaurants={restaurants} />
       {/* 영수증 컴포넌트 */}
     </main>
