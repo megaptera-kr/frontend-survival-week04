@@ -1,6 +1,10 @@
 import React from 'react';
 
-function CategorySelect() {
+type Props = {
+  onClickCategory: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+function CategorySelect({ onClickCategory }: Props) {
   const CATEGORIES = ['전체', '중식', '한식', '일식'];
   return (
     <ul style={{
@@ -14,7 +18,7 @@ function CategorySelect() {
       {
         CATEGORIES.map((category) => (
           <li key={category}>
-            <button type="button">{category}</button>
+            <button type="button" name={category} onClick={onClickCategory}>{category}</button>
           </li>
         ))
       }

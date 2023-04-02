@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React from 'react';
 import { Restaurant } from '../../types';
 import CategorySelect from './CategorySelect';
@@ -9,25 +10,43 @@ type Props = {
 }
 
 function RestaurantList({ restaurants = [] }: Props) {
-  const [list, setList] = React.useState<Restaurant[]>(restaurants);
+  const [searchText, setSearchText] = React.useState<string>('');
+  const [category, setCategory] = React.useState<string>('전체');
 
-  // 이름 검색 기능
+  // 식당 목록 필터링
+  const list = restaurants
+    .filter((restaurant) => filterByRestaurantName(restaurant, searchText))
+    .filter((restaurant) => filterByCategory(restaurant, category));
+
   const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value === '') {
-      return setList(restaurants);
-    }
+    setSearchText(event.target.value);
+  };
 
-    // eslint-disable-next-line max-len
-    return setList(restaurants.filter((restaurant) => (restaurant.name.includes(event.target.value))));
+  const handleClickCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setCategory(event.currentTarget.name);
   };
 
   return (
     <div>
       <SearchBar onChangeInput={handleChangeInput} />
-      <CategorySelect />
+      <CategorySelect onClickCategory={handleClickCategory} />
       <Table restaurants={list} />
     </div>
   );
 }
 
 export default RestaurantList;
+
+function filterByRestaurantName(restaurant: Restaurant, searchText: string) {
+  if (searchText === '') {
+    return restaurant;
+  }
+  return restaurant.name.includes(searchText);
+}
+
+function filterByCategory(restaurant: Restaurant, category: string) {
+  if (category === '전체') {
+    return restaurant;
+  }
+  return restaurant.category === category;
+}
