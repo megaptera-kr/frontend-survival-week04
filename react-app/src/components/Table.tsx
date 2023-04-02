@@ -1,4 +1,5 @@
-import { Columns, WithId } from '../types/table';
+import type { Columns } from '../types/table';
+import type { WithId } from '../types/common';
 
 interface TableProps<T, K extends keyof T> {
   title: string;

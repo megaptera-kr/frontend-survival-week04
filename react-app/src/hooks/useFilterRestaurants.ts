@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 import type { KioskFilter } from '../types/kiosk';
 
-interface UseKioskFilter {
+interface UseFilterRestaurants {
   filter: KioskFilter,
   handleChangeFilter: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function useKioskFilter(): UseKioskFilter {
+export default function useFilterRestaurants(): UseFilterRestaurants {
   const [filter, setFilter] = useState<KioskFilter>({
     searchText: '',
     category: '전체',

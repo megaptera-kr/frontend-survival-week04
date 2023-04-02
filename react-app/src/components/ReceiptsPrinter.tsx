@@ -4,11 +4,11 @@ import Food from './Food';
 import type { Receipts } from '../types/kiosk';
 import { Columns } from '../types/table';
 
-interface OrderResultProps {
-  receipts: Receipts
+interface ReceiptsProps {
+  receipts: Receipts | null;
 }
 
-export default function OrederResult({ receipts }: OrderResultProps) {
+export default function ReceiptsPrinter({ receipts }: ReceiptsProps) {
   const columns: Columns<Receipts, keyof Receipts> = [
     {
       key: 'id',
@@ -55,10 +55,14 @@ export default function OrederResult({ receipts }: OrderResultProps) {
     }
   };
 
+  if (!receipts) {
+    return <span>[영수증 나오는 곳]</span>;
+  }
+
   return (
-    <section>
+    <article>
       <h2>영수증</h2>
       <Table title="영수증" data={[receipts]} columns={columns} renderColumns={renderColumns} />
-    </section>
+    </article>
   );
 }

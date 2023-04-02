@@ -1,8 +1,8 @@
 import { FoodMenu } from '../types/kiosk';
 
-export const getTotalPrice = (foods: FoodMenu[]) => foods.reduce(
+export const calcTotalPrice = (foods: FoodMenu[]) => foods.reduce(
   (acc, food) => acc + food.price,
   0,
 );
 
-export const getTotalPriceStr = (foods: FoodMenu[]) => `${getTotalPrice(foods).toLocaleString()}₩`;
+export const getTotalPriceWithUnit = (foods: FoodMenu[], unit = '') => `${calcTotalPrice(foods).toLocaleString()}${unit}`;

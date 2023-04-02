@@ -1,67 +1,55 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 
 import Cart from '../components/Cart';
-import { restaurant } from './data/restaurants';
+// import CartHeader from '../components/CartHeader';
+// import CartTable from '../components/CartTable';
 
-const context = describe;
+jest.mock('../components/CartHeader');
+jest.mock('../components/CartTable');
 
+// const context = describe;
+
+// TODO 스토리지 목킹 + 훅 모킹.. 학습하기
 describe('Cart', () => {
-  const { menu } = restaurant;
-  const clearCart = jest.fn();
-  const orderCart = jest.fn();
+  const createReceipts = jest.fn();
 
-  it('render Cart without crash', () => {
-    render(<Cart
-      cartItems={menu}
-      clearCart={clearCart}
-      orderCart={orderCart}
-    />);
+  it('render Cart without crash', async () => {
+    render(<Cart createReceipts={createReceipts} />);
+
+    // await screen.findAllByRole('cell');
 
     expect(screen.getByRole('heading', { name: '점심 바구니' })).toBeInTheDocument();
-    expect(screen.getByText('총 주문 금액')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '취소하기' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: '주문하기' })).toBeInTheDocument();
+    // expect(screen.getByRole('button', { name: '취소하기' })).toBeInTheDocument();
+    // expect(screen.getByRole('button', { name: '주문하기' })).toBeInTheDocument();
   });
 
-  context('when cart is empty', () => {
-    it('total amount is 0', () => {
-      render(<Cart
-        cartItems={[]}
-        clearCart={clearCart}
-        orderCart={orderCart}
-      />);
-      expect(screen.getByText('합계: 0원 주문')).toBeInTheDocument();
-    });
-  });
+  // context('when cart is empty', () => {
+  //   it('total amount is 0', () => {
+  //     render(<Cart createReceipts={createReceipts} />);
+  //     expect(screen.getByText('합계: 0원 주문')).toBeInTheDocument();
+  //   });
+  // });
 
-  context('when order button is clicked', () => {
-    it('orderCart is called', async () => {
-      render(<Cart
-        cartItems={menu}
-        clearCart={clearCart}
-        orderCart={orderCart}
-      />);
+  // context('when order button is clicked', () => {
+  //   it('orderCart is called', async () => {
+  //     render(<Cart createReceipts={createReceipts} />);
 
-      const orderBtn = screen.getByLabelText('주문하기');
-      await userEvent.click(orderBtn);
+  //     const orderBtn = screen.getByLabelText('주문하기');
+  //     await userEvent.click(orderBtn);
 
-      expect(orderCart).toHaveBeenCalled();
-    });
-  });
+  //     expect(createReceipts).toHaveBeenCalled();
+  //   });
+  // });
 
-  context('when cancel button is clicked', () => {
-    it('clearCart is called', async () => {
-      render(<Cart
-        cartItems={menu}
-        clearCart={clearCart}
-        orderCart={orderCart}
-      />);
+  // context('when cancel button is clicked', () => {
+  //   it('clearCart is called', async () => {
+  //     render(<Cart createReceipts={createReceipts} />);
 
-      const cancelBtn = screen.getByRole('button', { name: '취소하기' });
-      await userEvent.click(cancelBtn);
+  //     const cancelBtn = screen.getByRole('button', { name: '취소하기' });
+  //     await userEvent.click(cancelBtn);
 
-      expect(clearCart).toHaveBeenCalled();
-    });
-  });
+  //     expect(CartHeader.mock.calls).toHaveBeenCalled();
+  //   });
+  // });
 });

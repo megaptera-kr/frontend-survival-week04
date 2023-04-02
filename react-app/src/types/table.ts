@@ -5,7 +5,3 @@ export interface Column<K extends string> {
 
 export type Columns<T, K extends keyof T> =
 Array<Column<K extends string ? K : never>>
-
-export type WithId<T> = {
-  id: string
-} & T;

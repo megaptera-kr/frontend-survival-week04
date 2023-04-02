@@ -3,7 +3,7 @@ import SelectableList from './SelectableList';
 import Food from './Food';
 import type { Restaurant, FoodMenu } from '../types/kiosk';
 import type { Columns } from '../types/table';
-import { WithoutId } from '../types/common';
+import type { WithoutId } from '../types/common';
 
 interface RestaurantsTableProps {
   restaurants: Restaurant[];

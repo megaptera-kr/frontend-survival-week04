@@ -6,6 +6,7 @@ import { alreadyHasItem } from '../utils/common';
 interface UseCart {
   cartItems: FoodMenu[];
   addToCart: (food: FoodMenu) => () => void;
+  removeFromCart: (food: FoodMenu) => () => void;
   clearCart: () => void;
 }
 
@@ -18,9 +19,16 @@ export default function useCart(): UseCart {
     setCartitems((prev) => [...prev, food]);
   };
 
+  const removeFromCart = (food: FoodMenu) => () => {
+    const filteredCart = cartItems.filter((cart) => cart.id !== food.id);
+    setCartitems(filteredCart);
+  };
+
   const clearCart = () => {
     setCartitems([]);
   };
 
-  return { cartItems, addToCart, clearCart };
+  return {
+    cartItems, addToCart, removeFromCart, clearCart,
+  };
 }
