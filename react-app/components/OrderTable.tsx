@@ -7,16 +7,14 @@ type OrderListProps = {
   setReceipt: (receipt: Receipt) => void;
 }
 
-export default function OrderList({ setReceipt }: OrderListProps) {
+export default function OrderTable({ setReceipt }: OrderListProps) {
   const [orderedMenu, orderMenu] = useLocalStorage('orderTable', []);
 
   const { postData } = CreateOrder();
 
   const handleClickCancel = (index: number) => {
     const removeMenu = orderedMenu.splice(index, 1);
-    orderMenu(orderedMenu);
-    // const removedMenu = orderedMenu.filter((_, i) => i !== index);
-    // orderMenu(removedMenu);
+    orderMenu(removeMenu);
   };
 
   const totalPrice = orderedMenu
