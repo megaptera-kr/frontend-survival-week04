@@ -18,7 +18,7 @@ export default function CategoryBar() {
     <ul style={styles.categoryList}>
       {CATEGORIES.map((category) => (
         <li key={category} style={styles.categoryItem}>
-          <button type="button" value={category} onClick={handleSearch(category)}>{category}</button>
+          <button type="button" value={category} onClick={handleSearch(category as Category)}>{category}</button>
         </li>
       ))}
     </ul>
