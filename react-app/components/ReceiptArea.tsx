@@ -7,7 +7,7 @@ type ReceiptPrinterProps = {
 
 export default function ReceiptArea({ receipt }: ReceiptPrinterProps) {
   if (!receipt.id) {
-    return <p>[영수증의 위치]</p>;
+    return <p>[영수증 나오는 곳]</p>;
   }
 
   return (
