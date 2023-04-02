@@ -1,6 +1,10 @@
 import React from 'react';
 
-function SearchBar() {
+type Props = {
+  onChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+function SearchBar({ onChangeInput }: Props) {
   return (
     <section>
       <label>
@@ -11,6 +15,7 @@ function SearchBar() {
           }}
           type="text"
           placeholder="식당 이름"
+          onChange={onChangeInput}
         />
       </label>
     </section>

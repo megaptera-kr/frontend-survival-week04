@@ -7,7 +7,7 @@ export function useRestaurants() {
   });
 
   return {
-    restaurants: data.restaurants,
+    restaurants: data?.restaurants ?? [],
     ...rest,
   };
 }
