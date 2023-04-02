@@ -1,16 +1,19 @@
+export type Menu = {
+  id: string;
+  name: string;
+  price: number;
+}
+
 export type Restaurant = {
   id: string;
   category: string;
   name: string;
-  menu: {
-    id: string;
-    name: string;
-    price: number;
-  }[];
+  menu: Menu[];
 }
 
 export type OrderItem = {
-  id: string;
+  id: number;
+  menuId: string;
   name: string;
   price: number;
 }

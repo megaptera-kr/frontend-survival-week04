@@ -1,15 +1,16 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import { Restaurant } from '../../types';
+import { Menu, Restaurant } from '../../types';
 import CategorySelect from './CategorySelect';
 import SearchBar from './SearchBar';
 import Table from './Table';
 
 type Props = {
   restaurants: Restaurant[];
+  onClickAddOrder: (menu: Menu) => void;
 }
 
-function RestaurantList({ restaurants = [] }: Props) {
+function RestaurantList({ restaurants = [], onClickAddOrder }: Props) {
   const [searchText, setSearchText] = React.useState<string>('');
   const [category, setCategory] = React.useState<string>('전체');
 
@@ -30,7 +31,7 @@ function RestaurantList({ restaurants = [] }: Props) {
     <div>
       <SearchBar onChangeInput={handleChangeInput} />
       <CategorySelect onClickCategory={handleClickCategory} />
-      <Table restaurants={list} />
+      <Table restaurants={list} onClickAddOrder={onClickAddOrder} />
     </div>
   );
 }

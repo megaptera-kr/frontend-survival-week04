@@ -1,12 +1,12 @@
-import React from 'react';
-import { Restaurant } from '../../types';
+import { Menu, Restaurant } from '../../types';
 import TableRow from './TableRow';
 
 type Props = {
   restaurants: Restaurant[];
+  onClickAddOrder: (menu: Menu) => void;
 }
 
-function Table({ restaurants }: Props) {
+function Table({ restaurants, onClickAddOrder }: Props) {
   return (
     <section>
       <table>
@@ -20,7 +20,8 @@ function Table({ restaurants }: Props) {
         <tbody>
           {
             restaurants.map((restaurant) => (
-              <TableRow key={restaurant.id} restaurant={restaurant} />
+              // eslint-disable-next-line max-len
+              <TableRow key={restaurant.id} restaurant={restaurant} onClickAddOrder={onClickAddOrder} />
             ))
           }
         </tbody>
