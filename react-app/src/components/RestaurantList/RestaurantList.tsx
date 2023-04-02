@@ -39,7 +39,7 @@ function RestaurantList({ restaurants = [], onClickAddOrder }: Props) {
 export default RestaurantList;
 
 function filterByRestaurantName(restaurant: Restaurant, searchText: string) {
-  if (searchText === '') {
+  if (searchText.trim().length === 0) {
     return restaurant;
   }
   return restaurant.name.includes(searchText);

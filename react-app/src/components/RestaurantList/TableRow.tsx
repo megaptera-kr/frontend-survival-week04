@@ -16,7 +16,7 @@ function TableRow({ restaurant, onClickAddOrder }: Props) {
             restaurant.menu.map((menu) => (
               <li key={menu.id}>
                 <span>{`${menu.name}(${menu.price.toLocaleString()}원)`}</span>
-                <button type="button" name={menu.name} onClick={() => onClickAddOrder(menu)}>선택</button>
+                <button type="button" name={`#${menu.name}`} onClick={() => onClickAddOrder(menu)}>선택</button>
               </li>
             ))
           }

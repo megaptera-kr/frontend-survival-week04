@@ -17,3 +17,14 @@ export type OrderItem = {
   name: string;
   price: number;
 }
+
+export type RequestOrderBody = {
+  menu: Menu[];
+  totalPrice: number;
+}
+
+export type Receipt = {
+  id: string;
+  menu: Menu[];
+  totalPrice: number;
+}
