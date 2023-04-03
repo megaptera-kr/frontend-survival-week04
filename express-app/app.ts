@@ -1,11 +1,13 @@
 // TODO: Express 를 이용하여 서버를 만들어 주세요.
 import express from 'express';
+import cors from 'cors';
 
 const port = 3000;
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/restaurants', (req, res) => {
   const restaurants = {
@@ -51,12 +53,13 @@ app.get('/restaurants', (req, res) => {
 });
 
 app.post('/orders', (req, res) => {
-  const menu = {
+  const { menu, totalPrice } = req.body;
+  const receipt = {
     id: Date.now().toString(),
-    menu: req.body.menu,
-    totalPrice: req.body.totalPrice,
+    menu,
+    totalPrice,
   };
-  res.send(menu);
+  res.status(201).send({ receipt });
 });
 
 app.listen(port, () => {
