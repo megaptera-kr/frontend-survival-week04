@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
+import { useInterval, useLocalStorage } from 'usehooks-ts';
 import Cart from './components/Cart';
 import SearchBar from './components/SearchBar';
 import FilterableRestaurantsTable from './components/FilterableRestaurantsTable';
@@ -45,7 +45,12 @@ export default function App() {
 
     const data = await response.json();
     setReceipt(data);
+    setCart([]);
   };
+
+  useInterval(() => {
+    setReceipt(undefined);
+  }, receipt ? 5000 : null);
 
   return (
     <div>
