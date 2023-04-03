@@ -13,12 +13,11 @@ export default function filterRestaurants(
   restaurants: Restaurant[],
   { filterText, filterCategory }: FilterConditions
 ): Restaurant[] {
-  const filteredRestaurants =
-    filterCategory === '전체'
-      ? restaurants
-      : restaurants.filter(
-          (restaurant) => restaurant.category === filterCategory
-        );
+  const filteredRestaurants = filterCategory === '전체'
+    ? restaurants
+    : restaurants.filter(
+      (restaurant) => restaurant.category === filterCategory
+    );
 
   const query = normalize(filterText);
 
@@ -27,6 +26,5 @@ export default function filterRestaurants(
   }
 
   return filteredRestaurants.filter((restaurant) =>
-    normalize(restaurant.name).includes(query)
-  );
+    normalize(restaurant.name).includes(query));
 }
