@@ -1,16 +1,15 @@
-import { ChangeEvent } from 'react';
+import React from 'react';
 import TextField from './TextField';
 import ButtonField from './ButtonField';
 
 interface SearchBarProps {
     filterText: string;
-    setFilterText: (e: ChangeEvent<HTMLInputElement>) => void;
-    filterCategory: string;
-    setFilterCategory: (e: ChangeEvent<HTMLButtonElement>) => void;
+    setFilterText: React.Dispatch<React.SetStateAction<string>>;
+    setFilterCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function SearchBar({
-  filterText, setFilterText, filterCategory, setFilterCategory,
+  filterText, setFilterText, setFilterCategory,
 }: SearchBarProps) {
   return (
     <>
@@ -19,7 +18,6 @@ export default function SearchBar({
         setFilterText={setFilterText}
       />
       <ButtonField
-        filterCategory={filterCategory}
         setFilterCategory={setFilterCategory}
       />
     </>

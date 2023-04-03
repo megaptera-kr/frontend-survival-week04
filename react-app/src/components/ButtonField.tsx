@@ -1,16 +1,14 @@
-import { ChangeEvent } from 'react';
+import React from 'react';
 
 interface ButtonFieldProps {
-    filterCategory: string;
-    setFilterCategory: (e: ChangeEvent<HTMLButtonElement>) => void;
+    setFilterCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function ButtonField({ filterCategory, setFilterCategory }: ButtonFieldProps) {
+export default function ButtonField({ setFilterCategory }: ButtonFieldProps) {
   const categories = ['전체', '중식', '한식', '일식'];
 
-  const handleClick = (e: ChangeEvent<HTMLButtonElement>) => {
-    const { value } = e.target;
-    setFilterCategory(value);
+  const handleClick = (category: string) => {
+    setFilterCategory(category);
   };
 
   return (
@@ -20,10 +18,8 @@ export default function ButtonField({ filterCategory, setFilterCategory }: Butto
           <button
             key={category}
             type="button"
-            name={category}
-            value={category}
             style={{ marginRight: 15 }}
-            onClick={handleClick}
+            onClick={() => handleClick(category)}
           >
             {category}
           </button>

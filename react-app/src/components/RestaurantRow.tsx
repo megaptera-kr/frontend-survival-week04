@@ -1,10 +1,12 @@
 import Restaurant from '../types/Restaurant';
+import Menu from '../types/Menu';
 
 interface RestaurantRowProps {
     restaurant: Restaurant;
+    onAddCart: (menuItem: Menu) => void;
 }
 
-export default function RestaurantRow({ restaurant } :RestaurantRowProps) {
+export default function RestaurantRow({ restaurant, onAddCart }: RestaurantRowProps) {
   const { name, category, menu } = restaurant;
 
   return (
@@ -21,7 +23,14 @@ export default function RestaurantRow({ restaurant } :RestaurantRowProps) {
                 {(menuItem.price).toLocaleString('ko-kr')}
                 원)
               </span>
-              <button type="button">선택</button>
+              <button
+                type="button"
+                onClick={() => {
+                  onAddCart(menuItem);
+                }}
+              >
+                선택
+              </button>
             </li>
           </ul>
         ))}

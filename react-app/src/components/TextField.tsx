@@ -1,8 +1,8 @@
-import { ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 
 interface TextFieldProps {
     filterText: string;
-    setFilterText: (e: ChangeEvent<HTMLInputElement>) => void;
+    setFilterText: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function TextField({ filterText, setFilterText }: TextFieldProps) {
