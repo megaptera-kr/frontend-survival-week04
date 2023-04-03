@@ -15,10 +15,13 @@ export default function RestaurantRow({ restaurant } :RestaurantRowProps) {
         {menu.map((menuItem) => (
           <ul key={menuItem.id}>
             <li style={{ listStyle: 'none' }}>
-              {menuItem.name}
-              (
-              {(menuItem.price).toLocaleString('ko-kr')}
-              원)
+              <span style={{ paddingRight: 10, paddingLeft: 10 }}>
+                {menuItem.name}
+                (
+                {(menuItem.price).toLocaleString('ko-kr')}
+                원)
+              </span>
+              <button type="button">선택</button>
             </li>
           </ul>
         ))}

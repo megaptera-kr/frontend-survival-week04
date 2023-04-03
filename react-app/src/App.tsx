@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import Cart from './components/Cart';
 import SearchBar from './components/SearchBar';
 import FilterableRestaurantsTable from './components/FilterableRestaurantsTable';
 import useFetchRestaurants from './hooks/useFetchRestaurants';
 import filterRestaurants from './utils/filterRestaurants';
+import Receipt from './components/Receipt';
 
 export default function App() {
   const restaurants = useFetchRestaurants();
@@ -15,6 +17,7 @@ export default function App() {
   return (
     <div>
       <h1>푸드코트 키오스크</h1>
+      <Cart />
       <SearchBar
         filterText={filterText}
         setFilterText={setFilterText}
@@ -24,6 +27,7 @@ export default function App() {
       <FilterableRestaurantsTable
         restaurants={filteredRestaurants}
       />
+      <Receipt />
     </div>
   );
 }
