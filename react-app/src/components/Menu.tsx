@@ -31,6 +31,7 @@ export default function Menu({ menu }: MenuProps) {
             >
               <button
                 style={{ marginLeft: '.5rem' }}
+                name={`#${food.name}`}
                 type="button"
                 onClick={() => handleClickSelect(food)}
               >
