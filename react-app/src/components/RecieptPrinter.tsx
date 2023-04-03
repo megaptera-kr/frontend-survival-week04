@@ -36,6 +36,7 @@ export default function ReceiptPrinter({ receipt }:ReceiptPrinterProps) {
         총 가격:
         {' '}
         {totalPrice.toLocaleString()}
+        원
       </p>
     </div>
   );
