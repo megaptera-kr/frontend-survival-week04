@@ -1,7 +1,24 @@
+import Cart from './components/Cart';
+import CategoryBar from './components/CategoryBar';
+import Receipt from './components/Receipt';
+import RestaurantList from './components/RestaurantList';
+import SearchBar from './components/SearchBar';
+import { OrderProvider } from './contexts/OrderContext';
+import { RestaurantProvider } from './contexts/RestaurantContext';
+
 export default function App() {
   return (
-    <p>
-      과제를 진행해 주세요.
-    </p>
+    <>
+      <h1>푸드코트 키오스크</h1>
+      <OrderProvider>
+        <Cart />
+        <RestaurantProvider>
+          <SearchBar />
+          <CategoryBar />
+          <RestaurantList />
+        </RestaurantProvider>
+        <Receipt />
+      </OrderProvider>
+    </>
   );
 }
