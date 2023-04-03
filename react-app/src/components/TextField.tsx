@@ -8,27 +8,27 @@ type TextFiledProps = {
 };
 
 export default function TextField({
-    label, placeholder, text, setText,
+  label, placeholder, text, setText,
 }: TextFiledProps) {
-    const id = useRef(`input-${Math.random()}`);
+  const id = useRef(`input-${Math.random()}`);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
-        setText(value);
-    };
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setText(value);
+  };
 
-    return (
-        <div>
-            <label htmlFor={id.current}>
-                {label}
-            </label>
-            <input
-                id={id.current}
-                type="text"
-                placeholder={placeholder}
-                value={text}
-                onChange={handleChange}
-            />
-        </div>
-    );
+  return (
+    <div>
+      <label htmlFor={id.current}>
+        {label}
+      </label>
+      <input
+        id={id.current}
+        type="text"
+        placeholder={placeholder}
+        value={text}
+        onChange={handleChange}
+      />
+    </div>
+  );
 }

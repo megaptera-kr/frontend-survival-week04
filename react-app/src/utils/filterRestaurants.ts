@@ -1,7 +1,7 @@
 import Restaurant from '../types/Restaurant';
 
 function normalize(text: string) {
-    return text.trim().toLocaleLowerCase();
+  return text.trim().toLocaleLowerCase();
 }
 
 type FilterConditions = {
@@ -10,24 +10,24 @@ type FilterConditions = {
 }
 
 export default function filterRestaurants(
-    restaurants: Restaurant[],
-    { filterText, filterCategory }: FilterConditions,
+  restaurants: Restaurant[],
+  { filterText, filterCategory }: FilterConditions,
 ): Restaurant[] {
-    const match = (restaurant: Restaurant) => (restaurant.category === filterCategory);
+  const match = (restaurant: Restaurant) => (restaurant.category === filterCategory);
 
-    const filteredRestaurants = filterCategory === '전체'
-        ? restaurants
-        : restaurants.filter(match);
+  const filteredRestaurants = filterCategory === '전체'
+    ? restaurants
+    : restaurants.filter(match);
 
-    const query = normalize(filterText);
+  const query = normalize(filterText);
 
-    if (!query) {
-        return filteredRestaurants;
-    }
+  if (!query) {
+    return filteredRestaurants;
+  }
 
-    const contains = (restaurant: Restaurant) => (
-        normalize(restaurant.name).includes(query)
-    );
+  const contains = (restaurant: Restaurant) => (
+    normalize(restaurant.name).includes(query)
+  );
 
-    return filteredRestaurants.filter(contains);
+  return filteredRestaurants.filter(contains);
 }

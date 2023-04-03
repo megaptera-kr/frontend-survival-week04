@@ -9,11 +9,11 @@ interface Restaurants {
 }
 
 export default function useFetchRestaurants() {
-    const { data } = useFetch<Restaurants>(url);
+  const { data } = useFetch<Restaurants>(url);
 
-    if (!data) {
-        return [];
-    }
+  if (!data) {
+    return [];
+  }
 
-    return data.restaurants;
+  return data.restaurants;
 }

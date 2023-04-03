@@ -7,22 +7,22 @@ type MenuItemProps = {
 } & HTMLAttributes<Element>;
 
 export default function MenuItem({ food, children }: MenuItemProps) {
-    const { name, price } = food;
+  const { name, price } = food;
 
-    return (
-        <li
-            style={{
-                display: 'flex',
-                paddingBlock: '.5rem',
-            }}
-        >
-            <span style={{ margin: '0 auto' }}>
-                {name}
-                (
-                {price.toLocaleString()}
-                원)
-            </span>
-            {children}
-        </li>
-    );
+  return (
+    <li
+      style={{
+        display: 'flex',
+        paddingBlock: '.5rem',
+      }}
+    >
+      <span style={{ margin: '0 auto' }}>
+        {name}
+        (
+        {price.toLocaleString()}
+        원)
+      </span>
+      {children}
+    </li>
+  );
 }

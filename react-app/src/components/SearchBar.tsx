@@ -9,20 +9,20 @@ type SearchBarProps = {
 }
 
 export default function SearchBar({
-    categories, filterText, setFilterText, setFilterCategory,
+  categories, filterText, setFilterText, setFilterCategory,
 }: SearchBarProps) {
-    return (
-        <div>
-            <TextField
-                label="검색"
-                placeholder="식당 이름"
-                text={filterText}
-                setText={setFilterText}
-            />
-            <Categories
-                categories={categories}
-                setFilterCategory={setFilterCategory}
-            />
-        </div>
-    );
+  return (
+    <div>
+      <TextField
+        label="검색"
+        placeholder="식당 이름"
+        text={filterText}
+        setText={setFilterText}
+      />
+      <Categories
+        categories={categories}
+        setFilterCategory={setFilterCategory}
+      />
+    </div>
+  );
 }

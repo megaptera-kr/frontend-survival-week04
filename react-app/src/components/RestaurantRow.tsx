@@ -7,19 +7,19 @@ type RestaurantProps = {
 };
 
 export default function RestaurantRow({ restaurant }: RestaurantProps) {
-    const { name, category, menu } = restaurant;
+  const { name, category, menu } = restaurant;
 
-    return (
-        <tr>
-            <td>
-                {name}
-            </td>
-            <td>
-                {category}
-            </td>
-            <td>
-                <Menu menu={menu} />
-            </td>
-        </tr>
-    );
+  return (
+    <tr>
+      <td>
+        {name}
+      </td>
+      <td>
+        {category}
+      </td>
+      <td>
+        <Menu menu={menu} />
+      </td>
+    </tr>
+  );
 }

@@ -9,18 +9,18 @@ type CartItemProps = {
 }
 
 export default function CartItem({
-    food, index, onClickCancel,
+  food, index, onClickCancel,
 }: CartItemProps) {
-    return (
-        <MenuItem food={food}>
-            <button
-                style={{ marginLeft: '.5rem' }}
-                name={`#${food.name}`}
-                type="button"
-                onClick={() => onClickCancel(index)}
-            >
-                취소
-            </button>
-        </MenuItem>
-    );
+  return (
+    <MenuItem food={food}>
+      <button
+        style={{ marginLeft: '.5rem' }}
+        name={`#${food.name}`}
+        type="button"
+        onClick={() => onClickCancel(index)}
+      >
+        취소
+      </button>
+    </MenuItem>
+  );
 }

@@ -9,42 +9,42 @@ type MenuProps = {
 };
 
 export default function Menu({ menu }: MenuProps) {
-    const [selectedFoods, selectFood] = useLocalStorage<Food[]>('cart', []);
+  const [selectedFoods, selectFood] = useLocalStorage<Food[]>('cart', []);
 
-    if (!menu.length) {
-        return (
-            <p>메뉴가 존재하지 않습니다</p>
-        );
-    }
-
-    const handleClickSelect = (food: Food) => {
-        selectFood([
-            ...selectedFoods,
-            food,
-        ]);
-    };
-
+  if (!menu.length) {
     return (
-        <ul>
-            {menu.map((food, index) => {
-                const key = `${food.id}-${index}`;
-
-                return (
-                    <MenuItem
-                        key={key}
-                        food={food}
-                    >
-                        <button
-                            style={{ marginLeft: '.5rem' }}
-                            name={`#${food.name}`}
-                            type="button"
-                            onClick={() => handleClickSelect(food)}
-                        >
-                            선택
-                        </button>
-                    </MenuItem>
-                );
-            })}
-        </ul>
+      <p>메뉴가 존재하지 않습니다</p>
     );
+  }
+
+  const handleClickSelect = (food: Food) => {
+    selectFood([
+      ...selectedFoods,
+      food,
+    ]);
+  };
+
+  return (
+    <ul>
+      {menu.map((food, index) => {
+        const key = `${food.id}-${index}`;
+
+        return (
+          <MenuItem
+            key={key}
+            food={food}
+          >
+            <button
+              style={{ marginLeft: '.5rem' }}
+              name={`#${food.name}`}
+              type="button"
+              onClick={() => handleClickSelect(food)}
+            >
+              선택
+            </button>
+          </MenuItem>
+        );
+      })}
+    </ul>
+  );
 }
