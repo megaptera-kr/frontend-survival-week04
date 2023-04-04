@@ -17,14 +17,19 @@ export default function RestaurantRow({ restaurant, onAddCart }: RestaurantRowPr
         {menu.map((menuItem) => (
           <ul key={menuItem.id}>
             <li style={{ listStyle: 'none' }}>
-              <span style={{ paddingRight: 10, paddingLeft: 10 }}>
+              <span style={{
+                paddingRight: 10, paddingLeft: 10, width: 180, display: 'inline-block',
+              }}
+              >
                 {menuItem.name}
                 (
                 {(menuItem.price).toLocaleString('ko-kr')}
                 원)
               </span>
               <button
+                key={menuItem.id}
                 type="button"
+                name={`#${menuItem.name}`}
                 onClick={() => {
                   onAddCart(menuItem);
                 }}

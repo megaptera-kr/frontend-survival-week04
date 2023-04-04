@@ -26,8 +26,9 @@ export default function App() {
     ]);
   };
 
-  const handleDeleteCart = (id: string) => {
-    setCart(cart.filter((cartItem) => cartItem.id !== id));
+  const handleDeleteCart = (index: number) => {
+    const menus = cart.filter((_, i) => i !== index);
+    setCart(menus);
   };
 
   const handleReceipt = async ({ menu, totalPrice }: {

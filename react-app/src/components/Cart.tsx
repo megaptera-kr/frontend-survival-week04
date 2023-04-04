@@ -3,7 +3,7 @@ import Menu from '../types/Menu';
 
 interface CartProps {
     cart: Menu[];
-    onDeleteCart: (id: string) => void;
+    onDeleteCart: (id: number) => void;
     onReceipt: any;
 }
 
@@ -23,22 +23,29 @@ export default function Cart({
         cart.length > 0
           ? (
             <ul style={{ listStyle: 'none' }}>
-              {cart.map((cartItem) => (
-                <li key={cartItem.id}>
-                  <span style={{ width: 180, marginRight: 20, display: 'inline-block' }}>
-                    {cartItem.name}
-                    (
-                    {(cartItem.price).toLocaleString('ko-kr')}
-                    원)
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => onDeleteCart(cartItem.id)}
-                  >
-                    취소
-                  </button>
-                </li>
-              ))}
+              {
+                cart.map((cartItem, index) => {
+                  const key = `${cartItem.id}-${index}`;
+
+                  return (
+                    <li key={key}>
+                      <span style={{ width: 180, marginRight: 20, display: 'inline-block' }}>
+                        {cartItem.name}
+                        (
+                        {(cartItem.price).toLocaleString('ko-kr')}
+                        원)
+                      </span>
+                      <button
+                        type="button"
+                        name={`#${cartItem.name}`}
+                        onClick={() => onDeleteCart(index)}
+                      >
+                        취소
+                      </button>
+                    </li>
+                  );
+                })
+              }
             </ul>
           )
           : (
