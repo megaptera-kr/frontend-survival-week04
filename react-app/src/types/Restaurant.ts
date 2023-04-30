@@ -1,8 +1,10 @@
-import Menu from './types/Menu';
+import Menu from './Menu';
 
-export default interface Restaurant{
+interface Restaurant{
     id: number,
     category: string,
     name: string,
     menu: Menu[]
-};
+}
+
+export default Restaurant;
