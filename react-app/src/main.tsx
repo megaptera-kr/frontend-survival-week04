@@ -1,5 +1,11 @@
-function main() {
-  // TODO: App 컴포넌트를 render 해주세요.
-}
+import { createRoot } from 'react-dom/client';
+import App from './App';
 
-main();
+const domNode = document.getElementById('root');
+
+if (domNode) {
+  const root = createRoot(domNode);
+  root.render(
+    <App />,
+  );
+}
