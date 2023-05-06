@@ -1,23 +1,13 @@
-import { useState } from 'react';
-import { useEffectOnce } from 'usehooks-ts';
-
 import Restaurant from '../types/Restaurant';
+
 import RestaurantRow from './RestaurantRow';
 
-export default function RestaurantTable() {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-
-  const fetchRestaurants = async () => {
-    const url = 'http://localhost:3000/restaurants';
-    const response = await fetch(url);
-    const data = await response.json();
-    setRestaurants(data.restaurants);
-  };
-
-  useEffectOnce(() => {
-    fetchRestaurants();
-  });
-
+type RestaurantTableProps ={
+  restaurants: Restaurant[];
+}
+export default function RestaurantTable({
+  restaurants,
+}:RestaurantTableProps) {
   return (
     <table>
       <thead>
