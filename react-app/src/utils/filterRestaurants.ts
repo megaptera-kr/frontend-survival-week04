@@ -4,6 +4,7 @@ type filterOptions = {
   category: string;
   keyword: string;
 }
+
 export default function filterRestaurants(restaurants: Restaurant[], {
   category,
   keyword,
@@ -24,7 +25,9 @@ export default function filterRestaurants(restaurants: Restaurant[], {
     rawString.trim().toLowerCase()
   );
 
+  const cleansedKeyword = cleanString(keyword);
+
   return filteredRestaurants.filter((restaurant) => (
-    cleanString(restaurant.name).includes(cleanString(keyword))
+    cleanString(restaurant.name).includes(cleansedKeyword)
   ));
 }

@@ -1,12 +1,27 @@
 import CategoryButton from './CategoryButton';
 
-export default function FilterCategory() {
+type FilterCategoryProps = {
+  // category: string;
+  setCategory: (value : string)=> void;
+}
+
+export default function FilterCategory({
+  // category,
+  setCategory,
+}: FilterCategoryProps) {
+  const categories = ['전체', '중식', '한식', '일식'];
+
   return (
     <div>
-      <CategoryButton category="전체" />
-      <CategoryButton category="중식" />
-      <CategoryButton category="한식" />
-      <CategoryButton category="일식" />
+      {
+        categories.map((category) => (
+          <CategoryButton
+            key={category}
+            category={category}
+            setCategory={setCategory}
+          />
+        ))
+      }
     </div>
   );
 }

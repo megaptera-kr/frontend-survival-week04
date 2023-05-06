@@ -13,8 +13,9 @@ export default function useRestaurants() {
   };
 
   useEffectOnce(() => {
+    // (()=>{})(); 형태로 실행하는 방법도 있다.
     fetchRestaurants();
   });
 
-  return { restaurants, setRestaurants, fetchRestaurants };
+  return restaurants;
 }
