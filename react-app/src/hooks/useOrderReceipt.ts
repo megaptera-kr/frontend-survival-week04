@@ -1,6 +1,5 @@
-import { useFetch, useInterval, useLocalStorage } from 'usehooks-ts';
+import { useLocalStorage } from 'usehooks-ts';
 import { WishList } from '../types/WishList';
-import useWishList from './useWishList';
 
 type FetchOptions = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -29,21 +28,13 @@ export default function useOrderReceipt() :{
       body: JSON.stringify(bodyData),
     };
 
-    // const data = useFetch(url, options);
-    // console.log(data);
-    // setOrderReceipt(data as WishList);
-
     const response = await fetch(url, options);
     const data = await response.json();
-    // console.log(data);
     setOrderReceipt(data);
   };
 
   const clearOrderReceipt = () => (
     setOrderReceipt(defaultOrderReceipt)
-    // useInterval(() => {
-    //   setOrderReceipt(defaultOrderReceipt);
-    // }, 5_000)
   );
 
   return {
