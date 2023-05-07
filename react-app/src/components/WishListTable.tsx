@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react';
 import useWishList from '../hooks/useWishList';
 import aggregateMenu from '../utils/aggregateMenu';
 import WishListMenuRow from './WishListMenuRow';
@@ -7,10 +6,6 @@ export default function WishListTable() {
   const { wishList } = useWishList();
 
   const menuList = aggregateMenu(wishList.menu);
-
-  const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
-    console.log('change event');
-  };
 
   return (
     <table>
