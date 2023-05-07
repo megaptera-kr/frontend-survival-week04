@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
-import fetch from 'cross-fetch';
+import fetch from 'node-fetch';
 
 import FilterableRestaurantTable from './components/FilterableRestaurantTable';
 import ShoppingCart from './components/ShoppingCart';
