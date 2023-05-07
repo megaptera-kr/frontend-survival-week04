@@ -20,6 +20,7 @@ export default function MenuRow({
         {`${menu.name}(${menu.price.toLocaleString()}원)` }
       </span>
       <button
+        name={`#${menu.name}`}
         id={menu.id}
         type="button"
         onClick={handleclick}

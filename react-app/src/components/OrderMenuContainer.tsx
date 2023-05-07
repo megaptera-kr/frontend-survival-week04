@@ -21,7 +21,9 @@ export default function OrderMenuContainer() {
           <OrderConfirmButton />
         </div>
       )}
-      {orderReceipt.id ? (<OrderReceipt menuList={receiptMenuList} />) : (<div />)}
+      {orderReceipt.id
+        ? (<OrderReceipt menuList={receiptMenuList} />)
+        : (<div><p>[영수증 나오는 곳]</p></div>)}
     </div>
   );
 }

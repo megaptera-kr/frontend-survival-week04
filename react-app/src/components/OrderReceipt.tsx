@@ -1,6 +1,5 @@
 import { useInterval } from 'usehooks-ts';
 import useOrderReceipt from '../hooks/useOrderReceipt';
-import useWishList from '../hooks/useWishList';
 import MenuWithCount from '../types/MenuWithCount';
 
 type OrderReceiptProps = {
@@ -10,7 +9,6 @@ type OrderReceiptProps = {
 export default function OrderReceipt({
   menuList,
 }: OrderReceiptProps) {
-  const { wishList } = useWishList();
   const { orderReceipt, clearOrderReceipt } = useOrderReceipt();
 
   useInterval(() => {
