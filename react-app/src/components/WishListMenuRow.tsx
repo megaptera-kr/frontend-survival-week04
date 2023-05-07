@@ -23,7 +23,7 @@ export default function WishListMenuRow({
       <td>{menu.name}</td>
       <td>{`${menu.price.toLocaleString()}원`}</td>
       <td>
-        <button type="button" onClick={handleDecrease}>-</button>
+        <button type="button" onClick={handleDecrease} disabled={menu.count == 1}>-</button>
         <input
           type="number"
           min="1"

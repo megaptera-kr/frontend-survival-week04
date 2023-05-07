@@ -1,15 +1,26 @@
-export default function OrderReceipt() {
+import useWishList from '../hooks/useWishList';
+import MenuWithCount from '../types/MenuWithCount';
+
+type OrderReceiptProps = {
+  menuList: MenuWithCount[];
+}
+
+export default function OrderReceipt({
+  menuList,
+}: OrderReceiptProps) {
+  const { wishList } = useWishList();
+
   return (
     <div>
       <h2>영수증</h2>
       <h3>주문번호</h3>
       <p>123123123123</p>
       <h3>주문목록</h3>
-      <p>짜장면(8,000원)</p>
-      <p>짜장면(8,000원)</p>
-      <p>짜장면(8,000원)</p>
+      {menuList.map((menu) => (
+        (<p key={menu.id}>{`${menu.name}(${menu.price.toLocaleString()}원) x ${menu.count}`}</p>)
+      ))}
       <div>
-        <p>총 가격: 24,000원</p>
+        <p>{`총 가격: ${wishList.totalPrice.toLocaleString()}원`}</p>
       </div>
     </div>
   );
