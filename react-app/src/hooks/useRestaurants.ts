@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useEffectOnce } from 'usehooks-ts';
 import Restaurant from '../types/Restaurant';
+import 'isomorphic-fetch';
 
 export default function useRestaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
