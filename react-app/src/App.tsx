@@ -12,9 +12,9 @@ import MenuItem from './types/MenuItem';
 import Receipt from './types/Receipt';
 
 export default function App() {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [restaurantsData, setRestaurantsData] = useState<Restaurant[]>([]);
 
-  const customedRestaurants = restaurants.map((restaurant) => (
+  const customedRestaurants = restaurantsData.map((restaurant) => (
     {
       ...restaurant,
       menu: restaurant.menu.map((menuItem) => ({
@@ -37,7 +37,7 @@ export default function App() {
       const url = 'http://localhost:3000/restaurants';
       const response = await fetch(url);
       const { restaurants } = await response.json();
-      setRestaurants(restaurants);
+      setRestaurantsData(restaurants);
     }
     fetchRestaurants();
 
