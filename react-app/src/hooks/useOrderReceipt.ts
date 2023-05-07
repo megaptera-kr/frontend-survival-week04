@@ -20,7 +20,7 @@ export default function useOrderReceipt() :{
   const [orderReceipt, setOrderReceipt] = useLocalStorage('orderReceipt', defaultOrderReceipt);
 
   const fetchOrderReceipt = async (bodyData : WishList) => {
-    const url = 'http://127.0.0.1:3000/orders';
+    const url = 'http://localhost:3000/orders';
     const options: FetchOptions = {
       method: 'POST',
       mode: 'cors',

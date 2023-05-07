@@ -79,17 +79,15 @@ const restaurants = {
   ],
 };
 
-app.get('/restaurants', (req, res) => {
-  console.log('식당 목록 조회');
-  return res.status(200).json(restaurants);
-});
+app.get('/restaurants', (req, res) => res.status(200).json(restaurants));
 
 app.post('/orders', (req, res) => {
-  console.log('주문 생성');
   const data = req.body;
   data.id = Date.now().toString();
   return res.status(201).json(data);
 });
+
+app.post('/', (req, res) => res.status(200));
 
 app.listen(port, () => {
   console.log(`started server at localhost:${port}`);
