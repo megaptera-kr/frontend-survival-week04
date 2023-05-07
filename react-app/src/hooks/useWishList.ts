@@ -6,6 +6,7 @@ type useWishListReturns = {
   wishList : WishList;
   updateMenuCount: (menu : Menu, isMenuAdded: boolean) => void;
   deleteAllMenuById: (id: string) => void;
+  isWishListEmpty: () => boolean;
 }
 
 export default function useWishList():useWishListReturns {
@@ -65,7 +66,14 @@ export default function useWishList():useWishListReturns {
     }
   };
 
+  const isWishListEmpty = () => (
+    !(wishList.menu.length && wishList.totalPrice)
+  );
+
   return {
-    wishList, updateMenuCount, deleteAllMenuById,
+    wishList,
+    updateMenuCount,
+    deleteAllMenuById,
+    isWishListEmpty,
   };
 }
