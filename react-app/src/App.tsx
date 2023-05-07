@@ -9,7 +9,6 @@ import ReceiptMenu from './components/ReceiptMenu';
 
 import Restaurant from './types/Restaurant';
 import MenuItem from './types/MenuItem';
-import Receipt from './types/Receipt';
 
 export default function App() {
   const [restaurantsData, setRestaurantsData] = useState<Restaurant[]>([]);
@@ -24,7 +23,7 @@ export default function App() {
     }
   ));
 
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<MenuItem[]>([]);
   const [responseReceipt, setResponseReceipt] = useState();
 
   const [isPlaying, setPlaying] = useState<boolean>(false);

@@ -10,7 +10,7 @@ import filterRestaurants from '../utils/filterRestaurants';
 
 type FilterableRestaurantTableProps = {
     restaurants: Restaurant[];
-    setCartItems: (value: MenuItem[]) => MenuItem[];
+    setCartItems: React.Dispatch<React.SetStateAction<MenuItem[]>>
     cartItems: MenuItem[];
   }
 

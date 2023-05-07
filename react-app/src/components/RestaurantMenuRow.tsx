@@ -3,7 +3,7 @@ import MenuItem from '../types/MenuItem';
 
 type RestaurantMenuRowProps = {
     restaurant: Restaurant;
-    setCartItems: (value: MenuItem[]) => MenuItem[];
+    setCartItems: React.Dispatch<React.SetStateAction<MenuItem[]>>
     cartItems: MenuItem[];
 }
 

@@ -1,7 +1,8 @@
 import MenuItem from '../types/MenuItem';
-import Receipt from '../types/Receipt';
 
-type requestPostOrdersProps = (cartItems: MenuItem[], totalPrice: number) => Receipt;
+type requestPostOrdersProps = (
+  cartItems: MenuItem[], totalPrice: number
+) => Promise<any>
 
 const requestPostOrders: requestPostOrdersProps = (
   cartItems,
