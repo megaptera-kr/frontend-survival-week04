@@ -2,24 +2,70 @@ import { useLocalStorage } from 'usehooks-ts';
 import Menu from '../types/Menu';
 import { WishList } from '../types/WishList';
 
-export default function useWishList():[ WishList,
-  (item : Menu)=>void,] {
+type useWishListReturns = {
+  wishList : WishList;
+  updateMenuCount: (menu : Menu, isMenuAdded: boolean) => void;
+  deleteAllMenuById: (id: string) => void;
+}
+
+export default function useWishList():useWishListReturns {
   const defaultWishList: WishList = { menu: [], totalPrice: 0 };
 
   const [wishList, setWishList] = useLocalStorage('wishList', defaultWishList);
 
-  function updateWishList(newMenu: Menu) {
-    const { menu } = wishList;
-    menu.push(newMenu);
-    const totalPrice = menu
+  const updateWishList = (newMenuList : Menu[]) => {
+    if (!newMenuList.length) {
+      setWishList(defaultWishList);
+      return;
+    }
+
+    const totalPrice = newMenuList
       .map((menuItem: Menu) => menuItem.price)
       .reduce((prev, current) => prev + current);
 
     setWishList({
-      menu,
+      menu: newMenuList,
       totalPrice,
     });
-  }
+  };
 
-  return [wishList, updateWishList];
+  const appendMenu = (newMenu: Menu) => {
+    const newMenuList = wishList.menu;
+    newMenuList.push(newMenu);
+    updateWishList(newMenuList);
+  };
+
+  const deleteMenuByIdBackward = (id: string): void => {
+    const newMenuList = wishList.menu;
+    const deleteId = newMenuList.reduceRight((acc, item, index) => {
+      if (item.id === id) {
+        return index;
+      }
+      return acc;
+    }, -1);
+
+    if (deleteId >= 0) {
+      newMenuList.splice(deleteId, 1);
+      updateWishList(newMenuList);
+    }
+  };
+
+  const deleteAllMenuById = (id : string) => {
+    const newMenuList = wishList.menu.filter(
+      (menuItem) => (menuItem.id !== id),
+    ) || [];
+    updateWishList(newMenuList);
+  };
+
+  const updateMenuCount = (menu : Menu, isMenuAdded : boolean) => {
+    if (isMenuAdded) {
+      appendMenu(menu);
+    } else {
+      deleteMenuByIdBackward(menu.id);
+    }
+  };
+
+  return {
+    wishList, updateMenuCount, deleteAllMenuById,
+  };
 }

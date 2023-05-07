@@ -1,9 +1,10 @@
 import { ChangeEvent } from 'react';
 import useWishList from '../hooks/useWishList';
 import aggregateMenu from '../utils/aggregateMenu';
+import WishListMenuRow from './WishListMenuRow';
 
 export default function WishListTable() {
-  const [wishList, updateWishList] = useWishList();
+  const { wishList } = useWishList();
 
   const menuList = aggregateMenu(wishList.menu);
 
@@ -22,26 +23,10 @@ export default function WishListTable() {
       </thead>
       <tbody>
         {menuList.map((menuItem) => (
-          <tr key={menuItem.id}>
-            <td>{menuItem.name}</td>
-            <td>{`${menuItem.price.toLocaleString()}원`}</td>
-            <td>
-              <button type="button">-</button>
-              <input
-                type="number"
-                min="1"
-                max="100"
-                value={menuItem.count}
-                disabled
-                onChange={handleChange}
-              />
-              <button type="button">+</button>
-            </td>
-            <td>
-              <button type="button">취소</button>
-            </td>
-          </tr>
-
+          <WishListMenuRow
+            key={menuItem.id}
+            menu={menuItem}
+          />
         ))}
       </tbody>
     </table>

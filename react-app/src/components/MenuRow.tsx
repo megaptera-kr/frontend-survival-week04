@@ -8,10 +8,10 @@ type MenuRowProps ={
 export default function MenuRow({
   menu,
 }: MenuRowProps) {
-  const [wishList, updateWishList] = useWishList();
+  const { wishList, updateMenuCount } = useWishList();
 
   const handleclick = () => {
-    updateWishList(menu);
+    updateMenuCount(menu, true);
   };
 
   return (
