@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 
 import FilterableRestaurantTable from './components/FilterableRestaurantTable';
 import ShoppingCart from './components/ShoppingCart';
@@ -33,10 +33,12 @@ export default function App() {
 
   useEffect(() => {
     async function fetchRestaurants() {
-      const url = 'http:/127.0.0.1:3000/restaurants';
-      const response = await fetch(url);
-      const { restaurants } = await response.json();
-      setRestaurantsData(restaurants);
+      try {
+        const url = 'http:/127.0.0.1:3000/restaurants';
+        const response = await fetch(url);
+        const { restaurants } = await response.json();
+        setRestaurantsData(restaurants);
+      } catch (error) { console.log(error); }
     }
     fetchRestaurants();
 
