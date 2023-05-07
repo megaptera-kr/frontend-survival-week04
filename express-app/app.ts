@@ -91,6 +91,7 @@ app.get('/restaurants', (req, res) => {
     ],
   };
 
+  res.status(200);
   res.send(restaurants);
 });
 
