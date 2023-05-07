@@ -79,8 +79,6 @@ const restaurants = {
   ],
 };
 
-const orders : object[] = [];
-
 app.get('/restaurants', (req, res) => {
   console.log('식당 목록 조회');
   return res.status(200).json(restaurants);

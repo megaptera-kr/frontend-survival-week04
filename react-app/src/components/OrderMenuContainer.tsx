@@ -1,3 +1,4 @@
+import useOrderReceipt from '../hooks/useOrderReceipt';
 import useWishList from '../hooks/useWishList';
 import aggregateMenu from '../utils/aggregateMenu';
 import OrderConfirmButton from './OrderConfirmButton';
@@ -8,6 +9,8 @@ export default function OrderMenuContainer() {
   const { wishList, isWishListEmpty } = useWishList();
 
   const menuList = aggregateMenu(wishList.menu);
+  const { orderReceipt } = useOrderReceipt();
+  const receiptMenuList = aggregateMenu(orderReceipt.menu);
 
   return (
     <div style={{ width: '50%', float: 'right' }}>
@@ -18,7 +21,7 @@ export default function OrderMenuContainer() {
           <OrderConfirmButton />
         </div>
       )}
-      <OrderReceipt menuList={menuList} />
+      {orderReceipt.id ? (<OrderReceipt menuList={receiptMenuList} />) : (<div />)}
     </div>
   );
 }

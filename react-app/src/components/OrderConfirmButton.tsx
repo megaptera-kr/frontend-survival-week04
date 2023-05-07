@@ -1,10 +1,14 @@
+import { useInterval } from 'usehooks-ts';
+import useOrderReceipt from '../hooks/useOrderReceipt';
 import useWishList from '../hooks/useWishList';
 
 export default function OrderConfirmButton() {
-  const { wishList } = useWishList();
+  const { wishList, clearWishlist, updateWishList } = useWishList();
+  const { orderReceipt, fetchOrderReceipt } = useOrderReceipt();
 
   const handleOrderClick = () => {
-    console.log('ㅁㄴㅇㄻㅇㄴㄹ');
+    fetchOrderReceipt(wishList);
+    clearWishlist();
   };
 
   return (
