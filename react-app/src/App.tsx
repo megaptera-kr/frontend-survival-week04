@@ -39,7 +39,7 @@ export default function App() {
         const response = await fetch(url);
         const { restaurants } = await response.json();
         setRestaurantsData(restaurants);
-      } catch (error) { throw error; }
+      } catch (error) { console.log(error); }
     }
     fetchRestaurants();
 
