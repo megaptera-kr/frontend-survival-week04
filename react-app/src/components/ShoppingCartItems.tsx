@@ -5,7 +5,7 @@ import MenuItem from '../types/MenuItem';
 
 type ShoppingCartItemsProps = {
     cartItems: MenuItem[];
-    setCartItems: (value: MenuItem[]) => void;
+    setCartItems: React.Dispatch<React.SetStateAction<MenuItem[]>>
 }
 
 export default function ShoppingCartItems({

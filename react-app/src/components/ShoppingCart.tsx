@@ -7,12 +7,11 @@ import calculateTotalPrice from '../utils/calculateTotalPrice';
 import requestPostOrders from '../utils/requestPostOrders';
 
 import MenuItem from '../types/MenuItem';
-import Receipt from '../types/Receipt';
 
 type ShoppingCartProps = {
   cartItems: MenuItem[];
-  setCartItems: (value: MenuItem[]) => void;
-  setResponseReceipt: (responsePostOrders: Receipt) => void;
+  setCartItems: React.Dispatch<React.SetStateAction<MenuItem[]>>
+  setResponseReceipt: React.Dispatch<React.SetStateAction<undefined>>;
   isPlaying: boolean;
   setPlaying: (value: boolean) => void;
 }
