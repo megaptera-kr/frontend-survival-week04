@@ -1,15 +1,6 @@
 import { useLocalStorage } from 'usehooks-ts';
+import FetchOptions from '../types/FetchOptions';
 import { WishList } from '../types/WishList';
-import 'isomorphic-fetch';
-
-type FetchOptions = {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  mode : 'cors' | 'no-cors' | 'cors' |'same-origin';
-  headers: {
-    'Content-Type': 'application/json'| 'application/x-www-form-urlencoded'
-  };
-  body: string;
-}
 
 export default function useOrderReceipt() :{
   orderReceipt : WishList,
