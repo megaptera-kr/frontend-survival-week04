@@ -1,3 +1,4 @@
+import useWishList from '../hooks/useWishList';
 import Menu from '../types/Menu';
 
 type MenuRowProps ={
@@ -7,13 +8,10 @@ type MenuRowProps ={
 export default function MenuRow({
   menu,
 }: MenuRowProps) {
-  function orderList에추가(menuItem: Menu) {
-    console.log('만들어야함');
-  }
+  const [wishList, updateWishList] = useWishList();
 
-  const handleclick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    orderList에추가(menu);
-    console.log(event.currentTarget);
+  const handleclick = () => {
+    updateWishList(menu);
   };
 
   return (
