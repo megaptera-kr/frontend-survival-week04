@@ -1,98 +1,78 @@
-const fetchRestaurants = async () => {
-  const url = 'http://localhost:3000/restaurants';
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log(data)
-  const { restaurants } = data;
+import { v4 as uuidv4 } from 'uuid';
+import { useEffect, useState } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
+import fetch from 'cross-fetch';
 
-  return restaurants;
-};
+import FilterableRestaurantTable from './components/FilterableRestaurantTable';
+import ShoppingCart from './components/ShoppingCart';
+import ReceiptMenu from './components/ReceiptMenu';
+
+import Restaurant from './types/Restaurant';
+import MenuItem from './types/MenuItem';
+import Receipt from './types/Receipt';
 
 export default function App() {
-  const restaurants = fetchRestaurants();
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+
+  const customedRestaurants = restaurants.map((restaurant) => (
+    {
+      ...restaurant,
+      menu: restaurant.menu.map((menuItem) => ({
+        ...menuItem,
+        id: uuidv4(),
+      })),
+    }
+  ));
+
+  const [cartItems, setCartItems] = useState([]);
+  const [responseReceipt, setResponseReceipt] = useState();
+
+  const [isPlaying, setPlaying] = useState<boolean>(false);
+
+  const [storageCartItems, setStorageCartItems] = useLocalStorage('cart', '[]');
+  const [storageResponseReceipt, setStorageResponseReceipt] = useLocalStorage('receipt', '{}');
+
+  useEffect(() => {
+    async function fetchRestaurants() {
+      const url = 'http://localhost:3000/restaurants';
+      const response = await fetch(url);
+      const { restaurants } = await response.json();
+      setRestaurants(restaurants);
+    }
+    fetchRestaurants();
+
+    setCartItems(JSON.parse(storageCartItems));
+    setResponseReceipt(JSON.parse(storageResponseReceipt));
+  }, []);
+
+  useEffect(() => {
+    setStorageCartItems(JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  useEffect(() => {
+    setStorageResponseReceipt(JSON.stringify(responseReceipt));
+  }, [responseReceipt]);
 
   return (
     <div className="app">
-      <h1>푸드코드 키오스크</h1>
-      <div className="filterable-restaurant-table">
-        <div className="search-bar">
-          <div className="input-bar">
-            <label htmlFor="only-stock">검색</label>
-            <input placeholder="식당 이름" id="only-stock" />
-          </div>
-          <div className="select-category">
-            <button type="button">전체</button>
-            <button type="button">중식</button>
-            <button type="button">한식</button>
-            <button type="button">일식</button>
-          </div>
-        </div>
-        <table className="restaurant-table">
-          <thead className="restaurant-head">
-            <tr>
-              <th>식당 이름</th>
-              <th>종류</th>
-              <th>메뉴</th>
-            </tr>
-          </thead>
-          <tbody className="restaurant-body">
-            <tr>
-              <td className="restaurant-name-row">메가반점</td>
-              <td className="restaurant-category-row">중식</td>
-              <ul className="restaurant-menu-row">
-                <li>
-                  <span>짜장면(8,000원)</span>
-                  <button type="button">선택</button>
-                </li>
-                <li>
-                  <span>짜장면(8,000원)</span>
-                  <button type="button">선택</button>
-                </li>
-              </ul>
-            </tr>
-            <tr>
-              <td className="restaurant-name-row">메가반점</td>
-              <td className="restaurant-category-row">중식</td>
-              <ul className="restaurant-menu-row">
-                <li>
-                  <span>짜장면(8,000원)</span>
-                  <button type="button">선택</button>
-                </li>
-                <li>
-                  <span>짜장면(8,000원)</span>
-                  <button type="button">선택</button>
-                </li>
-              </ul>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="shopping-cart">
-        <h2>점심 바구니</h2>
-        <ul className="cart-items">
-          <li className="cart-item">
-            <span>짜장면(8,000원)</span>
-            <button type="button">취소</button>
-          </li>
-        </ul>
-        <button className="order-button" type="button">합계: 0원 주문</button>
-      </div>
-      <div className="receipt">
-        <h2 className="receipt-header">영수증</h2>
-        <div className="receipt-order-number">
-          <h3>주문번호</h3>
-          <p>12345678</p>
-        </div>
-        <div className="receipt-order-list">
-          <h3>주문목록</h3>
-          <ul className="receipt-items">
-            <li className="receipt-item">
-              <span>짜장면(8,000원)</span>
-            </li>
-          </ul>
-        </div>
-        <p className="receipt-total">총 가격: 33,000원</p>
-      </div>
+      <h1>푸드코트 키오스크</h1>
+      <ShoppingCart
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        setResponseReceipt={setResponseReceipt}
+        isPlaying={isPlaying}
+        setPlaying={setPlaying}
+      />
+      <FilterableRestaurantTable
+        restaurants={customedRestaurants}
+        setCartItems={setCartItems}
+        cartItems={cartItems}
+      />
+      {responseReceipt === undefined || isPlaying === false
+        ? <p>[영수증 나오는 곳]</p>
+        : (
+          <ReceiptMenu responseReceipt={responseReceipt} />
+        )}
     </div>
   );
 }
