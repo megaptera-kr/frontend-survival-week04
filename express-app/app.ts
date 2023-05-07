@@ -79,6 +79,8 @@ const restaurants = {
   ],
 };
 
+app.get('/', (req, res) => res.status(200));
+
 app.get('/restaurants', (req, res) => res.status(200).json(restaurants));
 
 app.post('/orders', (req, res) => {
@@ -86,8 +88,6 @@ app.post('/orders', (req, res) => {
   data.id = Date.now().toString();
   return res.status(201).json(data);
 });
-
-app.post('/', (req, res) => res.status(200));
 
 app.listen(port, () => {
   console.log(`started server at localhost:${port}`);
