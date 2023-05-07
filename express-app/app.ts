@@ -13,6 +13,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/restaurants', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+
   const restaurants = {
     restaurants: [
       {
