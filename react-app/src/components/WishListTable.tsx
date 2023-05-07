@@ -1,12 +1,13 @@
-import useWishList from '../hooks/useWishList';
-import aggregateMenu from '../utils/aggregateMenu';
+import MenuWithCount from '../types/MenuWithCount';
 import WishListMenuRow from './WishListMenuRow';
 
-export default function WishListTable() {
-  const { wishList } = useWishList();
+type WishListTableProps = {
+  menuList: MenuWithCount[];
+}
 
-  const menuList = aggregateMenu(wishList.menu);
-
+export default function WishListTable({
+  menuList,
+}: WishListTableProps) {
   return (
     <table>
       <thead>
