@@ -1,5 +1,6 @@
 import { useLocalStorage } from 'usehooks-ts';
 import { WishList } from '../types/WishList';
+import 'isomorphic-fetch';
 
 type FetchOptions = {
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
