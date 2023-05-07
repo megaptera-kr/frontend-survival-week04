@@ -53,6 +53,7 @@
     "@swc/helpers": "^0.5.1",
     "core-js": "^3.23.3",
     "debug": "^4.3.1",
+    "node-fetch": "^3.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "usehooks-ts": "^2.9.1"
