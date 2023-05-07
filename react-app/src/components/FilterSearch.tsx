@@ -1,12 +1,10 @@
 import { ChangeEvent } from 'react';
 
 type FilterSearchProps = {
-  keyword: string;
   setKeyword: (value : string)=> void;
 }
 
 export default function filterSearch({
-  keyword,
   setKeyword,
 }: FilterSearchProps) {
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => (
