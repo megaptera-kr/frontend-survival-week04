@@ -1,16 +1,27 @@
-import { useLocalStorage } from 'usehooks-ts';
+import { useEffectOnce, useFetch, useLocalStorage } from 'usehooks-ts';
 import Menu from '../types/Menu';
 import { WishList } from '../types/WishList';
+
+type FetchOptions = {
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  mode : 'cors' | 'no-cors' | 'cors' |'same-origin';
+  headers: {
+    'Content-Type': 'application/json'| 'application/x-www-form-urlencoded'
+  };
+  body: string;
+}
 
 type useWishListReturns = {
   wishList : WishList;
   updateMenuCount: (menu : Menu, isMenuAdded: boolean) => void;
+  updateWishList: (newMenuList : Menu[])=> void;
   deleteAllMenuById: (id: string) => void;
   isWishListEmpty: () => boolean;
+  clearWishlist: () => void;
 }
 
 export default function useWishList():useWishListReturns {
-  const defaultWishList: WishList = { menu: [], totalPrice: 0 };
+  const defaultWishList: WishList = { id: '', menu: [], totalPrice: 0 };
 
   const [wishList, setWishList] = useLocalStorage('wishList', defaultWishList);
 
@@ -25,6 +36,7 @@ export default function useWishList():useWishListReturns {
       .reduce((prev, current) => prev + current);
 
     setWishList({
+      id: '',
       menu: newMenuList,
       totalPrice,
     });
@@ -70,10 +82,31 @@ export default function useWishList():useWishListReturns {
     !(wishList.menu.length && wishList.totalPrice)
   );
 
+  const clearWishlist = () => (
+    setWishList(defaultWishList)
+  );
+  // const url = 'http//localhost:3000/orders';
+  // const options: FetchOptions = {
+  //   method: 'POST',
+  //   mode: 'cors',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(wishList),
+  // };
+  // const fetchOrderReceipt = async () => {
+  //   console.log('shival');
+  //   const { data } = await useFetch(url, options);
+  //   console.log(data);
+  // };
+  // useEffectOnce(() => {
+  //   fetchOrderReceipt();
+  // });
+
   return {
     wishList,
+    updateWishList,
     updateMenuCount,
     deleteAllMenuById,
     isWishListEmpty,
+    clearWishlist,
   };
 }

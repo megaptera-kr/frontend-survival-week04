@@ -1,3 +1,5 @@
+import { useInterval } from 'usehooks-ts';
+import useOrderReceipt from '../hooks/useOrderReceipt';
 import useWishList from '../hooks/useWishList';
 import MenuWithCount from '../types/MenuWithCount';
 
@@ -9,18 +11,23 @@ export default function OrderReceipt({
   menuList,
 }: OrderReceiptProps) {
   const { wishList } = useWishList();
+  const { orderReceipt, clearOrderReceipt } = useOrderReceipt();
+
+  useInterval(() => {
+    clearOrderReceipt();
+  }, 5_000);
 
   return (
     <div>
       <h2>영수증</h2>
       <h3>주문번호</h3>
-      <p>123123123123</p>
+      <p>{orderReceipt.id}</p>
       <h3>주문목록</h3>
       {menuList.map((menu) => (
         (<p key={menu.id}>{`${menu.name}(${menu.price.toLocaleString()}원) x ${menu.count}`}</p>)
       ))}
       <div>
-        <p>{`총 가격: ${wishList.totalPrice.toLocaleString()}원`}</p>
+        <p>{`총 가격: ${orderReceipt.totalPrice.toLocaleString()}원`}</p>
       </div>
     </div>
   );
