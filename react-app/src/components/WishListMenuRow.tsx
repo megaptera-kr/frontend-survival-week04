@@ -1,4 +1,3 @@
-import { ChangeEvent } from 'react';
 import useWishList from '../hooks/useWishList';
 import MenuWithCount from '../types/MenuWithCount';
 
@@ -9,10 +8,11 @@ type WishListMenuRowProps = {
 export default function WishListMenuRow({
   menu,
 }: WishListMenuRowProps) {
-  const { deleteAllMenuById } = useWishList();
-  const handleChange = (event : ChangeEvent<HTMLInputElement>) => {
-    console.log('change event');
-  };
+  const { deleteAllMenuById, updateMenuCount } = useWishList();
+
+  const handleIncrease = () => (updateMenuCount(menu, true));
+
+  const handleDecrease = () => (updateMenuCount(menu, false));
 
   const handleCancelClick = () => {
     deleteAllMenuById(menu.id);
@@ -23,16 +23,15 @@ export default function WishListMenuRow({
       <td>{menu.name}</td>
       <td>{`${menu.price.toLocaleString()}원`}</td>
       <td>
-        <button type="button">-</button>
+        <button type="button" onClick={handleDecrease}>-</button>
         <input
           type="number"
           min="1"
           max="100"
           value={menu.count}
           disabled
-          onChange={handleChange}
         />
-        <button type="button">+</button>
+        <button type="button" onClick={handleIncrease}>+</button>
       </td>
       <td>
         <button type="button" onClick={handleCancelClick}>취소</button>

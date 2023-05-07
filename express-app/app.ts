@@ -89,7 +89,6 @@ app.get('/restaurants', (req, res) => {
 app.post('/orders', (req, res) => {
   console.log('주문 생성');
   const data = req.body;
-  // data?.menu.map((order : object) => orders.push(order));
   data.id = Date.now().toString();
   return res.status(201).json(data);
 });
