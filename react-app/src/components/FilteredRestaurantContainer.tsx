@@ -18,9 +18,7 @@ export default function FilteredRestaurantContainer() {
     <div style={{ width: '50%', float: 'left' }}>
       <h2>식당 목록</h2>
       <FilterTable
-        keyword={keyword}
         setKeyword={setKeyword}
-        category={category}
         setCategory={setCategory}
       />
       <RestaurantTable
