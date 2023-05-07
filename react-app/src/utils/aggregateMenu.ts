@@ -1,7 +1,6 @@
 import Menu from '../types/Menu';
 import MenuWithCount from '../types/MenuWithCount';
 
-//
 export default function aggregateMenu(menuList : Menu[]) {
   const menuListWithCount : MenuWithCount[] = menuList.map((menu) => (
     { ...menu, count: 1 }

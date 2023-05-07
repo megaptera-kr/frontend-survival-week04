@@ -1,15 +1,6 @@
-import { useEffectOnce, useFetch, useLocalStorage } from 'usehooks-ts';
+import { useLocalStorage } from 'usehooks-ts';
 import Menu from '../types/Menu';
 import { WishList } from '../types/WishList';
-
-type FetchOptions = {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
-  mode : 'cors' | 'no-cors' | 'cors' |'same-origin';
-  headers: {
-    'Content-Type': 'application/json'| 'application/x-www-form-urlencoded'
-  };
-  body: string;
-}
 
 type useWishListReturns = {
   wishList : WishList;
@@ -85,21 +76,6 @@ export default function useWishList():useWishListReturns {
   const clearWishlist = () => (
     setWishList(defaultWishList)
   );
-  // const url = 'http//localhost:3000/orders';
-  // const options: FetchOptions = {
-  //   method: 'POST',
-  //   mode: 'cors',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(wishList),
-  // };
-  // const fetchOrderReceipt = async () => {
-  //   console.log('shival');
-  //   const { data } = await useFetch(url, options);
-  //   console.log(data);
-  // };
-  // useEffectOnce(() => {
-  //   fetchOrderReceipt();
-  // });
 
   return {
     wishList,
