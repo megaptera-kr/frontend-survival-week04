@@ -1,5 +1,4 @@
-// TODO: Express 를 이용하여 서버를 만들어 주세요.
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 
 const port = 3000;
@@ -7,19 +6,13 @@ const port = 3000;
 const app = express();
 
 // CORS origin 설정
-app.use(cors({
-  origin: [
-    'http://localhost:8080',
-  ],
-}));
+app.use(cors());
 
 // 이 미들웨어 함수는 경로를 정의하기 전에 호출
 // JSON 페이로드가 포함된 수신 요청은 이 미들웨어에 의해 자동으로 구문 분석되며 결과 개체는 req.body 개체에서 사용 가능
 app.use(express.json());
 
-app.get('/restaurants', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-
+app.get('/restaurants', (req: Request, res: Response) => {
   const restaurants = {
     restaurants: [
       {
@@ -95,7 +88,7 @@ app.get('/restaurants', (req, res) => {
   res.send(restaurants);
 });
 
-app.post('/orders', (req, res) => {
+app.post('/orders', (req: Request, res: Response) => {
   const request = req.body;
   request.id = Date.now().toString();
 
