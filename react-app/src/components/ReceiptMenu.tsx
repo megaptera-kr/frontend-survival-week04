@@ -43,5 +43,5 @@ export default function ReceiptMenu({ responseReceipt }: ReceiptProps) {
           : <p>Hello</p>
       }
     </div>
-  );
+  ); 
 }
