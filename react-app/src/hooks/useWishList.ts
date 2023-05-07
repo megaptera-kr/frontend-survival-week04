@@ -2,10 +2,8 @@ import { useLocalStorage } from 'usehooks-ts';
 import Menu from '../types/Menu';
 import { WishList } from '../types/WishList';
 
-export default function useWishList():[
-  WishList,
-  (item : Menu)=>void,
-  ] {
+export default function useWishList():[ WishList,
+  (item : Menu)=>void,] {
   const defaultWishList: WishList = { menu: [], totalPrice: 0 };
 
   const [wishList, setWishList] = useLocalStorage('wishList', defaultWishList);
