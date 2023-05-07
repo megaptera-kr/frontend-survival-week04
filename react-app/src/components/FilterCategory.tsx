@@ -6,7 +6,6 @@ type FilterCategoryProps = {
 }
 
 export default function FilterCategory({
-  // category,
   setCategory,
 }: FilterCategoryProps) {
   const categories = ['전체', '중식', '한식', '일식'];

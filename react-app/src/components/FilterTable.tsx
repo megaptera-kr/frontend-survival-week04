@@ -21,7 +21,6 @@ export default function FilterTable({
         setKeyword={setKeyword}
       />
       <FilterCategory
-        category={category}
         setCategory={setCategory}
       />
     </div>
