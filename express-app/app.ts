@@ -6,7 +6,12 @@ const port = 3000;
 
 const app = express();
 
-app.use(cors());
+// CORS origin 설정
+app.use(cors({
+  origin: [
+    'http://localhost:8080',
+  ],
+}));
 
 // 이 미들웨어 함수는 경로를 정의하기 전에 호출
 // JSON 페이로드가 포함된 수신 요청은 이 미들웨어에 의해 자동으로 구문 분석되며 결과 개체는 req.body 개체에서 사용 가능
