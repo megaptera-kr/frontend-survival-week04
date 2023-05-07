@@ -33,12 +33,13 @@ export default function App() {
 
   useEffect(() => {
     async function fetchRestaurants() {
+      // eslint-disable-next-line no-useless-catch
       try {
-        const url = 'http:/127.0.0.1:3000/restaurants';
+        const url = 'http://localhost:3000/restaurants';
         const response = await fetch(url);
         const { restaurants } = await response.json();
         setRestaurantsData(restaurants);
-      } catch (error) { console.log(error); }
+      } catch (error) { throw error; }
     }
     fetchRestaurants();
 
