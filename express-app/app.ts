@@ -79,7 +79,9 @@ const restaurants = {
   ],
 };
 
-app.get('/', (req, res) => res.status(200));
+app.get('/', (req, res) => (
+  res.send('hello world')
+));
 
 app.get('/restaurants', (req, res) => res.status(200).json(restaurants));
 
