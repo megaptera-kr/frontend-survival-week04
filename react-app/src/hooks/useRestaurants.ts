@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useEffectOnce } from 'usehooks-ts';
-import { Logger } from 'tslog';
 import Restaurant from '../types/Restaurant';
 import type FetchOptions from '../types/FetchOptions';
 
@@ -12,15 +11,10 @@ export default function useRestaurants() {
     mode: 'cors',
   };
   const fetchRestaurants = async () => {
-    try {
-      const url = 'http://localhost:3000/restaurants';
-      const response = await fetch(url, options);
-      const data = await response.json();
-      setRestaurants(data.restaurants);
-    } catch (error) {
-      const logger = new Logger({ name: 'myLogger' });
-      logger.debug(error);
-    }
+    const url = 'http://localhost:3000/restaurants';
+    const response = await fetch(url, options);
+    const data = await response.json();
+    setRestaurants(data.restaurants);
   };
 
   useEffectOnce(() => {
