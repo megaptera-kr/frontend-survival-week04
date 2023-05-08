@@ -1,6 +1,7 @@
 import { useLocalStorage } from 'usehooks-ts';
 import FetchOptions from '../types/FetchOptions';
 import { WishList } from '../types/WishList';
+import fetchUtils from '../utils/fetchUtils';
 
 export default function useOrderReceipt() :{
   orderReceipt : WishList,
@@ -12,7 +13,7 @@ export default function useOrderReceipt() :{
   const [orderReceipt, setOrderReceipt] = useLocalStorage('orderReceipt', defaultOrderReceipt);
 
   const fetchOrderReceipt = async (bodyData : WishList) => {
-    const url = 'http://localhost:3000/orders';
+    const url = `${fetchUtils().authority}/orders`;
     const options: FetchOptions = {
       method: 'POST',
       mode: 'cors',
