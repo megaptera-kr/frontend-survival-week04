@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useEffectOnce } from 'usehooks-ts';
 import Restaurant from '../types/Restaurant';
 import type FetchOptions from '../types/FetchOptions';
-import 'isomorphic-fetch';
 
 export default function useRestaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -12,7 +11,7 @@ export default function useRestaurants() {
     mode: 'cors',
   };
   const fetchRestaurants = async () => {
-    const url = 'http://127.0.0.1:3000/restaurants';
+    const url = 'http://localhost:3000/restaurants';
     const response = await fetch(url, options);
     const data = await response.json();
     setRestaurants(data.restaurants);
