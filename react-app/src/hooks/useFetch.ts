@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useState, useEffect, SetStateAction } from 'react';
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 
 const useFetch = (url:string) => {
   const [data, setData] = useState(null);
