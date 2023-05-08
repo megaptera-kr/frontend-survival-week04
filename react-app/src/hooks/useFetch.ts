@@ -6,9 +6,13 @@ const useFetch = (url:string) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(url)
-      .then((res: { json: () => any; }) => res.json())
-      .then((jsonData: SetStateAction<null>) => setData(jsonData));
+    try {
+      fetch(url)
+        .then((res: { json: () => any; }) => res.json())
+        .then((jsonData: SetStateAction<null>) => setData(jsonData));
+    } catch (error) {
+      // setData({});
+    }
   }, [url]);
 
   return [data];
