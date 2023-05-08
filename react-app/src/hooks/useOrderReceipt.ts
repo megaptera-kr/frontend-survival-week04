@@ -1,4 +1,5 @@
 import { useLocalStorage } from 'usehooks-ts';
+import fetch from 'node-fetch';
 import FetchOptions from '../types/FetchOptions';
 import { WishList } from '../types/WishList';
 import fetchUtils from '../utils/fetchUtils';
@@ -20,10 +21,13 @@ export default function useOrderReceipt() :{
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bodyData),
     };
-
-    const response = await fetch(url, options);
-    const data = await response.json();
-    setOrderReceipt(data);
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      setOrderReceipt(data);
+    } catch (error) {
+      setOrderReceipt(defaultOrderReceipt);
+    }
   };
 
   const clearOrderReceipt = () => (
