@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useEffectOnce } from 'usehooks-ts';
+import fetch from 'node-fetch';
 import Restaurant from '../types/Restaurant';
 import type FetchOptions from '../types/FetchOptions';
 
