@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "tslog": "^4.8.2"
-  },
-  "dependencies": {
-    "node-fetch": "^3.3.1"
-  }
-}
