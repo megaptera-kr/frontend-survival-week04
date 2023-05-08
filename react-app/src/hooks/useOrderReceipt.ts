@@ -1,7 +1,6 @@
 import { useLocalStorage } from 'usehooks-ts';
 import FetchOptions from '../types/FetchOptions';
 import { WishList } from '../types/WishList';
-// import 'isomorphic-fetch';
 
 export default function useOrderReceipt() :{
   orderReceipt : WishList,
