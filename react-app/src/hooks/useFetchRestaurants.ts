@@ -13,7 +13,11 @@ export default function useFetchRestaurants() {
   };
 
   useEffectOnce(() => {
-    fetchRestaurants();
+    try {
+      fetchRestaurants();
+    } catch (error) {
+      console.log('통신 에러 발생');
+    }
   });
 
   return restaurantsData;

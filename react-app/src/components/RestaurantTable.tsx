@@ -16,7 +16,12 @@ export default function RestaurantTable({ restaurants }: RestaurantTableProps) {
         </tr>
       </thead>
       <tbody>
-        <RestaurantRow restaurants={restaurants} />
+        {restaurants.map((restaurant) => (
+          <RestaurantRow
+            key={restaurant.id}
+            restaurant={restaurant}
+          />
+        ))}
       </tbody>
     </table>
   );

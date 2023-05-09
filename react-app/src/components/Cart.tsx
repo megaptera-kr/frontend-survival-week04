@@ -1,40 +1,56 @@
 import { useLocalStorage } from 'usehooks-ts';
-// import fetch from 'node-fetch';
-import useCart from '../hooks/useCart';
-import Foods from './Foods';
+import CartItem from './CartItem';
+import OrderButton from './OrderButton';
 
-export default function Cart({ setReceipt }) {
-  const { cart } = useCart();
-  const setCart = useLocalStorage('cart', [])[1];
-  const totalPrice = cart.reduce((sum, food) => sum + food.price, 0);
+import useCreateOrder from '../hooks/useCreateOrder';
+
+import Food from '../types/Food';
+import Receipt from '../types/Receipt';
+
+type CartProps = {
+  setReceipt: (receipt: Receipt) => void;
+}
+
+export default function Cart({ setReceipt }: CartProps) {
+  const [selectedFoods, setFoods] = useLocalStorage<Food[]>('cart', []);
+
+  const handleClickCancle = (index: number) => {
+    const foods = selectedFoods.filter((v, i) => i !== index);
+    setFoods(foods);
+  };
 
   const handleClickOrder = async () => {
-    const url = 'http://localhost:3000/orders';
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ menu: cart, totalPrice }),
-    });
-    const orders = await response.json();
+    if (!selectedFoods.length) {
+      return;
+    }
 
-    setReceipt(orders);
-    setCart([]);
+    const receipt = await useCreateOrder(selectedFoods);
+    setReceipt(receipt);
+
+    setFoods([]);
   };
 
   return (
     <div>
-      <h2>점심 바구니</h2>
+      <h2>주문 바구니</h2>
       <ul>
-        <Foods menu={cart} buttonType="취소" />
+        {selectedFoods.map((food, index) => {
+          const key = `${food.id}-${index}`;
+
+          return (
+            <CartItem
+              key={key}
+              food={food}
+              index={index}
+              onClickCancle={handleClickCancle}
+            />
+          );
+        })}
       </ul>
-      <button type="button" onClick={handleClickOrder}>
-        합계:
-        {' '}
-        {totalPrice.toLocaleString()}
-        원 주문
-      </button>
+      <OrderButton
+        foods={selectedFoods}
+        onClickOrder={handleClickOrder}
+      />
     </div>
   );
 }

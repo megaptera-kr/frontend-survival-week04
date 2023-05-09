@@ -5,8 +5,23 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-
 app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+app.post('/orders', (req, res) => {
+  const { menu, totalPrice } = req.body;
+
+  const receipt = {
+    id: Date.now().toString(),
+    menu,
+    totalPrice,
+  };
+
+  res.status(201).send({ receipt });
+});
 
 app.get('/restaurants', (req, res) => {
   const restaurants = [
@@ -47,17 +62,6 @@ app.get('/restaurants', (req, res) => {
   ];
 
   res.status(200).send({ restaurants });
-});
-
-app.post('/orders', (req, res) => {
-  const { menu, totalPrice } = req.body;
-  const orders = {
-    id: Date.now().toString(),
-    menu,
-    totalPrice,
-  };
-
-  res.status(201).send(orders);
 });
 
 app.listen(port, () => {

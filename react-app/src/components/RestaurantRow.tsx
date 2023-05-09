@@ -1,24 +1,20 @@
 import Restaurant from '../types/Restaurant';
-import Foods from './Foods';
+import Menu from './Menu';
 
 type RestaurantRowProps = {
-    restaurants: Restaurant[];
-  }
+  restaurant: Restaurant;
+}
 
-export default function RestaurantRow({ restaurants }: RestaurantRowProps) {
+export default function RestaurantRow({ restaurant }: RestaurantRowProps) {
+  const { name, category, menu } = restaurant;
+
   return (
-    <>
-      {restaurants.map(({
-        id, category, name, menu,
-      }: Restaurant) => (
-        <tr key={id}>
-          <td>{name}</td>
-          <td>{category}</td>
-          <td>
-            <Foods menu={menu} buttonType="선택" />
-          </td>
-        </tr>
-      ))}
-    </>
+    <tr>
+      <td>{name}</td>
+      <td>{category}</td>
+      <td>
+        <Menu menu={menu} />
+      </td>
+    </tr>
   );
 }
