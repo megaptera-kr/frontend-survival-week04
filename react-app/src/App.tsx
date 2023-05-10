@@ -9,7 +9,7 @@ import Receipt from './types/Receipt';
 const emptyReceipt = {} as Receipt;
 
 export default function App() {
-  const [receipt, setReceipt] = useLocalStorage('receipt', {});
+  const [receipt, setReceipt] = useLocalStorage('receipt', emptyReceipt);
 
   useInterval(() => {
     setReceipt(emptyReceipt);
