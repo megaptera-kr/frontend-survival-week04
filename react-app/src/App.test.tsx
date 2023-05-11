@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
 
-import App from './App';
+import RestaurantTableHeader from './components/RestaurantTableHeader';
 
-describe('App ', () => {
+describe('RestaurantTableHeader ', () => {
   it('renders without crash', () => {
-    render(<App />);
+    render(<RestaurantTableHeader />);
   });
 });

@@ -1,5 +1,12 @@
-function main() {
-  // TODO: App 컴포넌트를 render 해주세요.
-}
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
-main();
+import App from './App';
+
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
