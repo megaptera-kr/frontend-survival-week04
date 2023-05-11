@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node app.ts",
+    "start": "nodemon app.ts",
     "lint": "eslint --fix ."
   },
   "author": "seedwhale",
