@@ -1,39 +1,32 @@
-import ButtonField from './ButtonField';
-import PostField from './PostField';
+import Categories from './Categories';
 import TextField from './TextField';
-import { MenuItem } from '../type/menu';
 
 type SearchBarProps = {
-receipt : MenuItem[],
-setReceipt : (value : MenuItem[]) => void,
-inputText : string,
-setInputText : (value:string) => void,
-setFoodType : (value:string) => void
-
+  filterText : string,
+  setFilterText : (value:string) => void,
+  category : string[],
+  setFilterCategory :(value:string) =>void
 }
 
-export default function SearchBar({
-  receipt, setReceipt, inputText, setInputText, setFoodType,
-}:SearchBarProps) {
+export default function SearchBar(
+  {
+    filterText, setFilterText, category, setFilterCategory,
+  }:SearchBarProps,
+) {
   return (
-    <div style={{ border: '2px solid #222' }}>
+    <>
+      <TextField filterText={filterText} setFilterText={setFilterText} />
       <div>
-        <h1>푸드코트 키오스크</h1>
-        <h3>점심 바구니</h3>
+        {
+          ['전체', ...category].map((categories) => (
+            <Categories
+              key={categories}
+              categories={categories}
+              setFilterCategory={setFilterCategory}
+            />
+          ))
+        }
       </div>
-      {
-        receipt.map((menu) => (
-          <div key={menu.id}>
-            <span>
-              {menu.name}
-              {menu.price}
-            </span>
-          </div>
-        ))
-      }
-      <PostField receipt={receipt} setReceipt={setReceipt} />
-      <TextField inputText={inputText} setInputText={setInputText} />
-      <ButtonField setFoodType={setFoodType} />
-    </div>
+    </>
   );
 }

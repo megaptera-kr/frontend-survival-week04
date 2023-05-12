@@ -3,12 +3,15 @@ import cors from 'cors';
 
 const port = 3000;
 const app = express();
-app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-app.get('/products', (req, res) => {
-  const menus = [
+app.get('/', (req, res) => {
+  res.send('hello world');
+});
+
+app.get('/restaurants', (req, res) => {
+  const restaurants = [
     {
       id: '1',
       category: '중식',
@@ -74,31 +77,20 @@ app.get('/products', (req, res) => {
         { id: '23', name: '된장찌개', price: 8000 },
         { id: '24', name: '계란말이', price: 6000 },
       ],
-    },
-  ];
-  res.send({ menus });
-});
-
-let todoList = [{
-  id: 1,
-  name: 'test',
-  price: 5000,
-}];
-
-app.get('/orders', (req, res) => {
-  res.json(todoList);
+    }];
+  res.send({ restaurants });
 });
 
 app.post('/orders', (req, res) => {
-  const { postingData } = req.body;
-  todoList = postingData;
-});
-
-app.get('/', (req, res) => {
-  res.send('hello world');
+  const { menu, totalPrice } = req.body;
+  const receipt = {
+    id: Date.now().toString(),
+    menu,
+    totalPrice,
+  };
+  res.send({ receipt });
 });
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`server runing at http://localhost:${port}`);
 });

@@ -1,22 +1,19 @@
-import { useState } from 'react';
+import React from 'react';
 
 type TextFieldProps = {
-  inputText: string,
-  setInputText: (value:string)=>void
+  filterText : string,
+  setFilterText : (value:string) =>void
 }
 
-export default function TextField({ inputText, setInputText }: TextFieldProps) {
+export default function TextField({ filterText, setFilterText }: TextFieldProps) {
   function handleText(e:React.ChangeEvent<HTMLInputElement>) {
-    setInputText(e.target.value);
+    setFilterText(e.target.value);
   }
 
   return (
-    <div>
-      <label>
-        {' '}
-        검색
-        <input type="text" placeholder="식당 이름" value={inputText} onChange={handleText} />
-      </label>
-    </div>
+    <label>
+      검색
+      <input type="text" value={filterText} onChange={handleText} placeholder="식당 이름" />
+    </label>
   );
 }
