@@ -25,7 +25,7 @@ export default function Menu({ menu }:MenuProps) {
             onClick={() => { handelMenuBtn(menuItem); }}
             type="button"
           >
-            버튼
+            선택
 
           </button>
         </li>
