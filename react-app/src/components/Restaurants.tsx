@@ -16,7 +16,7 @@ export default function Restaurants() {
   const [foodType, setFoodType] = useState('전체');
   const [orders, setOrders] = useState<ResOrders>({ id: '', menu: [], totalPrice: 0 });
 
-  const { restaurants } = useFetchRestaurants();
+  const restaurants = useFetchRestaurants();
 
   const filteredRestaurants = filterRestaurants(restaurants, { query, foodType });
 
