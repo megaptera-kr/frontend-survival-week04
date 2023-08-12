@@ -10,3 +10,19 @@ export type Restaurant = {
   name: string;
   menu: Menu[];
 }
+
+export type RestaurantFilterConditions = {
+  query: string;
+  foodType: string;
+}
+
+export interface ShoppingCart {
+  menu: Menu[];
+  totalPrice: number;
+}
+
+export interface ResOrders {
+  id: string;
+  menu: Menu[];
+  totalPrice: number;
+}
