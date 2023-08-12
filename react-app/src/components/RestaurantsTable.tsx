@@ -35,7 +35,7 @@ export default function RestaurantsTable({ restaurants }: RestaurantsTableProps)
                 {restaurant.menu.map((food) => (
                   <li key={food.id} style={{ marginBottom: '1rem' }}>
                     <span>{`${food.name}(${food.price.toLocaleString()}원)`}</span>
-                    <button type="button" style={{ float: 'right', marginLeft: '0.5rem' }} onClick={() => handleClick(food)}>선택</button>
+                    <button type="button" name={`#${food.name}`} style={{ float: 'right', marginLeft: '0.5rem' }} onClick={() => handleClick(food)}>선택</button>
                   </li>
                 ))}
               </ul>
