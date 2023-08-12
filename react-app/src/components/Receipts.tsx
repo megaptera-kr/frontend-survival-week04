@@ -20,11 +20,3 @@ export default function Receipts({ orders }: {orders: ResOrders}) {
     </div>
   );
 }
-
-// 영수증
-// 주문번호
-// 1691844247458
-
-// 주문목록
-// 짜장면(8,000원)
-// 총 가격: 8,000원
