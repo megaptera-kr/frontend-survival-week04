@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import type { ResOrders, ShoppingCart } from '../types/restaurants';
 
 export default function useFetchOrders() {
