@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import fetch from 'node-fetch';
 import type { Restaurant } from '../types/restaurants';
 
 export default function useFetchRestaurants() {
@@ -8,7 +9,7 @@ export default function useFetchRestaurants() {
     const fetchRestaurants = async () => {
       const url = 'http://localhost:3000/restaurants';
       const response = await fetch(url);
-      const data = await response.json();
+      const data = (await response.json()) as {restaurants: Restaurant[]};
       setRestaurants(data.restaurants);
     };
     fetchRestaurants();

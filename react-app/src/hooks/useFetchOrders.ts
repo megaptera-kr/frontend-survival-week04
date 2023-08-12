@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 import type { ResOrders, ShoppingCart } from '../types/restaurants';
 
 export default function useFetchOrders() {
@@ -13,7 +15,7 @@ export default function useFetchOrders() {
       body: JSON.stringify(data),
     });
 
-    const responseData: ResOrders = await response.json();
+    const responseData = (await response.json()) as ResOrders;
     return responseData;
   };
   return sendPostRequest;
