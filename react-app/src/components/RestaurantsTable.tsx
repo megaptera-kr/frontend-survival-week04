@@ -1,10 +1,21 @@
-import type { Restaurant } from '../types/restaurants';
+import useAddProductToCart from '../hooks/useAddProductToCart';
+
+import type { Menu, Restaurant } from '../types/restaurants';
 
 type RestaurantsTableProps = {
   restaurants: Restaurant[]
 }
 
 export default function RestaurantsTable({ restaurants }: RestaurantsTableProps) {
+  const { setCart } = useAddProductToCart();
+
+  const handleClick = (restaurant: Menu) => {
+    setCart((prevCart) => ({
+      menu: [...prevCart.menu, restaurant],
+      totalPrice: prevCart.totalPrice + restaurant.price,
+    }));
+  };
+
   return (
     <table>
       <thead>
@@ -24,7 +35,7 @@ export default function RestaurantsTable({ restaurants }: RestaurantsTableProps)
                 {restaurant.menu.map((food) => (
                   <li key={food.id} style={{ marginBottom: '1rem' }}>
                     <span>{`${food.name}(${food.price.toLocaleString()}원)`}</span>
-                    <button type="button" style={{ float: 'right', marginLeft: '0.5rem' }}>선택</button>
+                    <button type="button" style={{ float: 'right', marginLeft: '0.5rem' }} onClick={() => handleClick(food)}>선택</button>
                   </li>
                 ))}
               </ul>
