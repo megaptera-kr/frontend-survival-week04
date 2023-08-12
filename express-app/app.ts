@@ -1,10 +1,11 @@
-// TODO: Express 를 이용하여 서버를 만들어 주세요.
 import express from 'express';
+import cors from 'cors';
 
 const port = 3000;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
