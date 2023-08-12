@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 import type { ResOrders, ShoppingCart } from '../types/restaurants';
 
 export default function useFetchOrders() {
