@@ -16,6 +16,7 @@ export default function BasketList() {
             menuItem={basketItem}
           >
             <MenuActionButton
+              name={`#${basketItem.name}`}
               title="취소"
               onClick={() => removeMenu(index)}
             />
