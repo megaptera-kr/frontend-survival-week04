@@ -1,4 +1,4 @@
-interface IRestaurantMenu {
+export interface IRestaurantMenu {
   id: string;
   name: string;
   price: number;
