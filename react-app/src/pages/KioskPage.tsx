@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { useInterval, useLocalStorage } from 'usehooks-ts';
 import KioskTable from './KioskTable';
 
 import { RestaurantsData, useFetchRestaurants } from './hooks/useFetchRestaurants';
@@ -31,8 +32,8 @@ function KioskPage() {
   const { data: restaurantsData } = useFetchRestaurants();
 
   const [filteredRestaurantsData, setFilteredRestaurantsData] = useState<RestaurantsData['restaurants']>([]);
-  const [selectedMenus, setSelectedMenus] = useState<MenuType[]>([]);
-  const [orderedMenus, setOrderedMenus] = useState<PostOrdersResponse | null>(null);
+  const [selectedMenus, setSelectedMenus] = useLocalStorage<MenuType[]>('selected_menus', []);
+  const [orderedMenus, setOrderedMenus] = useLocalStorage<PostOrdersResponse | null>('ordered_menus', null);
 
   const [query, setQuery] = useState('');
 
@@ -65,18 +66,10 @@ function KioskPage() {
     setSelectedMenus(newSelectedMenu);
   };
 
-  useEffect(() => {
-    console.log(orderedMenus);
-
-    const timer = setTimeout(() => {
-      setOrderedMenus(null);
-      setSelectedMenus([]);
-    }, 5_000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [orderedMenus]);
+  useInterval(() => {
+    setOrderedMenus(null);
+    setSelectedMenus([]);
+  }, orderedMenus ? 5_000 : null);
 
   useEffect(() => {
     let newData = [...restaurantsData?.restaurants ?? []];
