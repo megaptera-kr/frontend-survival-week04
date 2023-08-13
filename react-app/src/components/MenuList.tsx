@@ -24,6 +24,7 @@ export default function MenuList({ menuList }: MenuProps) {
               menuItem={menuListItem}
             >
               <MenuActionButton
+                name={`#${menuListItem.name}`}
                 title="선택"
                 onClick={() => addMenu(menuListItem)}
               />

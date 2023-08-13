@@ -8,7 +8,7 @@ export default function TotalOrderButton() {
   const { postOrder } = usePostOrder();
   const { addReceipt } = useReceipt();
 
-  const buttonText = `합계 ${priceToLocal(totalPrice)}원 주문`;
+  const buttonText = `합계: ${priceToLocal(totalPrice)}원 주문`;
 
   const handleClickOrder = async () => {
     const res = await postOrder();

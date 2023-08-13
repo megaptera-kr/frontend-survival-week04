@@ -40,7 +40,7 @@ export default function ReceiptDetails({ receipt }: ReceiptDetailsProps) {
           }
         </ul>
       </div>
-      <p>{`총 가격 ${priceToLocal(totalPrice)}원`}</p>
+      <p>{`총 가격: ${priceToLocal(totalPrice)}원`}</p>
     </div>
   );
 }
