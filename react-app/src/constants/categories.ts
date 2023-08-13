@@ -1,0 +1,3 @@
+const DEFAULT_SELECTED_CATEGORY = '전체';
+
+export default DEFAULT_SELECTED_CATEGORY;

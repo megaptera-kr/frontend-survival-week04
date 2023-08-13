@@ -5,5 +5,7 @@ import { IRestaurant } from '../types/restaurants';
 const url = 'http://localhost:3000/restaurants';
 
 export default function useFetchRestaurants() {
-  return useFetch<{restaurants: IRestaurant[]}>(url);
+  const { data } = useFetch<{ restaurants: IRestaurant[] }>(url);
+
+  return data?.restaurants ?? [];
 }
