@@ -3,18 +3,11 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: [
-    'airbnb',
-    'plugin:@typescript-eslint/recommended',
-  ],
+  extends: ['airbnb', 'plugin:@typescript-eslint/recommended'],
   overrides: [
     {
-      extends: [
-      ],
-      files: [
-        '*.ts',
-        '*.tsx',
-      ],
+      extends: [],
+      files: ['*.ts', '*.tsx'],
     },
   ],
   parserOptions: {
