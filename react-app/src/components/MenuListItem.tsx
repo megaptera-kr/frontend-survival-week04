@@ -1,3 +1,4 @@
+import priceToLocal from '../../utils/priceToLocal';
 import { IRestaurantMenu } from '../types/restaurants';
 
 type MenuListItemProps = {
@@ -15,7 +16,7 @@ export default function MenuListItem({ menuItem }: MenuListItemProps) {
       <span
         style={{ margin: '0 auto' }}
       >
-        {`${name}(${price}원)`}
+        {`${name}(${priceToLocal(price)}원)`}
       </span>
     </li>
   );
