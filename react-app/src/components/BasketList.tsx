@@ -6,22 +6,22 @@ export default function BasketList() {
   const { basket, removeMenu } = useMenuBasket();
 
   return (
-    <ul
-      style={{
-        width: '20%',
-      }}
-    >
-      {basket.map((basketItem, index) => (
-        <MenuListItem
-          key={basketItem.id}
-          menuItem={basketItem}
-        >
-          <MenuActionButton
-            title="취소"
-            onClick={() => removeMenu(index)}
-          />
-        </MenuListItem>
-      ))}
+    <ul>
+      {basket.map((basketItem, index) => {
+        const keyId = `${basketItem.id}-${index}`;
+
+        return (
+          <MenuListItem
+            key={keyId}
+            menuItem={basketItem}
+          >
+            <MenuActionButton
+              title="취소"
+              onClick={() => removeMenu(index)}
+            />
+          </MenuListItem>
+        );
+      })}
     </ul>
   );
 }

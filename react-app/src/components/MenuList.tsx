@@ -15,17 +15,21 @@ export default function MenuList({ menuList }: MenuProps) {
   return (
     <ul>
       {
-        menuList.map((menuListItem) => (
-          <MenuListItem
-            key={menuListItem.id}
-            menuItem={menuListItem}
-          >
-            <MenuActionButton
-              title="선택"
-              onClick={() => addMenu(menuListItem)}
-            />
-          </MenuListItem>
-        ))
+        menuList.map((menuListItem, index) => {
+          const keyId = `${menuListItem.id}-${index}`;
+
+          return (
+            <MenuListItem
+              key={keyId}
+              menuItem={menuListItem}
+            >
+              <MenuActionButton
+                title="선택"
+                onClick={() => addMenu(menuListItem)}
+              />
+            </MenuListItem>
+          );
+        })
       }
     </ul>
   );

@@ -1,13 +1,24 @@
 import priceToLocal from '../../utils/priceToLocal';
 import useMenuBasket from '../hooks/useMenuBasket';
+import usePostOrder from '../hooks/usePostOrder';
+import useReceipt from '../hooks/useReceipt';
 
 export default function TotalOrderButton() {
-  const { basket } = useMenuBasket();
+  const { totalPrice, clearBasket } = useMenuBasket();
+  const { postOrder } = usePostOrder();
+  const { addReceipt } = useReceipt();
 
-  const totalAmount = basket.reduce((acc, cur) => acc + cur.price, 0);
-  const buttonText = `합계 ${priceToLocal(totalAmount)}원 주문`;
+  const buttonText = `합계 ${priceToLocal(totalPrice)}원 주문`;
+
+  const handleClickOrder = async () => {
+    const res = await postOrder();
+
+    addReceipt(res);
+    clearBasket();
+  };
+
   return (
-    <button type="button">
+    <button type="button" onClick={() => handleClickOrder()}>
       {buttonText}
     </button>
   );

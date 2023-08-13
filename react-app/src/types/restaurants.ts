@@ -10,3 +10,14 @@ export interface IRestaurant {
   name: string;
   menu: IRestaurantMenu[];
 }
+
+export interface IPostOrderBody {
+  menu: IRestaurantMenu[];
+  totalPrice: number;
+}
+
+export interface IReceipt {
+  id: string;
+  menu: IRestaurantMenu[];
+  totalPrice: number;
+}
