@@ -3,8 +3,8 @@ import { IRestaurantMenu } from '../types/restaurants';
 
 type MenuListItemProps = {
   menuItem: IRestaurantMenu
-  children: React.ReactNode
-}
+} & React.PropsWithChildren<any>;
+
 export default function MenuListItem({ menuItem, children }: MenuListItemProps) {
   const { name, price } = menuItem;
   return (
