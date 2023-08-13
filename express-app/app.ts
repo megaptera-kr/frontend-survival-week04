@@ -1,8 +1,13 @@
 import express, { Request } from 'express';
+import cors from 'cors';
 
 const PORT = 3000;
 
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:8080',
+}));
 
 /** Body 를 JSON 으로 파싱한다. */
 app.use(express.json());
