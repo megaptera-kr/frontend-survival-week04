@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-
 import { useInterval, useLocalStorage } from 'usehooks-ts';
+
 import KioskTable from './KioskTable';
 
 import { RestaurantsData, useFetchRestaurants } from './hooks/useFetchRestaurants';
-import orderRestaurantsMenus, { PostOrdersResponse } from './hooks/useOrderRestaurantsMenus';
+import { orderRestaurantsMenus, PostOrdersResponse } from './hooks/useOrderRestaurantsMenus';
 
 /** 메뉴 카테고리 목록 */
 export const CATEGORIES = [
@@ -38,7 +38,7 @@ function KioskPage() {
   const [query, setQuery] = useState('');
 
   const handleChangeQuery = (value: string) => {
-    setQuery(value);
+    setQuery(value.trim());
   };
 
   const addSelectedMenus = (menu: MenuType) => {
@@ -115,16 +115,18 @@ function KioskPage() {
           <h3>점심 바구니</h3>
           {' '}
           <button type="button" onClick={handleClickOrderButton}>
-            {`합계: ${selectedMenus.reduce((result, { price }) => result + price, 0)}원 주문`}
+            {`합계: ${selectedMenus.reduce((result, { price }) => result + price, 0).toLocaleString()}원 주문`}
           </button>
         </label>
 
         <div>
           {selectedMenus.map(({ id, name, price }, index) => (
             <div key={`selected_menu_${id}`}>
-              <span>{`${name} ${price.toLocaleString()}`}</span>
-              {' '}
-              <button type="button" onClick={() => handleClickCancelMenuButton(index)}>취소</button>
+              <label>
+                <span>{`${name} ${price.toLocaleString()}`}</span>
+                {' '}
+                <button type="button" name={`#${name}`} onClick={() => handleClickCancelMenuButton(index)}>취소</button>
+              </label>
             </div>
           ))}
         </div>
@@ -155,7 +157,6 @@ function KioskPage() {
       <KioskTable restaurantsData={filteredRestaurantsData} onAddSelectedMenus={addSelectedMenus} />
 
       <div>
-
         {orderedMenus ? (
           <div>
             <div key={orderedMenus.id}>
@@ -174,7 +175,9 @@ function KioskPage() {
               <h4>
                 총 가격:
                 {' '}
-                {orderedMenus.menu.reduce((result, { price }) => result + price, 0)}
+                {orderedMenus.menu.reduce((result, { price }) => result + price, 0)
+                  .toLocaleString()}
+                원
               </h4>
             </div>
           </div>

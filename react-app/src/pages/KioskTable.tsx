@@ -34,9 +34,11 @@ function KioskTable(
             <td>
               {menu.map((item) => (
                 <div key={`${item.name}_menu_${item.id}`}>
-                  <span>{`${item.name} (${item.price.toLocaleString()})원`}</span>
-                  {' '}
-                  <button type="button" onClick={() => handleClickMenu(item)}>메뉴 추가</button>
+                  <label>
+                    <span>{`${item.name} (${item.price.toLocaleString()})원`}</span>
+                    {' '}
+                    <button type="button" name={`#${item.name}`} onClick={() => handleClickMenu(item)}>메뉴 추가</button>
+                  </label>
                 </div>
               ))}
             </td>

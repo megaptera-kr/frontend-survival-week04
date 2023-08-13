@@ -19,7 +19,7 @@ export interface PostOrdersResponse extends PostOrdersPayload {
   id: string;
 }
 
-const orderRestaurantsMenus = async (payload: PostOrdersPayload) => {
+export const orderRestaurantsMenus = async (payload: PostOrdersPayload) => {
   try {
     const response = await fetch(`${BASE_URL}/orders`, {
       method: 'POST',
@@ -38,5 +38,3 @@ const orderRestaurantsMenus = async (payload: PostOrdersPayload) => {
     return null;
   }
 };
-
-export default orderRestaurantsMenus;
