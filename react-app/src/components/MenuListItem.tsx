@@ -3,8 +3,9 @@ import { IRestaurantMenu } from '../types/restaurants';
 
 type MenuListItemProps = {
   menuItem: IRestaurantMenu
+  children: React.ReactNode
 }
-export default function MenuListItem({ menuItem }: MenuListItemProps) {
+export default function MenuListItem({ menuItem, children }: MenuListItemProps) {
   const { name, price } = menuItem;
   return (
     <li
@@ -18,6 +19,7 @@ export default function MenuListItem({ menuItem }: MenuListItemProps) {
       >
         {`${name}(${priceToLocal(price)}원)`}
       </span>
+      {children}
     </li>
   );
 }
