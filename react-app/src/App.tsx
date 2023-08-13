@@ -2,14 +2,6 @@ import { PropsWithChildren } from 'react';
 
 import KioskPage from './pages/KioskPage';
 
-function App() {
-  return (
-    <Layout>
-      <KioskPage />
-    </Layout>
-  );
-}
-
 function Layout({ children }: PropsWithChildren<unknown>) {
   return (
     <main style={{
@@ -23,6 +15,14 @@ function Layout({ children }: PropsWithChildren<unknown>) {
     >
       {children}
     </main>
+  );
+}
+
+function App() {
+  return (
+    <Layout>
+      <KioskPage />
+    </Layout>
   );
 }
 
