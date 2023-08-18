@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import useFetchRestaurants from './hooks/useFetchRestaurants';
 import Restaurants from './components/Restaurants';
 import CategoryGroup from './components/CategoryGroup';
 import SearchBar from './components/SearchBar';
+import useFetchRestaurants from './hooks/useFetchRestaurants';
+import Cart from './components/Cart';
 
 export default function App() {
   const { restaurants, categories } = useFetchRestaurants();
@@ -19,7 +20,9 @@ export default function App() {
 
   return (
     <>
-      <h1>오늘의 메뉴</h1>
+      <h1>푸드코트 키오스크</h1>
+
+      <Cart />
       <SearchBar setFilterText={setFilterText} />
       <CategoryGroup categories={categories} setCategory={setCategory} />
       <table>
