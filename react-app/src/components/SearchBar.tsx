@@ -9,12 +9,12 @@ export default function SearchBar({ setFilterText }: SearchBarProps) {
   };
 
   return (
-    <label htmlFor='search-input'>
+    <label htmlFor="search-input">
       검색
       <input
-        id='search-input'
-        type='text'
-        placeholder='식당 이름'
+        id="search-input"
+        type="text"
+        placeholder="식당 이름"
         onChange={handleChange}
       />
     </label>
