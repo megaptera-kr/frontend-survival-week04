@@ -5,10 +5,10 @@ export default function CategoryGroup({
   setCategory,
 }: CategoryGroupProps) {
   return (
-    <div className='button-group'>
+    <div className="button-group">
       {categories.map((category) => (
         <input
-          type='button'
+          type="button"
           key={category}
           onClick={() => setCategory(category)}
           value={category}
