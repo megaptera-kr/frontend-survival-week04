@@ -1,8 +1,8 @@
-interface Menu {
+export type Menu = {
   id: string;
   name: string;
   price: number;
-}
+};
 
 export type Restaurant = {
   id: string;

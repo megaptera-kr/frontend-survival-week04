@@ -1,4 +1,5 @@
-import { Restaurant } from '../types';
+import { useLocalStorage } from 'usehooks-ts';
+import { Menu, Restaurant } from '../types';
 
 type RestaurantsProps = Restaurant[];
 
@@ -7,6 +8,12 @@ export default function Restaurants({
 }: {
   restaurants: RestaurantsProps;
 }) {
+  const [selectedMenus, selectMenu] = useLocalStorage<Menu[]>('cart', []);
+
+  const handleSelectMenu = (menu: Menu) => {
+    selectMenu([...selectedMenus, menu]);
+  };
+
   return (
     <>
       {restaurants.map((restaurant) => (
@@ -15,14 +22,25 @@ export default function Restaurants({
           <td>{restaurant.category}</td>
           <td>
             <ul>
-              {restaurant.menu.map((menu) => (
-                <li key={menu.id}>
-                  <p>
-                    {menu.name}
-                    {`(${menu.price.toLocaleString()}원)`}
-                  </p>
-                </li>
-              ))}
+              {restaurant.menu.map((menu, idx) => {
+                const key = `${menu.id}-${idx}`;
+
+                return (
+                  <li key={key}>
+                    <p>
+                      {menu.name}
+                      {`(${menu.price.toLocaleString()}원)`}
+                    </p>
+                    <button
+                      name={`#${menu.name}`}
+                      type="button"
+                      onClick={() => handleSelectMenu(menu)}
+                    >
+                      선택
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </td>
         </tr>
