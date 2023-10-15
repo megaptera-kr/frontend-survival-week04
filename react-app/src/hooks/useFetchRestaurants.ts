@@ -1,19 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useFetch } from 'usehooks-ts';
 import Restaurant from '../types/Restaurant';
 
+type FetchRestaurantsType = {
+  [restaurants: string]: Restaurant[]
+}
+
 export default function useFetchRestaurants() {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const url = 'http://localhost:3000/restaurants';
+  const { data } = useFetch<FetchRestaurantsType>(url);
 
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      const url = 'http://localhost:3000/restaurants';
-      const response = await fetch(url);
-      const data = await response.json();
-      setRestaurants(data.restaurants);
-    };
-
-    fetchRestaurants();
-  }, []);
-
-  return restaurants;
+  if (!data) {
+    return [];
+  }
+  return data.restaurants;
 }
