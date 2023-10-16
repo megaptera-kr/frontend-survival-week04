@@ -17,7 +17,7 @@ export default function useFetchRestaurants() {
     if (data) {
       setRestaurants(data.restaurants);
     }
-  }, []);
+  }, [data]);
 
   return restaurants;
 }
