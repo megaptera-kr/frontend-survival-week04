@@ -1,0 +1,53 @@
+li {
+list-style: none;
+}
+
+.SearchBar label {
+margin-right: 10px;
+}
+.OrderTable {
+  margin-bottom: 20px;
+}
+
+.OrderTable ul {
+  width: 20%;
+}
+
+.OrderTable li {
+  justify-content: space-between;
+}
+.Categories {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0;
+  padding: 0;
+}
+
+.MenuTable th:first-of-type{
+  margin: 10px;
+}
+
+.OrderTable li, .MenuTableRow li{
+  display: flex;
+  padding-block: 0.5rem;
+}
+
+.MenuTableRow span {
+  margin: 0px auto;
+}
+
+.OrderTable span, .MenuTableRow button {
+  margin-left: 10px;
+}
+
+.Receipt {
+  width: 80%;
+  border: 1px solid lightgray;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.Receipt li {
+margin-bottom: 10px;
+}
