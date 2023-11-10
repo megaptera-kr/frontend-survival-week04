@@ -1,5 +1,6 @@
 .SearchBar label {
-margin-right: 10px;
+    margin-right: 10px;
+
 }
 .OrderTable {
   margin-bottom: 20px;
@@ -18,6 +19,10 @@ margin-right: 10px;
   gap: 15px;
   margin: 10px 0;
   padding: 0;
+}
+
+.Categories li {
+  list-style: none;
 }
 
 .MenuTable th:first-of-type{
@@ -47,5 +52,6 @@ margin-right: 10px;
 }
 
 .Receipt li {
-margin-bottom: 10px;
+  list-style: none;
+  margin-bottom: 10px;
 }
