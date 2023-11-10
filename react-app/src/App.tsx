@@ -19,7 +19,7 @@ export default function App() {
     if (receiptList.id) {
       setReceiptList(initialState);
     }
-  }, receiptList.id ? 8000 : null);
+  }, receiptList.id ? 5000 : null);
 
   return (
     <div>
