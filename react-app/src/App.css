@@ -1,7 +1,3 @@
-li {
-list-style: none;
-}
-
 .SearchBar label {
 margin-right: 10px;
 }
@@ -15,6 +11,7 @@ margin-right: 10px;
 
 .OrderTable li {
   justify-content: space-between;
+  list-style: none;
 }
 .Categories {
   display: flex;
@@ -30,6 +27,7 @@ margin-right: 10px;
 .OrderTable li, .MenuTableRow li{
   display: flex;
   padding-block: 0.5rem;
+  list-style: none;
 }
 
 .MenuTableRow span {
