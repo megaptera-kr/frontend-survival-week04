@@ -7,7 +7,6 @@ import Receipt from './components/Receipt';
 import useGetRestaurants from './hooks/useGetRestaurants';
 
 import type { Receipts } from './types/types';
-import './App.css';
 
 export default function App() {
   const restaurants = useGetRestaurants();
