@@ -92,7 +92,7 @@ app.post('/order', (req, res) => {
     totalPrice,
   };
 
-  res.send({ receipt });
+  res.status(201).send({ receipt });
 });
 
 app.listen(port, () => {
