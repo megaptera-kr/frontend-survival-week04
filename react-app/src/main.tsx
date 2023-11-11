@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './main.css';
 
 async function main() {
   const rootElement = document.getElementById('root');
