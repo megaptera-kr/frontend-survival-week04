@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { Restaurants } from '../types/types';
 
 const url = 'http://localhost:3000/restaurants';
