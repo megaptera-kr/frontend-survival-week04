@@ -17,6 +17,14 @@ module.exports = {
       ],
     },
   ],
+  settings: {
+    // import/resolver` 는 `eslint-plugin-import` 의 경로 설정 옵션
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
