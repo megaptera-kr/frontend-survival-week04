@@ -1,6 +1,6 @@
-import { useLocalStorage, useMap, useTimeout } from 'usehooks-ts';
+import { useLocalStorage } from 'usehooks-ts';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { MenuItem } from '../types/restaurantItemType';
 import { ReceiptType } from '../types/receiptType';
 
@@ -8,9 +8,9 @@ export default function useSelectedMenus() {
   const [addedMenus, setAddMenu] = useLocalStorage<MenuItem[]>('cart', []);
   const [receipt, setReceipt] = useLocalStorage<ReceiptType>('receipt', {});
 
-  const price = useMemo(
+  const totalPrice = useMemo(
     () => addedMenus.reduce((acc, cur) => acc + (cur.price || 0), 0),
-    [addedMenus]
+    [addedMenus],
   );
 
   const handleAdd = (item: MenuItem) => {
@@ -26,7 +26,7 @@ export default function useSelectedMenus() {
       const item = {
         id: '12345678',
         menu: addedMenus,
-        price,
+        totalPrice,
       };
 
       const response = await fetch('http://localhost:3000/orders', {
@@ -41,13 +41,15 @@ export default function useSelectedMenus() {
 
       setReceipt(data);
 
+      setTimeout(() => setReceipt({}), 5000);
+
       setAddMenu([]);
     }
   };
 
   return {
     addedMenus,
-    price,
+    totalPrice,
     receipt,
     handleAdd,
     handleDelete,

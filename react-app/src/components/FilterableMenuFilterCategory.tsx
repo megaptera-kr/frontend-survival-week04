@@ -8,20 +8,14 @@ export default function FilterableMenuFilterCategory({
   handleClickFilterCategory,
 }: FilterableMenuFilterCategory) {
   return (
-    <ul
-      style={{
-        display: 'flex',
-        padding: 0,
-        listStyle: 'none',
-        gap: '16px',
-      }}
-    >
-      {categoryList.map((item) => (
-        <li key={item}>
+    <ul className="category-ul">
+      {categoryList.map((item, index) => (
+        <li key={item} className="category-li">
           <button
-            type='button'
+            type="button"
             value={item}
             onClick={handleClickFilterCategory}
+            className={`category-button-${index}`}
           >
             {item}
           </button>

@@ -1,0 +1,232 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 20px;
+}
+
+#root {
+  padding: 20px 16px;
+  border: 1px solid black;
+  min-width: 360px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+button {
+  background: black;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+button:hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.cta-button {
+  background: red;
+  color: white;
+  padding: 8px 12px;
+  font-size: 16px;
+}
+
+.cta-button:hover {
+  background: rgb(249, 98, 98);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+.center-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.column-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#filterable-menu-container {
+  gap: 16px;
+}
+
+#lunch-basket-container {
+  gap: 12px;
+}
+
+#filterable-menu-search-container {
+  gap: 16px;
+}
+
+input[type='text'] {
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  font-size: 14px;
+}
+
+input[type='text']:focus {
+  border: 2px solid rgb(0, 94, 161);
+}
+
+input[type='text']:hover {
+  border: 2px solid rgb(0, 94, 161);
+}
+
+label {
+  white-space: noWrap;
+}
+
+.category-ul {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  gap: 4px;
+}
+
+.category-li {
+  flex: 1;
+}
+
+.category-li > button {
+  flex: 1;
+  width: 100%;
+  background: red;
+  color: white;
+  border-bottom: none;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 8px 20px;
+}
+
+.category-li > button:hover {
+  background: rgb(249, 98, 98);
+}
+
+.title-section {
+  background: tomato;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+#lunch-basket-wrraper {
+  gap: 8px;
+  border: 1px solid grey;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+#lunch-basket-wrraper-empty {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#lunch-basket-item {
+  gap: 12px;
+  justify-content: space-between;
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 8px;
+}
+table {
+  width: 100%;
+  font-size: 12px;
+}
+
+th {
+  text-align: left;
+  padding: 12px 8px;
+  border: 1px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+td {
+  text-align: left;
+  padding: 12px 8px;
+}
+
+td:nth-child(1) {
+  width: 35%;
+}
+
+td:nth-child(2) {
+  width: 15%;
+}
+
+td:nth-child(3) {
+  width: 50%;
+}
+
+td > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+td > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid rgb(255, 77, 77);
+  border-radius: 4px;
+  padding: 4px;
+  background: rgb(248, 146, 146);
+}
+
+td > ul > li:hover {
+  color: white;
+}
+
+td > ul > li > button {
+  background: rgb(255, 75, 75);
+  color: white;
+}
+
+td > ul > li:hover > button {
+  background: black;
+  color: white;
+}
+
+#receipt-wrraper {
+  padding: 20px 16px;
+  border: 1px solid black;
+}
+
+#receipt {
+  text-align: center;
+  gap: 28px;
+}
+
+#receipt-id {
+  gap: 16px;
+}
+
+#receipt-menus {
+  gap: 16px;
+}
