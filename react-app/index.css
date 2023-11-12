@@ -1,0 +1,33 @@
+html,
+body,
+ul,
+li,
+button {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  padding: 6px;
+  border: 1px solid #bebebe;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input {
+  height: 30px;
+}
+
+.category {
+  display: flex;
+  gap: 6px;
+}
+
+.category button.is-active {
+  background: #000;
+  color: #fff;
+}
