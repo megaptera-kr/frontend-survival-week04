@@ -84,7 +84,15 @@ app.get('/restaurants', (req, res) => {
 });
 
 app.post('/orders', (req, res) => {
-  res.send(req.body);
+  const { menu, totalPrice } = req.body;
+
+  const receipt = {
+    id: Date.now().toString(),
+    menu,
+    totalPrice,
+  };
+
+  res.status(200).send({ receipt });
 });
 
 app.listen(port, () => {
