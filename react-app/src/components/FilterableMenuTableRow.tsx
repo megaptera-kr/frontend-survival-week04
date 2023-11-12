@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { MenuItem, RestaurantItem } from '../types/restaurantItemType';
 
 type FilterableMenuTableRowProps = {
@@ -20,7 +19,7 @@ export default function FilterableMenuTableRow({
             <li key={`${item.id}-${item.name}-${item.price}`}>
               <span>{`${item.name}(${item.price.toLocaleString()}원)`}</span>
               <button
-                type='button'
+                type="button"
                 name={`#${item.name}`}
                 onClick={() => onClick(item)}
               >

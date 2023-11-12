@@ -5,5 +5,5 @@ type FilterableMenuTitleProps = {
 export default function FilterableMenuTitle({
   title,
 }: FilterableMenuTitleProps) {
-  return <h1>{title}</h1>;
+  return <h1 className="title-section">{title}</h1>;
 }

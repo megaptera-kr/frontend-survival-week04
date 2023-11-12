@@ -1,3 +1,5 @@
+import Stack from './atoms/Stack';
+
 type FilterableMenuSearchProps = {
   htmlFor: string;
   placeholder: string;
@@ -12,19 +14,15 @@ export default function FilterableMenuSearch({
   handleChangeSearchText,
 }: FilterableMenuSearchProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: '16px',
-      }}
-    >
+    <Stack id="filterable-menu-search-container" type="row">
       <label htmlFor={htmlFor}>검색</label>
       <input
+        type="text"
         id={htmlFor}
         placeholder={placeholder}
         value={searchText}
         onChange={handleChangeSearchText}
       />
-    </div>
+    </Stack>
   );
 }
