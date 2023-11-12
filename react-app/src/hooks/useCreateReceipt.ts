@@ -1,10 +1,11 @@
 import { Menu } from '../types/types';
+import calculateTotalPrice from '../utils/calculateTotalPrice';
 
 const url = 'http://localhost:3000/order';
 
 export default function useCreateReceipt() {
   const createReceipt = async (menu: Menu[]) => {
-    const totalPrice = menu.reduce((acc, cur) => acc + cur.price, 0);
+    const totalPrice = calculateTotalPrice(menu);
 
     const response = await fetch(url, {
       method: 'POST',

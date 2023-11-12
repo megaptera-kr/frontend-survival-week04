@@ -8,9 +8,10 @@ import useGetRestaurants from './hooks/useGetRestaurants';
 
 import type { Receipts } from './types/types';
 
+const initialState = {} as Receipts;
+
 export default function App() {
   const restaurants = useGetRestaurants();
-  const initialState = {} as Receipts;
 
   const [receiptList, setReceiptList] = useLocalStorage('receipt', initialState);
 

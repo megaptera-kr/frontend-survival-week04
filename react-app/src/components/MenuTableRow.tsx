@@ -31,7 +31,7 @@ export default function MenuTableRow({ product }: { product: Restaurants }) {
                   {menu.price.toLocaleString()}
                   원)
                 </span>
-                <Button title="선택" onClick={() => handleSelect(menu)} />
+                <Button title="선택" onClick={() => handleSelect(menu)} name={`#${menu.name}`} />
               </li>
             ))
           }
