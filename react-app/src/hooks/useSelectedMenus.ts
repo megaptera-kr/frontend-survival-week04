@@ -1,8 +1,12 @@
+import { useMemo } from 'react';
+
 import { useLocalStorage } from 'usehooks-ts';
 
-import { useMemo } from 'react';
 import { MenuItem } from '../types/restaurantItemType';
-import { ReceiptType } from '../types/receiptType';
+
+import { ReceiptResponse, ReceiptType } from '../types/receiptType';
+
+import { postOrderAPI } from '../constants/apis';
 
 export default function useSelectedMenus() {
   const [addedMenus, setAddMenu] = useLocalStorage<MenuItem[]>('cart', []);
@@ -29,7 +33,7 @@ export default function useSelectedMenus() {
         totalPrice,
       };
 
-      const response = await fetch('http://localhost:3000/orders', {
+      const response = await fetch(postOrderAPI, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -37,9 +41,11 @@ export default function useSelectedMenus() {
         method: 'post',
         body: JSON.stringify(item),
       });
-      const data = (await response.json()) as ReceiptType;
+      const data = (await response.json()) as ReceiptResponse;
 
-      setReceipt(data);
+      const { receipt: receiptData } = data;
+
+      setReceipt(receiptData);
 
       setTimeout(() => setReceipt({}), 5000);
 
