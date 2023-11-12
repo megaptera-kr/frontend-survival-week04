@@ -1,4 +1,5 @@
 import { useFetch } from 'usehooks-ts';
+
 import { RestaurantItem } from '../types/restaurantItemType';
 
 const url = 'http://localhost:3000/restaurants';
