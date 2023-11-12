@@ -8,7 +8,7 @@ type OutputReceiptProps = {
 
 export default function OutputReceipt({ receipt }: OutputReceiptProps) {
   const isExistedReceipt = useMemo(
-    () => !!receipt?.id && receipt?.menu && !!receipt?.totalPrice,
+    () => receipt?.id && receipt?.menu && !!receipt?.totalPrice,
     [receipt],
   );
 
@@ -34,11 +34,7 @@ export default function OutputReceipt({ receipt }: OutputReceiptProps) {
               </p>
             ))}
           </Stack>
-          <p>
-            총 가격:
-            {totalPrice?.toLocaleString()}
-            원
-          </p>
+          <p>{`총 가격: ${totalPrice?.toLocaleString()}원`}</p>
         </Stack>
       ) : (
         <h2>[영수증 나오는 곳]</h2>

@@ -5,3 +5,7 @@ export type ReceiptType = {
   menu?: MenuItem[];
   totalPrice?: number;
 };
+
+export type ReceiptResponse = {
+  receipt: ReceiptType;
+};
