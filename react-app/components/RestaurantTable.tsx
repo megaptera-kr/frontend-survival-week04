@@ -1,8 +1,8 @@
-import { Menu, Restaurants, SetValue } from '../types';
+import { Menu, Restaurant, SetValue } from '../types';
 import TableMenuRow from './TableMenuRow';
 
 type Props = {
- restaurants: Restaurants[],
+ restaurants: Restaurant[],
  setCart: SetValue<Menu[]>
 }
 
