@@ -1,15 +1,15 @@
 interface SearchBarProps {
   categories: string[]
   currentCategory: string,
-  handleChange: () => void
+  handleCategoryChange: (category: string) => void
 }
 
-function Category({ categories, currentCategory, handleChange }: SearchBarProps) {
+function Category({ categories, currentCategory, handleCategoryChange }: SearchBarProps) {
   return (
     <ul className="category">
-      {categories.map((category, categoryIndex) => (
-        <li key={`category_${categoryIndex}`}>
-          <button type="button" className={currentCategory === category ? 'is-active' : ''} onClick={() => handleChange(category)}>{category}</button>
+      {categories.map((category) => (
+        <li key={category}>
+          <button type="button" className={currentCategory === category ? 'is-active' : ''} onClick={() => handleCategoryChange(category)}>{category}</button>
         </li>
       ))}
     </ul>

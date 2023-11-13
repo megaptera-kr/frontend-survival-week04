@@ -1,33 +1,44 @@
+import { useState } from 'react';
 import { MenuInterface } from '../../Interfaces/Restaurant.interface';
+
+interface PostData {
+  menu: MenuInterface[]
+  totalPrice: number
+}
 
 interface CartProps {
   menu: MenuInterface[]
   totalPrice: number
-  handleSetCart: () => void
+  handleSubmit: (postData: PostData) => void
 }
 
-const url = 'http://localhost:3000/order'
 
-function Cart({ menu, totalPrice, handleSetCart }: CartProps) {
-  const onSubmit = () => {
-    const postData = {
+function Cart({ menu, totalPrice, handleSubmit }: CartProps) {
+  const onSubmit = async () => {
+    const postData: PostData = {
       menu,
-      totalPrice
-    }
-    console.log('전송 데이터 :: ', postData)
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(postData)
-    })
-  }
+      totalPrice,
+    };
+    handleSubmit(postData)
+  };
   return (
     <div>
       <h3>점심 바구니</h3>
       <ul>
-        {menu.map(item => <li key={`cart_${item.id}`}>{item.name}({item.price} 원)</li>)}
+        {menu.map((item) => (
+          <li key={`cart_${item.id}`}>
+            {item.name}
+            (
+            {item.price}
+            {' '}
+            원)
+          </li>
+        ))}
       </ul>
-      <button type="button" onClick={onSubmit}>합계 : {totalPrice}원 주문</button>
-    </div >
+      <button type="button" onClick={onSubmit}>
+        합계: {totalPrice.toLocaleString()}원 주문
+      </button>
+    </div>
   );
 }
 
