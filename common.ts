@@ -8,7 +8,7 @@ type PathKeyType = typeof PATH[keyof typeof PATH];
 interface Menu {
   id: string;
   name: string;
-  price: string;
+  price: number;
 }
 
 type Menus = Menu[];
@@ -23,7 +23,8 @@ interface Restaurants {
 type RestaurantsType = Restaurants[];
 
 interface Orders {
-  menu: Menus;
+  id: string;
+  menus: Menus;
   totalPrice: number;
 }
 
@@ -32,6 +33,11 @@ type OrdersType = Orders[];
 type DataType = {
   restaurants: RestaurantsType;
   orders: OrdersType;
+}
+
+type ResponseType<T = null> = {
+  message: string;
+  data: T;
 }
 
 export {
@@ -44,4 +50,5 @@ export {
   DataType,
   PATH,
   PathKeyType,
+  ResponseType,
 }
