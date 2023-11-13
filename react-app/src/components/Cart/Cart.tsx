@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { MenuInterface } from '../../Interfaces/Restaurant.interface';
 
 interface PostData {
@@ -12,14 +11,13 @@ interface CartProps {
   handleSubmit: (postData: PostData) => void
 }
 
-
 function Cart({ menu, totalPrice, handleSubmit }: CartProps) {
   const onSubmit = async () => {
     const postData: PostData = {
       menu,
       totalPrice,
     };
-    handleSubmit(postData)
+    handleSubmit(postData);
   };
   return (
     <div>
@@ -36,7 +34,10 @@ function Cart({ menu, totalPrice, handleSubmit }: CartProps) {
         ))}
       </ul>
       <button type="button" onClick={onSubmit}>
-        합계: {totalPrice.toLocaleString()}원 주문
+        합계:
+        {' '}
+        {totalPrice.toLocaleString()}
+        원 주문
       </button>
     </div>
   );
