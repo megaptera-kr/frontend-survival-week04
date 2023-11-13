@@ -7,7 +7,7 @@ interface ReceiptResult {
 }
 
 interface ReceiptProps {
-  receipt: ReceiptResult
+  receipt: ReceiptResult | null
 }
 
 function Receipt({ receipt }: ReceiptProps) {
@@ -20,7 +20,7 @@ function Receipt({ receipt }: ReceiptProps) {
       </h3>
       <ul>
         {receipt?.menu?.map((item) => (
-          <li key={item.menu}>
+          <li key={item.id}>
             {item.name}
             {' '}
             {item.price}

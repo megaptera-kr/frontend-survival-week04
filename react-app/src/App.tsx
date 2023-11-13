@@ -7,18 +7,23 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Restaurants from './components/Restarants/Restaurants';
 import Category from './components/SearchBar/Category';
 import Receipt from './components/Receipt/Receipt';
-import { RestaurantsInterface, MenuInterface } from './Interfaces/Restaurant.interface';
+import { RestaurantsInterface, MenuInterface, ReceiptInterface } from './Interfaces/Restaurant.interface';
 
-let entireRestaurantList: RestaurantsInterface[] | undefined = [];
+interface PostData {
+  menu: MenuInterface[]
+  totalPrice: number
+}
+
+let entireRestaurantList: RestaurantsInterface[] = [];
 
 export default function App() {
-  const [cartItem, setCartItem] = useState([]);
+  const [cartItem, setCartItem] = useState<MenuInterface[]>([]);
   const [categories, setCategories] = useState(['전체']);
   const [currentCategory, setCurrentCategory] = useState('전체');
   const [searchValue, setSearchValue] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
-  const [restaurantList, setRestaurantList] = useState([]);
-  const [receipt, setReceipt] = useState(null);
+  const [restaurantList, setRestaurantList] = useState<RestaurantsInterface[]>([]);
+  const [receipt, setReceipt] = useState<ReceiptInterface | null>(null);
 
   const handleSetCart = (menu: MenuInterface) => {
     setCartItem(cartItem.concat(menu));
@@ -26,20 +31,25 @@ export default function App() {
   };
 
   const handleCategoryChange = (value: string) => {
-    const filteredRestaurantList = entireRestaurantList.filter((restaurant) => restaurant.category === value);
-    if (value === '전체') {
-      setRestaurantList([...entireRestaurantList]);
-    } else {
-      setRestaurantList([...filteredRestaurantList]);
+    const filteredRestaurantList: RestaurantsInterface[] = entireRestaurantList?.filter((restaurant) => restaurant.category === value);
+    if (entireRestaurantList) {
+      if (value === '전체') {
+        setRestaurantList([...entireRestaurantList]);
+      } else {
+        setRestaurantList([...filteredRestaurantList]);
+      }
+
     }
     setCurrentCategory(value);
   };
 
   const handleChangeSearchValue = (value: string) => {
-    if (currentCategory === '전체') {
-      setRestaurantList(entireRestaurantList.filter((list) => list.name.indexOf(value.trim()) > -1));
-    } else {
-      setRestaurantList(entireRestaurantList.filter((list) => list.name.indexOf(value.trim()) > -1 && list.category === currentCategory));
+    if (entireRestaurantList) {
+      if (currentCategory === '전체') {
+        setRestaurantList(entireRestaurantList.filter((list) => list.name.indexOf(value.trim()) > -1));
+      } else {
+        setRestaurantList(entireRestaurantList.filter((list) => list.name.indexOf(value.trim()) > -1 && list.category === currentCategory));
+      }
     }
   };
 
@@ -48,7 +58,7 @@ export default function App() {
     setRestaurantList([...filteredRestaurantList]);
   };
 
-  const handleSubmit = async (postData) => {
+  const handleSubmit = async (postData: PostData) => {
     const url = 'http://localhost:3000/orders';
     const response = await fetch(url, {
       method: 'POST',

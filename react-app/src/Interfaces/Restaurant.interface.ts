@@ -2,7 +2,6 @@ export interface MenuInterface {
   id: string
   name: string
   price: number
-  handleSetCart?: () => void
 }
 
 export interface RestaurantsInterface {

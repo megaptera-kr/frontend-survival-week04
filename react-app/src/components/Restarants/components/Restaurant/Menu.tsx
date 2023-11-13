@@ -1,6 +1,11 @@
 import { MenuInterface } from '../../../../Interfaces/Restaurant.interface';
 
-function Menu({ menues, handleSetCart }: MenuInterface[]) {
+interface MenuProps {
+  menues: MenuInterface[]
+  handleSetCart: (menu: MenuInterface) => void
+}
+
+function Menu({ menues, handleSetCart }: MenuProps) {
   const menuList = menues.map((menu) => (
     <li key={`menu_${menu.id}`}>
       {menu.name}

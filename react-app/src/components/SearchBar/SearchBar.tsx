@@ -4,7 +4,7 @@ interface SearchBarProps {
 }
 
 function SearchBar({ handleChangeSearchValue, handleSearch }: SearchBarProps) {
-  const onChange = (event: React.ChangeEvent<HTMLElement>) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target;
     handleChangeSearchValue(input.value);
   };
