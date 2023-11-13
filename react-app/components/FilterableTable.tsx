@@ -1,5 +1,5 @@
 import { useLocalStorage } from 'usehooks-ts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Cart from './Cart';
 import RestaurantTable from './RestaurantTable';
@@ -8,31 +8,20 @@ import filterRestaurant from '../utils/filterRestaurant';
 import SearchBar from './SearchBar';
 
 import {
-  Category, Menu, Receipt, Restaurants,
+  Category, Menu, Receipt,
 } from '../types';
+import useFetchRestaurants from '../hooks/useFetchRestaurants';
 
 function FilterableTable() {
   const [cart, setCart] = useLocalStorage<Menu[]>('cart', []);
   const [receipt, setReceipt] = useLocalStorage<Receipt | null>('receipt', null);
-  const [restaurants, setRestaurants] = useState<Restaurants[]>([]);
+
+  const restaurants = useFetchRestaurants();
 
   const [query, setQuery] = useState<string>('');
   const [category, setCategory] = useState<Category>('전체');
 
   const filterData = filterRestaurant(restaurants, { category, query });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = 'http://localhost:3000/restaurants';
-      const response = await fetch(url, {
-        method: 'GET',
-      });
-      const data = await response.json();
-      setRestaurants(data.restaurants);
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div>
