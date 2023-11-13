@@ -1,4 +1,4 @@
-import { Category, Restaurants } from '../types';
+import { Category, Restaurant } from '../types';
 
 type FilterConditions = {
     category: Category;
@@ -7,12 +7,12 @@ type FilterConditions = {
 
 const nomalize = (text: string) => text.trim().toLowerCase();
 
-const filterRestaurant = (data : Array<Restaurants>, {
+const filterRestaurant = (data : Array<Restaurant>, {
   category, query,
 } : FilterConditions) => {
   const nomalizeQuery = nomalize(query);
   const filterCategory = data.filter((restaurant) => restaurant.category === category);
-  const contains = (restaurant: Restaurants) => restaurant.name.includes(nomalizeQuery);
+  const contains = (restaurant: Restaurant) => restaurant.name.includes(nomalizeQuery);
 
   if (!nomalizeQuery && category === '전체') return data;
 
