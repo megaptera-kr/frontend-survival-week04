@@ -38,10 +38,7 @@ export default function OrderTable({ setReceiptList }:OrderTableType) {
             selectedMenu.map((el, idx) => (
               <li key={el.id}>
                 <span>
-                  {el.name}
-                  (
-                  {el.price.toLocaleString()}
-                  원)
+                  {`${el.name} (${el.price.toLocaleString()})원`}
                 </span>
                 <Button title="취소" onClick={() => handleCancel(idx)} />
               </li>

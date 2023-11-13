@@ -19,10 +19,7 @@ export default function Receipt({ receiptList }: { receiptList: Receipts }) {
             receiptList.menu?.map((el) => (
               <li key={el.id}>
                 <span>
-                  {el.name}
-                  (
-                  {el.price.toLocaleString()}
-                  원)
+                  {`${el.name} (${el.price.toLocaleString()}원)`}
                 </span>
               </li>
             ))
