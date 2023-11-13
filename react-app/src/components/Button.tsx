@@ -1,6 +1,6 @@
 type ButtonType = {
   title: string;
-  name: string;
+  name?: string;
   onClick: (category: string) => void;
 }
 

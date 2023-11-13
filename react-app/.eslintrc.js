@@ -28,6 +28,7 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 0,
+    'react/require-default-props': 'off',
     indent: ['error', 2],
     'no-trailing-spaces': 'error',
     curly: 'error',
