@@ -16,9 +16,18 @@ app.get('/restaurants', (req, res) => {
   res.json({ restaurants });
 });
 
-app.post('/order ', (req, res) => {
-  res.json({ success: true })
-  // console.log('test Order')
+
+app.post('/orders', (req, res) => {
+  const { menu, totalPrice } = req.body;
+  console.log(req.body);
+
+  const result = {
+    id: Date.now().toString(),
+    menu,
+    totalPrice,
+  };
+
+  res.status(201).send(result);
 });
 
 app.listen(port, () => [

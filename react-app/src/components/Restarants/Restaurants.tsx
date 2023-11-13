@@ -1,9 +1,9 @@
 import Restaurant from './components/Restaurant/Restaurant';
-import { RestaurantsInterface } from '../../Interfaces/Restaurant.interface';
+import { RestaurantsInterface, MenuInterface } from '../../Interfaces/Restaurant.interface';
 
 interface RestaurantsProps {
   restaurantList: RestaurantsInterface[]
-  handleSetCart: () => void
+  handleSetCart: (menu: MenuInterface) => void
 }
 
 function Restaurants({ restaurantList, handleSetCart }: RestaurantsProps) {
