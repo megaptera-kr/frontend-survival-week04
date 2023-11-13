@@ -1,7 +1,12 @@
-import { RestaurantsInterface } from '../../../../Interfaces/Restaurant.interface';
+import { MenuInterface, RestaurantsInterface } from '../../../../Interfaces/Restaurant.interface';
 import Menu from './Menu';
 
-function Restaurant({ restaurantList, handleSetCart }: RestaurantsInterface[]) {
+interface RestaurantsProps {
+  restaurantList: RestaurantsInterface[]
+  handleSetCart: (menu: MenuInterface) => void
+}
+
+function Restaurant({ restaurantList, handleSetCart }: RestaurantsProps) {
   const restaurantRow = restaurantList.map((restaurant) => (
     <tr key={`restaurant_${restaurant.id}`}>
       <td>{restaurant.category}</td>
