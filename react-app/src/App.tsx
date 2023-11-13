@@ -38,7 +38,6 @@ export default function App() {
       } else {
         setRestaurantList([...filteredRestaurantList]);
       }
-
     }
     setCurrentCategory(value);
   };
