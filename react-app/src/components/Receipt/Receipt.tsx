@@ -1,13 +1,13 @@
 import { MenuInterface } from '../../Interfaces/Restaurant.interface';
 
-interface ReceiptProps {
-  receipt: ReceiptResult
-}
-
 interface ReceiptResult {
   id: string
   menu: MenuInterface[]
   totalPrice: number
+}
+
+interface ReceiptProps {
+  receipt: ReceiptResult
 }
 
 function Receipt({ receipt }: ReceiptProps) {
@@ -19,9 +19,21 @@ function Receipt({ receipt }: ReceiptProps) {
         {receipt?.id}
       </h3>
       <ul>
-        {receipt?.menu?.map(item => <li>{item.name} {item.price}원</li>)}
+        {receipt?.menu?.map((item) => (
+          <li key={item.menu}>
+            {item.name}
+            {' '}
+            {item.price}
+            원
+          </li>
+        ))}
       </ul>
-      <p>총 가격: {receipt?.totalPrice.toLocaleString()}원</p>
+      <p>
+        총 가격:
+        {' '}
+        {receipt?.totalPrice.toLocaleString()}
+        원
+      </p>
     </>
   );
 }
