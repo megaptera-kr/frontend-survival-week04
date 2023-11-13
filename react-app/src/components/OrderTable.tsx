@@ -43,13 +43,13 @@ export default function OrderTable({ setReceiptList }:OrderTableType) {
                   {el.price.toLocaleString()}
                   원)
                 </span>
-                <Button title="취소" onClick={() => handleCancel(idx)} />
+                <Button title="취소" onClick={() => handleCancel(idx)} name="취소" />
               </li>
             ))
           )
         }
       </ul>
-      <Button title={`합계: ${totalPrice.toLocaleString()}원 주문`} onClick={handleOrder} />
+      <Button title={`합계: ${totalPrice.toLocaleString()}원 주문`} onClick={handleOrder} name="totalPrice" />
     </div>
   );
 }

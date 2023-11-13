@@ -10,7 +10,7 @@ export default function Categories({ categoryList, onClick }:CategoriesType) {
     <ul className="Categories">
       {categoryList.map((el) => (
         <li key={el}>
-          <Button title={el} onClick={onClick} />
+          <Button title={el} onClick={onClick} name={`#${el}`} />
         </li>
       ))}
     </ul>
