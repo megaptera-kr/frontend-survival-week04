@@ -46,7 +46,7 @@ export default function OrderTable({ setReceiptList }:OrderTableType) {
           )
         }
       </ul>
-      <Button title={`합계: ${totalPrice.toLocaleString()}원 주문`} onClick={handleOrder} />
+      <button type="button" onClick={handleOrder}>{`합계: ${totalPrice.toLocaleString()}원 주문`}</button>
     </div>
   );
 }
