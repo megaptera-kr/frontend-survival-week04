@@ -1,5 +1,6 @@
 import { useLocalStorage } from "usehooks-ts";
-import { RestaurantsType, Restaurants, Menu } from "../../../common";
+import { RestaurantsType, Restaurants, Menu, Orders } from "../../../common";
+import useStorage, { storageKey, useCartStorage } from "../hooks/useStorage";
 
 interface Props {
   data: RestaurantsType;
@@ -8,7 +9,7 @@ interface Props {
 function RestaurantRow({ restaurant }: { restaurant: Restaurants }) {
   const { id, name, category, menu } = restaurant;
 
-  const [cart, setCart] = useLocalStorage<Menu[]>("cart", []);
+  const { setCart } = useCartStorage();
 
   const handleCartInBtn = (menu: Menu) => {
     setCart(prev => [...prev, menu]);

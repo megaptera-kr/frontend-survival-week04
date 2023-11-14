@@ -1,15 +1,10 @@
-import { useInterval, useLocalStorage } from "usehooks-ts";
-import { Orders } from "../../../common";
+import { useReceiptStorage } from "../hooks/useStorage";
+import useReceiptInterval from "../hooks/useReceiptInterval";
 
 const Receipt = () => {
-  const [receipt, setReceipt] = useLocalStorage<Orders | null>("receipt", null);
+  const { receipt } = useReceiptStorage();
 
-  useInterval(
-    () => {
-      setReceipt(null);
-    },
-    receipt ? 5000 : null
-  );
+  useReceiptInterval();
 
   if (!receipt) return;
 
