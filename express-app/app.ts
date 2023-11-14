@@ -18,16 +18,15 @@ app.get('/restaurants', (req, res) => {
 
 
 app.post('/orders', (req, res) => {
-  const { menu, totalPrice } = req.body;
-  console.log(req.body);
-
+  const { body } = req.body
   const result = {
     id: Date.now().toString(),
-    menu,
-    totalPrice,
-  };
+    ...body
 
-  res.status(201).send(result);
+  };
+  res.status(201).send({
+    ...result
+  });
 });
 
 app.listen(port, () => [
