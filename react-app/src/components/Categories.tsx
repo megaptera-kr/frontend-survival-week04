@@ -1,17 +1,26 @@
-import Button from './Button';
+import Category from './Category';
 
-type CategoriesType = {
-  categoryList: string[];
-  onClick: (category:string) => void
+type CategoriesProps = {
+  categories: string[];
+  setFilterCategory: (text: string) => void;
 }
 
-export default function Categories({ categoryList, onClick }:CategoriesType) {
+export default function Categories({
+  categories, setFilterCategory,
+}: CategoriesProps) {
   return (
-    <ul className="Categories">
-      {categoryList.map((el) => (
-        <li key={el}>
-          <Button title={el} onClick={onClick} />
-        </li>
+    <ul style={{
+      display: 'flex',
+      padding: 0,
+      listStyle: 'none',
+    }}
+    >
+      {['전체', ...categories].map((category: string) => (
+        <Category
+          key={category}
+          category={category}
+          setFilterCategory={setFilterCategory}
+        />
       ))}
     </ul>
   );
