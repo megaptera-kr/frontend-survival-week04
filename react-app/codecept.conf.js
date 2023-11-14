@@ -10,17 +10,17 @@ setCommonPlugins();
 
 /** @type {CodeceptJS.MainConfig} */
 exports.config = {
-  tests: './tests/**/*_test.ts',
-  output: './output',
-  helpers: {
-    Playwright: {
-      url: 'http://localhost:8080',
-      show: true,
-      browser: 'chromium',
-    },
-  },
-  include: {
-    I: './tests/steps_file.ts',
-  },
-  name: 'frontend-survival-week03',
+	tests: './tests/**/*_test.ts',
+	output: './output',
+	helpers: {
+		Playwright: {
+			url: 'http://localhost:8080',
+			show: true,
+			browser: 'chromium',
+		},
+	},
+	include: {
+		I: './tests/steps_file.ts',
+	},
+	name: 'frontend-survival-week03',
 };
