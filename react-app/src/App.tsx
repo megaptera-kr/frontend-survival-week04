@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
-import Cart from './containers/Cart';
-import Receipt from './containers/Receipt';
-import Restaurants from './containers/Restaurant';
+import { Suspense } from "react";
+import Cart from "./containers/Cart";
+import Receipt from "./containers/Receipt";
+import Restaurants from "./containers/Restaurant";
 
 export default function App() {
 	return (

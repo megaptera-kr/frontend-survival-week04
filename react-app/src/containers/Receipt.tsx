@@ -1,7 +1,7 @@
-import { useReceiptStorage } from '../hooks/useStorage';
-import useReceiptInterval from '../hooks/useReceiptInterval';
-import MenuItem from '../components/MenuItem';
-import CustomSuspense from '../components/CustomSuspense';
+import { useReceiptStorage } from "../hooks/useStorage";
+import useReceiptInterval from "../hooks/useReceiptInterval";
+import MenuItem from "../components/MenuItem";
+import CustomSuspense from "../components/CustomSuspense";
 
 function Receipt() {
 	const { receipt } = useReceiptStorage();
