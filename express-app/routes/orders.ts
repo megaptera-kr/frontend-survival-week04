@@ -6,7 +6,7 @@ import setUniqId from '../utils/setUniqId';
 
 const postOrders = async (req: Request, res: Response) => {
   try {
-    const orders = setUniqId<Orders>({ prefix: PATH.orders, data: req.body });
+    const orders = setUniqId<Orders>(req.body);
 
     await writeData(orders);
 

@@ -58,5 +58,6 @@ module.exports = {
       },
     ],
     'no-useless-catch': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

@@ -1,4 +1,5 @@
 import { Menu } from '../../../common';
+import toLocaleString from '../utils/toLocaleString';
 
 type Props = {
 	menuItem: Menu;
@@ -12,8 +13,12 @@ function MenuItem({ menuItem, index, btnLabel = '선택', onClick }: Props) {
 
 	return (
 		<>
-			{`${menuItem.name}(${menuItem.price.toLocaleString()}원)`}
-			{onClick && <button onClick={handleClick}>{btnLabel}</button>}
+			{`${menuItem.name}(${toLocaleString(menuItem.price)})`}
+			{onClick && (
+				<button name={`#${menuItem.name}`} onClick={handleClick}>
+					{btnLabel}
+				</button>
+			)}
 		</>
 	);
 }

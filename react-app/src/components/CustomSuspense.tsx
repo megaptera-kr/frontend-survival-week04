@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { APIError } from '../hooks/useCustomFetch';
 
-function CustomSuspense({
+const CustomSuspense = ({
 	children,
 	error,
 	isLoading,
@@ -9,7 +9,7 @@ function CustomSuspense({
 	children: ReactNode;
 	error?: APIError;
 	isLoading: boolean;
-}) {
+}) => {
 	if (isLoading) return <div>Loading...</div>;
 	if (error) {
 		const { status, message } = error;
@@ -29,7 +29,7 @@ function CustomSuspense({
 		);
 	}
 
-	return children;
-}
+	return <>{children}</>;
+};
 
 export default CustomSuspense;

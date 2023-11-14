@@ -2,6 +2,7 @@ import { useFetchOrders } from '../hooks/useCustomFetch';
 import createReceiptData from '../utils/createReceiptData';
 import { useCartStorage, useReceiptStorage } from '../hooks/useStorage';
 import MenuItem from '../components/MenuItem';
+import toLocaleString from '../utils/toLocaleString';
 
 function Cart() {
 	const { cart, setCart } = useCartStorage();
@@ -15,6 +16,7 @@ function Cart() {
 		try {
 			const { data } = await fetchOrders(receiptData);
 			setCart([]);
+			debugger;
 			setReceipt(data);
 		} catch (error) {}
 	};
@@ -39,7 +41,7 @@ function Cart() {
 				))}
 			</ul>
 			<button type="button" onClick={handlePayment} disabled={!cart.length}>
-				{`합계 ${receiptData.totalPrice.toLocaleString()}원 주문`}
+				{`합계: ${toLocaleString(receiptData.totalPrice)} 주문`}
 			</button>
 		</article>
 	);
