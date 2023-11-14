@@ -1,20 +1,20 @@
 import { Request, Response } from 'express';
-import writeData from '../utils/writeData';
-import createId from '../utils/createId';
-import { PATH } from '../../common';
+import { Orders, PATH, StatusCode } from '../../common';
+import CustomResponse from '../utils/CustomResponse';
+import { writeData } from '../utils/jsonFile';
+import setUniqId from '../utils/setUniqId';
 
 const postOrders = async (req: Request, res: Response) => {
   try {
-    const orders = {
-      ...req.body,
-      id: createId(PATH.orders),
-    };
+    const orders = setUniqId<Orders>({ prefix: PATH.orders, data: req.body });
 
     await writeData(orders);
 
-    res.status(200).send({ message: 'Success', data: orders });
+    const response = new CustomResponse(StatusCode.CREATED, 'Success', orders);
+    return res.send(response);
   } catch (error) {
-    res.status(400).send({ message: 'Fail postOrders', data: null });
+    const response = new CustomResponse(StatusCode.BAD_REQUEST, 'Fail postOrders', null);
+    return res.send(response);
   }
 };
 

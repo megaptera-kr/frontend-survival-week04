@@ -1,4 +1,4 @@
-import { RestaurantsType } from "../../../common";
+import { RestaurantsType } from '../../../common';
 
 export type Condition = {
   keyword?: string;
@@ -6,24 +6,24 @@ export type Condition = {
 };
 
 const filterData = (
-  data: RestaurantsType,
-  condition: Condition = { category: "", keyword: "" },
+	data: RestaurantsType,
+	condition: Condition = { category: '', keyword: '' },
 ) => {
-  const { keyword, category } = condition;
+	const { keyword, category } = condition;
 
-  if (!keyword && !category) return data;
+	if (!keyword && !category) return data;
 
-  let filtered: RestaurantsType = data;
+	let filtered: RestaurantsType = data;
 
-  if (keyword) {
-    filtered = filtered.filter((row) => row.name.includes(keyword.trim()));
-  }
+	if (keyword) {
+		filtered = filtered.filter((row) => row.name.includes(keyword.trim()));
+	}
 
-  if (category) {
-    filtered = filtered.filter((row) => row.category === category);
-  }
+	if (category) {
+		filtered = filtered.filter((row) => row.category === category);
+	}
 
-  return filtered;
+	return filtered;
 };
 
 export default filterData;

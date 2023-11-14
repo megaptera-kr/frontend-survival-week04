@@ -1,6 +1,14 @@
+const HOST = `http://localhost:3001`;
+
+
 const PATH = {
   restaurants: 'restaurants',
   orders: 'orders',
+} as const;
+
+const ROUTES = {
+  [PATH.restaurants]: `/${PATH.restaurants}`,
+  [PATH.orders]: `/${PATH.orders}`,
 } as const;
 
 type PathKeyType = typeof PATH[keyof typeof PATH];
@@ -38,7 +46,16 @@ type DataType = {
 type ResponseType<T = null> = {
   message: string;
   data: T;
+  status: StatusCodeType;
 }
+
+const StatusCode = {
+  OK: 200,
+  CREATED: 201,
+  BAD_REQUEST: 400,
+} as const;
+
+type StatusCodeType = typeof StatusCode[keyof typeof StatusCode];
 
 export {
   Menu,
@@ -47,8 +64,12 @@ export {
   RestaurantsType,
   Orders,
   OrdersType,
-  DataType,
-  PATH,
+  DataType, 
   PathKeyType,
   ResponseType,
+  PATH,
+  ROUTES,
+  HOST,
+  StatusCode,
+  StatusCodeType,
 }

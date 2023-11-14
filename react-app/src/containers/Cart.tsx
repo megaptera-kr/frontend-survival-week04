@@ -1,63 +1,48 @@
-import { useLocalStorage } from "usehooks-ts";
-import { Menu, PATH } from "../../../common";
+import { useFetchOrders } from '../hooks/useCustomFetch';
+import createReceiptData from '../utils/createReceiptData';
+import { useCartStorage, useReceiptStorage } from '../hooks/useStorage';
+import MenuItem from '../components/MenuItem';
 
-const Cart = () => {
-  const [cart, setCart] = useLocalStorage<Menu[]>("cart", []);
-  const [_, setReceipt] = useLocalStorage("receipt", {});
+function Cart() {
+	const { cart, setCart } = useCartStorage();
+	const { setReceipt } = useReceiptStorage();
 
-  const payload = cart.reduce<{
-    id: string;
-    menus: Menu[];
-    totalPrices: number;
-  }>(
-    (prev, curr) => {
-      prev.menus.push(curr);
-      prev.totalPrices += curr.price;
-      return prev;
-    },
-    {
-      id: Date.now().toString(),
-      menus: [],
-      totalPrices: 0,
-    }
-  );
+	const fetchOrders = useFetchOrders();
 
-  const handlePayment = async () => {
-    try {
-      const res = await fetch(`http://localhost:3001/${PATH.orders}`, {
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        method: "POST",
-      });
+	const receiptData = createReceiptData(cart);
 
-      const resToJson = await res.json();
+	const handlePayment = async () => {
+		try {
+			const { data } = await fetchOrders(receiptData);
+			setCart([]);
+			setReceipt(data);
+		} catch (error) {}
+	};
 
-      const { data } = resToJson;
-      setCart([]);
-      setReceipt(data);
-    } catch (error) {}
-  };
+	const handleCartOutBtn = ({ menuIndex }: { menuIndex: number }) => {
+		setCart((prev) => prev.filter((row, index) => index !== menuIndex));
+	};
 
-  const handleCartOutBtn = (menuIndex: number) => {
-    setCart(prev => prev.filter((row, index) => index !== menuIndex));
-  };
-
-  return (
-    <article>
-      <h2>점심 바구니</h2>
-      <ul>
-        {cart.map((menu, index) => (
-          <li key={`${menu.id}_${index}`}>
-            {menu.name}({menu.price})
-            <button onClick={() => handleCartOutBtn(index)}>취소</button>
-          </li>
-        ))}
-      </ul>
-      <button type="button" onClick={handlePayment} disabled={!cart.length}>
-        {`합계 ${payload.totalPrices.toLocaleString()}원 주문`}
-      </button>
-    </article>
-  );
-};
+	return (
+		<article>
+			<h2>점심 바구니</h2>
+			<ul>
+				{cart.map((menu, index) => (
+					<li key={`${menu.id}_${index}`}>
+						<MenuItem
+							menuItem={menu}
+							index={index}
+							btnLabel="취소"
+							onClick={handleCartOutBtn}
+						/>
+					</li>
+				))}
+			</ul>
+			<button type="button" onClick={handlePayment} disabled={!cart.length}>
+				{`합계 ${receiptData.totalPrice.toLocaleString()}원 주문`}
+			</button>
+		</article>
+	);
+}
 
 export default Cart;
