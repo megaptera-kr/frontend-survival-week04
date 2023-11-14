@@ -60,14 +60,14 @@ export default function App() {
 
   const handleSubmit = async (postData: PostData) => {
     const url = 'http://localhost:3000/orders';
-    console.log(postData)
+    console.log(postData);
     const response = await axios.post(url, {
       headers: {
         'Content-Type': 'application/json',
       },
       body: { ...postData },
-    })
-    const { data } = response
+    });
+    const { data } = response;
     setReceipt({ ...data });
   };
 
