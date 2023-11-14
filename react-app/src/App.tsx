@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import { useInterval } from 'usehooks-ts';
+import axios from 'axios';
 import Cart from './components/Cart/Cart';
 import SearchBar from './components/SearchBar/SearchBar';
 import Restaurants from './components/Restarants/Restaurants';
@@ -59,22 +60,22 @@ export default function App() {
 
   const handleSubmit = async (postData: PostData) => {
     const url = 'http://localhost:3000/orders';
-    const response = await fetch(url, {
-      method: 'POST',
+    console.log(postData)
+    const response = await axios.post(url, {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...postData }),
-    });
-    const result = await response.json();
-    setReceipt({ ...result });
+      body: { ...postData },
+    })
+    const { data } = response
+    setReceipt({ ...data });
   };
 
   useEffect(() => {
     const getRestaurants = async () => {
       const url = 'http://localhost:3000/restaurants';
-      const response = await fetch(url);
-      const data = await response.json();
+      const response = await axios.get(url);
+      const { data } = await response;
       const { restaurants }: { restaurants: RestaurantsInterface[] } = data;
       const categoryArray = restaurants.reduce((acc: string[], cur: RestaurantsInterface) => (acc?.includes(cur.category) ? acc : [...acc, cur.category]), ['전체']);
       setCategories([...categoryArray]);
