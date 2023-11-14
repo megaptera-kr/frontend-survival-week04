@@ -1,15 +1,11 @@
 import express from 'express';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import bodyParser from 'body-parser';
-
 import cors from 'cors';
 
 const port = 3000;
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.get('/restaurants', (req, res) => {
   const restaurants = [
