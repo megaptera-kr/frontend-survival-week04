@@ -1,5 +1,5 @@
-import type { Menu } from '../types/types';
+import Food from '../types/Food';
 
-export default function calculateTotalPrice(menu: Menu[]) {
+export default function calculateTotalPrice(menu: Food[]) {
   return menu.reduce((acc, cur) => acc + cur.price, 0);
 }

@@ -1,10 +1,11 @@
-import { Menu } from '../types/types';
+import Food from '../types/Food';
+
 import calculateTotalPrice from '../utils/calculateTotalPrice';
 
-const url = 'http://localhost:3000/order';
+const url = 'http://localhost:3000/orders';
 
-export default function useCreateReceipt() {
-  const createReceipt = async (menu: Menu[]) => {
+export default function useCreateOrder() {
+  const createOrder = async (menu: Food[]) => {
     const totalPrice = calculateTotalPrice(menu);
 
     const response = await fetch(url, {
@@ -19,5 +20,8 @@ export default function useCreateReceipt() {
 
     return receipt;
   };
-  return createReceipt;
+
+  return {
+    createOrder,
+  };
 }

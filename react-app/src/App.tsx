@@ -1,32 +1,32 @@
-import { useLocalStorage, useInterval } from 'usehooks-ts';
+import { useInterval, useLocalStorage } from 'usehooks-ts';
 
-import MenuChoose from './components/MenuChoose';
-import OrderTable from './components/OrderTable';
-import Receipt from './components/Receipt';
+import Cart from './components/Cart';
+import FilterableRestaurantTable from './components/FilterableRestaurantTable';
+import ReceiptPrinter from './components/ReceiptPrinter';
 
-import useGetRestaurants from './hooks/useGetRestaurants';
+import useFetchRestaurants from './hooks/useFetchRestaurants';
 
-import type { Receipts } from './types/types';
+import Receipt from './types/Receipt';
 
-const initialState = {} as Receipts;
+const emptyReceipt = {} as Receipt;
 
 export default function App() {
-  const restaurants = useGetRestaurants();
+  const [receipt, setReceipt] = useLocalStorage('receipt', emptyReceipt);
 
-  const [receiptList, setReceiptList] = useLocalStorage('receipt', initialState);
+  const restaurants = useFetchRestaurants();
 
   useInterval(() => {
-    if (receiptList.id) {
-      setReceiptList(initialState);
+    if (receipt.id) {
+      setReceipt(emptyReceipt);
     }
-  }, receiptList.id ? 5000 : null);
+  }, receipt.id ? 5000 : null);
 
   return (
     <div>
       <h1>푸드코트 키오스크</h1>
-      <OrderTable setReceiptList={setReceiptList} />
-      <MenuChoose restaurants={restaurants} />
-      <Receipt receiptList={receiptList} />
+      <Cart setReceipt={setReceipt} />
+      <FilterableRestaurantTable restaurants={restaurants} />
+      <ReceiptPrinter receipt={receipt} />
     </div>
   );
 }
