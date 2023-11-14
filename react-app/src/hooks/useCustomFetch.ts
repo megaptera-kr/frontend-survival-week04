@@ -42,11 +42,12 @@ const useCustomFetch = <T = null>(
 
 			const response = resToJSON as ResponseType<T>;
 
-			if (response.status !== StatusCode.OK) {
+			if (response.status === StatusCode.BAD_REQUEST) {
 				throw new APIError(response.message, response.status);
 			}
 
 			setData(response.data);
+
 
 			return response;
 		} catch (error: unknown) {
