@@ -1,5 +1,5 @@
-import { Menu } from '../../../common';
-import toLocaleString from '../utils/toLocaleString';
+import { Menu } from "../../../common";
+import toLocaleString from "../utils/toLocaleString";
 
 type Props = {
 	menuItem: Menu;
@@ -8,7 +8,9 @@ type Props = {
 	onClick?: (payload: { menuItem: Menu; menuIndex: number }) => void;
 };
 
-function MenuItem({ menuItem, index, btnLabel = '선택', onClick }: Props) {
+function MenuItem({
+	menuItem, index, btnLabel = "선택", onClick,
+}: Props) {
 	const handleClick = () => onClick && onClick({ menuItem, menuIndex: index });
 
 	return (

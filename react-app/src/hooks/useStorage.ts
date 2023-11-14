@@ -1,9 +1,9 @@
-import { useLocalStorage } from 'usehooks-ts';
-import { Menu, Orders } from '../../../common';
+import { useLocalStorage } from "usehooks-ts";
+import { Menu, Orders } from "../../../common";
 
 export const storageKey = {
-	cart: 'cart',
-	receipt: 'receipt',
+	cart: "cart",
+	receipt: "receipt",
 } as const;
 
 const useStorage = <T>(key: keyof typeof storageKey, defaultValue: T) => {

@@ -1,35 +1,35 @@
-import { ReactNode } from 'react';
-import { APIError } from '../hooks/useCustomFetch';
+import { ReactNode } from "react";
+import { APIError } from "../hooks/useCustomFetch";
 
-const CustomSuspense = ({
-	children,
-	error,
-	isLoading,
+function CustomSuspense({
+  children,
+  error,
+  isLoading,
 }: {
-	children: ReactNode;
-	error?: APIError;
-	isLoading: boolean;
-}) => {
-	if (isLoading) return <div>Loading...</div>;
-	if (error) {
-		const { status, message } = error;
+  children: ReactNode;
+  error?: APIError;
+  isLoading: boolean;
+}) {
+  if (isLoading) return <div>Loading...</div>;
+  if (error) {
+    const { status, message } = error;
 
-		return (
-			<div>
-				에러가 발생하였습니다.. 다시 시도할까요? CODE: {status} | MESSAGE:{' '}
-				{message}
-				<button
-					onClick={() => {
-						window.location.reload();
-					}}
-				>
-					Refresh
-				</button>
-			</div>
-		);
-	}
+    return (
+      <div>
+        에러가 발생하였습니다.. 다시 시도할까요? CODE: {status} | MESSAGE:{" "}
+        {message}
+        <button
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          Refresh
+        </button>
+      </div>
+    );
+  }
 
-	return <>{children}</>;
-};
+  return <>{children}</>;
+}
 
 export default CustomSuspense;

@@ -1,4 +1,4 @@
-import { RestaurantsType } from '../../../common';
+import { RestaurantsType } from "../../../common";
 
 export type Condition = {
   keyword?: string;
@@ -7,7 +7,7 @@ export type Condition = {
 
 const filterData = (
 	data: RestaurantsType,
-	condition: Condition = { category: '', keyword: '' },
+	condition: Condition = { category: "", keyword: "" },
 ) => {
 	const { keyword, category } = condition;
 

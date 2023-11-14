@@ -1,14 +1,14 @@
-import { useCallback, useMemo, useState } from 'react';
-import filterData from '../utils/filterData';
-import Input from '../components/Input';
-import Select from '../components/Select';
-import RestaurantTable from '../components/RestaurantTable';
-import { useFetchRestaurants } from '../hooks/useCustomFetch';
-import CustomSuspense from '../components/CustomSuspense';
+import { useCallback, useMemo, useState } from "react";
+import filterData from "../utils/filterData";
+import Input from "../components/Input";
+import Select from "../components/Select";
+import RestaurantTable from "../components/RestaurantTable";
+import { useFetchRestaurants } from "../hooks/useCustomFetch";
+import CustomSuspense from "../components/CustomSuspense";
 
 function Restaurants() {
-	const [keyword, setKeyword] = useState('');
-	const [category, setCategory] = useState('');
+	const [keyword, setKeyword] = useState("");
+	const [category, setCategory] = useState("");
 
 	const { data, error } = useFetchRestaurants();
 
@@ -39,10 +39,10 @@ function Restaurants() {
 				/>
 				<Select
 					options={[
-						{ label: '전체', value: '' },
-						{ label: '중식', value: '중식' },
-						{ label: '한식', value: '한식' },
-						{ label: '일식', value: '일식' },
+						{ label: "전체", value: "" },
+						{ label: "중식", value: "중식" },
+						{ label: "한식", value: "한식" },
+						{ label: "일식", value: "일식" },
 					]}
 					onClick={handleCategoryClick}
 				/>

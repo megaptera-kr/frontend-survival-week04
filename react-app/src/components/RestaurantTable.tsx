@@ -1,13 +1,17 @@
-import { RestaurantsType, Restaurants, Menu, Orders } from '../../../common';
-import { useCartStorage } from '../hooks/useStorage';
-import MenuItem from './MenuItem';
+import {
+	RestaurantsType, Restaurants, Menu, Orders,
+} from "../../../common";
+import { useCartStorage } from "../hooks/useStorage";
+import MenuItem from "./MenuItem";
 
 interface Props {
 	data: RestaurantsType;
 }
 
 function RestaurantRow({ restaurant }: { restaurant: Restaurants }) {
-	const { id, name, category, menu } = restaurant;
+	const {
+		id, name, category, menu,
+	} = restaurant;
 
 	const { setCart } = useCartStorage();
 

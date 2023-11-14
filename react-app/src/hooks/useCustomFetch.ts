@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
 	HOST, Menu, PATH, PathKeyType, Orders, ResponseType, RestaurantsType, StatusCodeType, StatusCode,
-} from '../../../common';
+} from "../../../common";
 
 const methods = {
-	GET: 'GET',
-	POST: 'POST',
+	GET: "GET",
+	POST: "POST",
 } as const;
 
 export class APIError extends Error {
@@ -30,7 +30,7 @@ const useCustomFetch = <T = null>(
 	const [error, setError] = useState<APIError>();
 
 	let config = {
-		headers: { 'Content-Type': 'application/json' },
+		headers: { "Content-Type": "application/json" },
 		method,
 	};
 
@@ -48,10 +48,9 @@ const useCustomFetch = <T = null>(
 
 			setData(response.data);
 
-
 			return response;
 		} catch (error: unknown) {
-			const _error = error instanceof APIError ? new APIError(error.message, error.status) : new APIError('다시 시도해주세요', StatusCode.BAD_REQUEST);
+			const _error = error instanceof APIError ? new APIError(error.message, error.status) : new APIError("다시 시도해주세요", StatusCode.BAD_REQUEST);
 
 			setError(_error);
 
