@@ -57,7 +57,7 @@ app.post('/orders', (req, res) => {
   const orderId = Date.now().toString();
   const result = { id: orderId, ...req.body };
 
-  res.send(result);
+  res.status(201).send({ result });
 });
 
 app.listen(port, () => {
