@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react';
+
+import axios from 'axios';
+
 import { Restaurant } from '../types/Restaurant';
 
-const useFetchRestarants = () => {
+const useFetchRestaurants = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const url = 'http://localhost:3000/restaurants';
-      const response = await fetch(url);
-      const data = await response.json();
-      setRestaurants(data.restaurants);
+
+      try {
+        const response = await axios.get(url);
+        setRestaurants(response.data.restaurants);
+      } catch (error) {
+        throw new Error('에러발생');
+      }
     };
 
     fetchData();
@@ -17,4 +25,4 @@ const useFetchRestarants = () => {
   return [restaurants];
 };
 
-export default useFetchRestarants;
+export default useFetchRestaurants;
