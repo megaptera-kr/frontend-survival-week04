@@ -1,7 +1,9 @@
+import axios from 'axios';
+import OrderMenu from './OrderMenu';
+
 import { MenuItem } from '../types/MenuItem';
 import { Receipt } from '../types/Receipt';
 import { Order } from '../types/Order';
-import OrderMenu from './OrderMenu';
 
 type OrderCartProps = {
   orders: MenuItem[];
@@ -39,16 +41,14 @@ function OrderCart({
     const url = 'http://localhost:3000/orders';
 
     try {
-      const response = await fetch(url, {
-        method: 'POST',
+      const response = await axios.post(url, newOrder, {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newOrder),
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      if (response.data) {
+        const data = await response.data;
         setReceipt(data);
         setOrders([]);
         handleConfirmOder();
