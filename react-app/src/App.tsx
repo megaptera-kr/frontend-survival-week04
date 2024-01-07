@@ -1,5 +1,4 @@
 import MainTitle from './components/MainTitle';
-
 import Kiosk from './components/Kiosk';
 
 export default function App() {
