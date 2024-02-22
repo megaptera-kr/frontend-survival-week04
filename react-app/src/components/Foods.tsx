@@ -1,10 +1,11 @@
 import Food from '../Types/Food';
 
-type FoodProps = {
+type FoodsProps = {
   menu: Food[];
+  setChoiceFoods: (food: Food) => void;
 };
 
-export default function Food({ menu }: FoodProps) {
+export default function Foods({ menu, setChoiceFoods }: FoodsProps) {
   return (
     <ul>
       {menu.map((it) => (
@@ -16,7 +17,9 @@ export default function Food({ menu }: FoodProps) {
             {' 원 '}
             {' ) '}
           </span>
-          <button type="button">선택</button>
+          <button type="button" onClick={() => setChoiceFoods({ ...it })}>
+            선택
+          </button>
         </li>
       ))}
     </ul>

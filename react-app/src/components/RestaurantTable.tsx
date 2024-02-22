@@ -1,12 +1,17 @@
 import RestaurantRow from './RestaurantRow';
 
 import Restaurant from '../Types/Restaurant';
+import Food from '../Types/Food';
 
 type RestaurantTableProps = {
   restaurants: Restaurant[];
+  setChoiceFoods: (food: Food) => void;
 };
 
-export default function RestaurantTable({ restaurants }: RestaurantTableProps) {
+export default function RestaurantTable({
+  restaurants,
+  setChoiceFoods,
+}: RestaurantTableProps) {
   return (
     <div className="RestaurantTable">
       <table>
@@ -19,7 +24,11 @@ export default function RestaurantTable({ restaurants }: RestaurantTableProps) {
         </thead>
         <tbody>
           {restaurants.map((restaurant) => (
-            <RestaurantRow key={restaurant.name} restaurant={restaurant} />
+            <RestaurantRow
+              key={restaurant.name}
+              restaurant={restaurant}
+              setChoiceFoods={setChoiceFoods}
+            />
           ))}
         </tbody>
       </table>
