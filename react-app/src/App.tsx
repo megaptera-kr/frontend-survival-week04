@@ -6,9 +6,8 @@ export default function App() {
   return (
     <div>
       <h1>푸드코트 키오스크</h1>
-      <OrderBox />
-
       <div className='container'>
+        <OrderBox />
         <div className='searchbar'>
           <label htmlFor='input-search'>검색</label>
           <input type='text' id='input-search' placeholder='식당 이름' />
@@ -16,16 +15,16 @@ export default function App() {
           <div className='category'>
             <ul className='category-ul'>
               <li className='category-li'>
-                <button>전체</button>
+                <button type='button'>전체</button>
               </li>
               <li className='category-li'>
-                <button>중식</button>
+                <button type='button'>중식</button>
               </li>
               <li className='category-li'>
-                <button>한식</button>
+                <button type='button'>한식</button>
               </li>
               <li className='category-li'>
-                <button>일식</button>
+                <button type='button'>일식</button>
               </li>
             </ul>
           </div>
@@ -46,15 +45,15 @@ export default function App() {
                   <ul>
                     <li>
                       <span>짜장면(8,000)</span>
-                      <button>선택</button>
+                      <button type='button'>선택</button>
                     </li>
                     <li>
                       <span>짬뽕(8,000)</span>
-                      <button>선택</button>
+                      <button type='button'>선택</button>
                     </li>
                     <li>
                       <span>차돌짬뽕(9,000원)</span>
-                      <button>선택</button>
+                      <button type='button'>선택</button>
                     </li>
                   </ul>
                 </td>
@@ -67,15 +66,15 @@ export default function App() {
                   <ul>
                     <li>
                       <span>김밥(3,500원)</span>
-                      <button>선택</button>
+                      <button type='button'>선택</button>
                     </li>
                     <li>
                       <span>참치김밥(4,500원)</span>
-                      <button>선택</button>
+                      <button type='button'>선택</button>
                     </li>
                     <li>
                       <span>제육김밥(5,000원)</span>
-                      <button>선택</button>
+                      <button type='button'>선택</button>
                     </li>
                   </ul>
                 </td>
