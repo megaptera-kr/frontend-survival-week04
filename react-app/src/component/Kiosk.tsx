@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import MenuSearchBar from './MenuSearchBar';
 import MenuTable from './MenuTable';
-import OrderBox from './OrderBox';
+import Cart from './Cart';
 import Receipt from './Receipt';
 
 import Category from '../types/CategoryType';
@@ -93,7 +93,7 @@ function Kiosk() {
     <div className='kiosk-container'>
       <h1>푸드코트 키오스크</h1>
       <div>
-        <OrderBox cartDataLocalStorage={cartDataLocalStorage} />
+        <Cart cartDataLocalStorage={cartDataLocalStorage} />
         <MenuSearchBar
           categories={categories}
           handleSearchRestaurantName={handleSearchRestaurantName}
