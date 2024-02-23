@@ -1,4 +1,11 @@
-function MenuTable() {
+import Restaurant from '../types/RestaurantType';
+import RestaurantTableRow from './RestaurantTableRow';
+
+type MenuTableProps = {
+  restaurants: Restaurant[];
+};
+
+function MenuTable({ restaurants }: MenuTableProps) {
   return (
     <div className='menu-table'>
       <table>
@@ -10,47 +17,9 @@ function MenuTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>메가반점</td>
-            <td>중식</td>
-            <td>
-              <ul>
-                <li>
-                  <span>짜장면(8,000)</span>
-                  <button type='button'>선택</button>
-                </li>
-                <li>
-                  <span>짬뽕(8,000)</span>
-                  <button type='button'>선택</button>
-                </li>
-                <li>
-                  <span>차돌짬뽕(9,000원)</span>
-                  <button type='button'>선택</button>
-                </li>
-              </ul>
-            </td>
-          </tr>
-
-          <tr>
-            <td>메리김밥</td>
-            <td>한식</td>
-            <td>
-              <ul>
-                <li>
-                  <span>김밥(3,500원)</span>
-                  <button type='button'>선택</button>
-                </li>
-                <li>
-                  <span>참치김밥(4,500원)</span>
-                  <button type='button'>선택</button>
-                </li>
-                <li>
-                  <span>제육김밥(5,000원)</span>
-                  <button type='button'>선택</button>
-                </li>
-              </ul>
-            </td>
-          </tr>
+          {restaurants.map((restaurant) => (
+            <RestaurantTableRow key={restaurant.id} restaurant={restaurant} />
+          ))}
         </tbody>
       </table>
     </div>

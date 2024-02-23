@@ -35,7 +35,7 @@ function Kiosk() {
       <div>
         <OrderBox />
         <MenuSearchBar />
-        <MenuTable />
+        <MenuTable restaurants={restaurants} />
         <Receipt />
       </div>
     </div>
