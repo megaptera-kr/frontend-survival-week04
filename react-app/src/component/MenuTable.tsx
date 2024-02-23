@@ -1,4 +1,4 @@
-export default function MenuTable() {
+function MenuTable() {
   return (
     <div className='menu-table'>
       <table>
@@ -54,3 +54,5 @@ export default function MenuTable() {
     </div>
   );
 }
+
+export default MenuTable;
