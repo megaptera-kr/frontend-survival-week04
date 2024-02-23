@@ -1,29 +1,33 @@
+import SearchInput from './SearchInput';
 import CategoryButton from './CategoryButton';
 
 import Category from '../types/CategoryType';
 
 type MenuSearchBarProps = {
   categories: Category[];
-  handleCategoryName: (value: string) => void;
+  handleSearchRestaurantName: (value: string) => void;
+  handleSearchCategoryName: (value: string) => void;
 };
 
-function MenuSearchBar({ categories, handleCategoryName }: MenuSearchBarProps) {
+function MenuSearchBar({
+  categories,
+  handleSearchRestaurantName,
+  handleSearchCategoryName,
+}: MenuSearchBarProps) {
   return (
     <div className='searchbar'>
-      <label htmlFor='input-search'>검색</label>
-      <input type='text' id='input-search' placeholder='식당 이름' />
-
+      <SearchInput handleSearchRestaurantName={handleSearchRestaurantName} />
       <div className='category'>
         <ul className='category-ul'>
           <CategoryButton
             category={undefined}
-            handleCategoryName={handleCategoryName}
+            handleSearchCategoryName={handleSearchCategoryName}
           />
           {categories.map((category) => (
             <CategoryButton
               key={category.id}
               category={category}
-              handleCategoryName={handleCategoryName}
+              handleSearchCategoryName={handleSearchCategoryName}
             />
           ))}
         </ul>
