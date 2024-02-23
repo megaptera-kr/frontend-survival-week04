@@ -1,8 +1,9 @@
-import Restaurant from '../types/RestaurantType';
 import RestaurantTableRow from './RestaurantTableRow';
 
+import RestaurantType from '../types/RestaurantType';
+
 type MenuTableProps = {
-  restaurants: Restaurant[];
+  restaurants: RestaurantType[];
   handleUpdateCart: () => void;
 };
 
@@ -18,7 +19,7 @@ function MenuTable({ restaurants, handleUpdateCart }: MenuTableProps) {
           </tr>
         </thead>
         <tbody>
-          {restaurants.map((restaurant) => (
+          {restaurants.map((restaurant: RestaurantType) => (
             <RestaurantTableRow
               key={restaurant.id}
               restaurant={restaurant}

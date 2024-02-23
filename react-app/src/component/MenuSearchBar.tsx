@@ -1,10 +1,10 @@
 import SearchInput from './SearchInput';
 import CategoryButton from './CategoryButton';
 
-import Category from '../types/CategoryType';
+import CategoryType from '../types/CategoryType';
 
 type MenuSearchBarProps = {
-  categories: Category[];
+  categories: CategoryType[];
   handleSearchRestaurantName: (value: string) => void;
   handleSearchCategoryName: (value: string) => void;
 };

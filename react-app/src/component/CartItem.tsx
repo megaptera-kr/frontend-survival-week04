@@ -1,7 +1,7 @@
-import RestaurantMenu from '../types/RestaurantMenuType';
+import CartItemType from '../types/CartItemType';
 
 type CartItemProps = {
-  cartItem: RestaurantMenu;
+  cartItem: CartItemType;
   handleUpdateCart: () => void;
 };
 
@@ -10,11 +10,11 @@ export default function CartItem({
   handleUpdateCart,
 }: CartItemProps) {
   const handleClick = () => {
-    const cartItems: RestaurantMenu[] = JSON.parse(
+    const cartItems: CartItemType[] = JSON.parse(
       localStorage.getItem('cart') || '[]',
     );
-    const updatedCartItems: RestaurantMenu[] = cartItems.filter(
-      (item: RestaurantMenu) => item.id !== cartItem.id,
+    const updatedCartItems: CartItemType[] = cartItems.filter(
+      (item: CartItemType) => item.id !== cartItem.id,
     );
     localStorage.setItem('cart', JSON.stringify(updatedCartItems));
     handleUpdateCart();

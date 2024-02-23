@@ -1,10 +1,10 @@
-import RestaurantMenu from './RestaurantMenuType';
+import RestaurantMenuType from './RestaurantMenuType';
 
-type Restaurant = {
+type RestaurantType = {
   id: string;
   name: string;
   category: string;
-  menu: RestaurantMenu[];
+  menu: RestaurantMenuType[];
 };
 
-export default Restaurant;
+export default RestaurantType;

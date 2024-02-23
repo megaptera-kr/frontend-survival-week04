@@ -1,7 +1,7 @@
-import RestaurantMenu from '../types/RestaurantMenuType';
+import RestaurantMenuType from '../types/RestaurantMenuType';
 
 type RestaurantMenuProps = {
-  restaurantMenu: RestaurantMenu;
+  restaurantMenu: RestaurantMenuType;
   handleUpdateCart: () => void;
 };
 
