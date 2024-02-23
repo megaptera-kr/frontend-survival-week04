@@ -1,8 +1,12 @@
+import { v4 as uuidv4 } from 'uuid';
+
 type SearchInputProps = {
+  placeholder: string;
   handleSearchRestaurantName: (value: string) => void;
 };
 
 export default function SearchInput({
+  placeholder,
   handleSearchRestaurantName,
 }: SearchInputProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,8 +18,8 @@ export default function SearchInput({
       <label htmlFor='input-search'>검색</label>
       <input
         type='text'
-        id='input-search'
-        placeholder='식당 이름'
+        id={`input-${uuidv4()}}`}
+        placeholder={placeholder}
         onChange={handleChange}
       />
     </>
