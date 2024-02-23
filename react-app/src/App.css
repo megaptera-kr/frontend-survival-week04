@@ -1,0 +1,18 @@
+ul,
+li {
+   list-style: none;
+}
+
+.FoodCourtTable {
+   padding: 20px;
+}
+
+
+.Buttons {
+   display: flex;
+   padding: 0px;
+   width: 200px;
+   justify-content: space-between;
+}
+
+.TextField {}

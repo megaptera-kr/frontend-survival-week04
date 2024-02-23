@@ -1,15 +1,39 @@
+import { useRef } from 'react';
 import Food from '../Types/Food';
 
 type FoodsProps = {
+  btnName: string;
   menu: Food[];
-  setChoiceFoods: (food: Food) => void;
+  choiceFoods: Food[];
+  setChoiceFoods: (food: Food[]) => void;
 };
 
-export default function Foods({ menu, setChoiceFoods }: FoodsProps) {
+export default function Foods({
+  btnName,
+  menu,
+  choiceFoods,
+  setChoiceFoods,
+}: FoodsProps) {
+  const newId = useRef(0);
+  const newkey = useRef(0);
+
+  const handelCreateClick = (name: string, price: number) => {
+    setChoiceFoods([...choiceFoods, { id: newId.current++, name, price }]);
+  };
+
+  const handleRemoveClick = (targetId: string) => {
+    console.log(targetId);
+
+    const filterChoiceFoods = choiceFoods.filter(
+      (choiceFood) => choiceFood.id !== targetId
+    );
+    setChoiceFoods(filterChoiceFoods);
+  };
+
   return (
     <ul>
       {menu.map((it) => (
-        <li key={it.name}>
+        <li key={`origin_${it.id}_${newkey.current++}`}>
           <span>
             {it.name}
             {' ( '}
@@ -17,9 +41,18 @@ export default function Foods({ menu, setChoiceFoods }: FoodsProps) {
             {' 원 '}
             {' ) '}
           </span>
-          <button type="button" onClick={() => setChoiceFoods({ ...it })}>
-            선택
-          </button>
+          {btnName === '선택' ? (
+            <button
+              type="button"
+              onClick={() => handelCreateClick(it.name, it.price)}
+            >
+              {btnName}
+            </button>
+          ) : (
+            <button type="button" onClick={() => handleRemoveClick(it.id)}>
+              {btnName}
+            </button>
+          )}
         </li>
       ))}
     </ul>

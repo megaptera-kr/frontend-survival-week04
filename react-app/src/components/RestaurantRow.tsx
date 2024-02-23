@@ -5,11 +5,13 @@ import Food from '../Types/Food';
 
 type RestaurantRowProps = {
   restaurant: Restaurant;
-  setChoiceFoods: (food: Food) => void;
+  choiceFoods: Food[];
+  setChoiceFoods: (food: Food[]) => void;
 };
 
 export default function RestaurantRow({
   restaurant,
+  choiceFoods,
   setChoiceFoods,
 }: RestaurantRowProps) {
   return (
@@ -17,7 +19,12 @@ export default function RestaurantRow({
       <td>{restaurant.name}</td>
       <td>{restaurant.category}</td>
       <td>
-        <Foods menu={restaurant.menu} setChoiceFoods={setChoiceFoods} />
+        <Foods
+          btnName="선택"
+          menu={restaurant.menu}
+          choiceFoods={choiceFoods}
+          setChoiceFoods={setChoiceFoods}
+        />
       </td>
     </tr>
   );
