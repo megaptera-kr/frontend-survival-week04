@@ -1,19 +1,12 @@
 import './App.css';
 
+import OrderBox from './component/OrderBox';
+
 export default function App() {
   return (
     <div>
       <h1>푸드코트 키오스크</h1>
-      <div>
-        <h2>점심바구니</h2>
-        <div>
-          <span>짜장면(8,000원)</span>
-          <button type='button'>취소</button>
-        </div>
-        <button>합계: 0원 주문</button>
-      </div>
-      <br />
-      <br />
+      <OrderBox />
 
       <div className='container'>
         <div className='searchbar'>
