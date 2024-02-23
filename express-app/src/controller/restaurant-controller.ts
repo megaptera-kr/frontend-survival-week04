@@ -6,7 +6,19 @@ import Restaurant from '../types/RestaurantType';
 
 function RestaurantController(app: Express) {
   app.get('/restaurants', (req, res) => {
-    res.send(restaurants);
+    const { categoryName } = req.query;
+
+    let filteredRestaurants: Restaurant[] = [];
+
+    if (!categoryName?.length) {
+      filteredRestaurants = restaurants;
+    } else {
+      filteredRestaurants = restaurants.filter(
+        (restaurant: Restaurant) => restaurant.category === categoryName,
+      );
+    }
+
+    res.send(filteredRestaurants);
   });
 
   app.get('/restaurants/:id', (req, res) => {
