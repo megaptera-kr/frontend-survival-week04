@@ -1,12 +1,23 @@
-function OrderBox() {
+import { v4 as uuidv4 } from 'uuid';
+
+import Order from './Order';
+
+import RestaurantMenu from '../types/RestaurantMenuType';
+
+type OrderBoxProps = {
+  cartDataLocalStorage: RestaurantMenu[];
+};
+
+function OrderBox({ cartDataLocalStorage }: OrderBoxProps) {
   return (
     <div>
       <h2>점심바구니</h2>
-      <div>
-        <span>짜장면(8,000원)</span>
-        <button type='button'>취소</button>
-      </div>
-      <button type='button'>합계: 0원 주문</button>
+      {cartDataLocalStorage.map((restaurantMenu: RestaurantMenu) => (
+        <Order
+          key={`${uuidv4()}-${restaurantMenu.id}`}
+          restaurantMenu={restaurantMenu}
+        />
+      ))}
     </div>
   );
 }
