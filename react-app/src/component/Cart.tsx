@@ -10,9 +10,11 @@ type CartProps = {
 };
 
 function Cart({ cartItems, handleRemoveCartItem }: CartProps) {
+  const totalPrice = cartItems.reduce((acc, cur) => acc + cur.price, 0);
+
   return (
     <div>
-      <h2>점심바구니</h2>
+      <h2>점심 바구니</h2>
       {cartItems.map((cartItem: CartItemType) => (
         <CartItem
           key={`${uuidv4()}-${cartItem.id}`}
@@ -20,6 +22,7 @@ function Cart({ cartItems, handleRemoveCartItem }: CartProps) {
           handleRemoveCartItem={handleRemoveCartItem}
         />
       ))}
+      <button type='submit'>합계: {totalPrice}원 주문</button>
     </div>
   );
 }
