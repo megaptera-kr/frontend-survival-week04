@@ -5,8 +5,10 @@ import MenuTable from './MenuTable';
 import OrderBox from './OrderBox';
 import Receipt from './Receipt';
 
+import Restaurant from '../types/RestaurantType';
+
 function Kiosk() {
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,7 +19,7 @@ function Kiosk() {
           throw new Error(`Failed to fetch data. Status: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data: Restaurant[] = await response.json();
         setRestaurants(data);
       } catch (error) {
         console.error('Error fetching data:', error.message);
