@@ -3,9 +3,11 @@ function MenuTable() {
     <div className='menu-table'>
       <table>
         <thead>
-          <th>식당 이름</th>
-          <th>종류</th>
-          <th>메뉴</th>
+          <tr>
+            <th>식당 이름</th>
+            <th>종류</th>
+            <th>메뉴</th>
+          </tr>
         </thead>
         <tbody>
           <tr>
