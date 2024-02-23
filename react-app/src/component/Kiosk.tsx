@@ -98,7 +98,10 @@ function Kiosk() {
     <div className='kiosk-container'>
       <h1>푸드코트 키오스크</h1>
       <div>
-        <Cart cartDataLocalStorage={cartDataLocalStorage} />
+        <Cart
+          cartDataLocalStorage={cartDataLocalStorage}
+          handleUpdateCart={handleUpdateCart}
+        />
         <MenuSearchBar
           categories={categories}
           handleSearchRestaurantName={handleSearchRestaurantName}
