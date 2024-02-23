@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
 
 import MenuSearchBar from './MenuSearchBar';
 import MenuTable from './MenuTable';
@@ -14,8 +15,7 @@ function Kiosk() {
   const [restaurants, setRestaurants] = useState<RestaurantType[]>([]);
   const [searchRestaurantName, setSearchRestaurantName] = useState<string>('');
   const [searchCategoryName, setSearchCategoryName] = useState<string>('');
-  const [isUpdateCart, setIsUpdateCart] = useState<boolean>(false);
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItemType[]>('cart', []);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -66,21 +66,6 @@ function Kiosk() {
     fetchRestaurants();
   }, [searchRestaurantName, searchCategoryName]);
 
-  useEffect(() => {
-    const loadCartFromLocalStorage = () => {
-      try {
-        const data = localStorage.getItem('cart');
-        const items: CartItemType[] = data ? JSON.parse(data) : [];
-
-        setCartItems(items);
-      } catch (error) {
-        console.error('Error loading cart data from localStorage:', error);
-      }
-    };
-
-    loadCartFromLocalStorage();
-  }, [isUpdateCart]);
-
   const handleSearchRestaurantName = (value: string) => {
     setSearchRestaurantName(value.trim());
   };
@@ -90,22 +75,13 @@ function Kiosk() {
   };
 
   const handleAddCartItem = (cartItem: CartItemType) => {
-    const data: CartItemType[] = JSON.parse(
-      localStorage.getItem('cart') || '[]',
-    );
-    localStorage.setItem('cart', JSON.stringify([...data, cartItem]));
-    setIsUpdateCart((prev) => !prev);
+    setCartItems((prev: CartItemType[]) => [...prev, cartItem]);
   };
 
   const handleRemoveCartItem = (cartItem: CartItemType) => {
-    const data: CartItemType[] = JSON.parse(
-      localStorage.getItem('cart') || '[]',
+    setCartItems((prev: CartItemType[]) =>
+      prev.filter((item) => item !== cartItem),
     );
-    const updatedData: CartItemType[] = data.filter(
-      (item: CartItemType) => item.id !== cartItem.id,
-    );
-    localStorage.setItem('cart', JSON.stringify(updatedData));
-    setIsUpdateCart((prev) => !prev);
   };
 
   return (
