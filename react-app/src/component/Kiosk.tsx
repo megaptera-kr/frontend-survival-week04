@@ -7,12 +7,16 @@ import Receipt from './Receipt';
 
 import Category from '../types/CategoryType';
 import Restaurant from '../types/RestaurantType';
+import RestaurantMenu from '../types/RestaurantMenuType';
 
 function Kiosk() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [searchRestaurantName, setSearchRestaurantName] = useState<string>('');
   const [searchCategoryName, setSearchCategoryName] = useState<string>('');
+  const [cartDataLocalStorage, setCartDataLocalStorage] = useState<
+    RestaurantMenu[]
+  >([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -63,6 +67,20 @@ function Kiosk() {
     fetchProducts();
   }, [searchRestaurantName, searchCategoryName]);
 
+  useEffect(() => {
+    const loadCartFromLocalStorage = () => {
+      try {
+        const cartData = localStorage.getItem('cart');
+        const data: RestaurantMenu[] = cartData ? JSON.parse(cartData) : [];
+        setCartDataLocalStorage(data);
+      } catch (error) {
+        console.error('Error loading cart data from localStorage:', error);
+      }
+    };
+
+    loadCartFromLocalStorage();
+  }, []);
+
   const handleSearchRestaurantName = (value: string) => {
     setSearchRestaurantName(value.trim());
   };
@@ -75,7 +93,7 @@ function Kiosk() {
     <div className='kiosk-container'>
       <h1>푸드코트 키오스크</h1>
       <div>
-        <OrderBox />
+        <OrderBox cartDataLocalStorage={cartDataLocalStorage} />
         <MenuSearchBar
           categories={categories}
           handleSearchRestaurantName={handleSearchRestaurantName}
