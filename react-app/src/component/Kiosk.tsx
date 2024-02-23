@@ -5,10 +5,33 @@ import MenuTable from './MenuTable';
 import OrderBox from './OrderBox';
 import Receipt from './Receipt';
 
+import Category from '../types/CategoryType';
 import Restaurant from '../types/RestaurantType';
 
 function Kiosk() {
+  const [categories, setCategories] = useState<Category[]>([]);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const url = 'http://localhost:3000/categories';
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch categories data. Status: ${response.status}`,
+          );
+        }
+
+        const data: Category[] = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -16,7 +39,9 @@ function Kiosk() {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error(`Failed to fetch data. Status: ${response.status}`);
+          throw new Error(
+            `Failed to fetch restaurants data. Status: ${response.status}`,
+          );
         }
 
         const data: Restaurant[] = await response.json();
@@ -34,7 +59,7 @@ function Kiosk() {
       <h1>푸드코트 키오스크</h1>
       <div>
         <OrderBox />
-        <MenuSearchBar />
+        <MenuSearchBar categories={categories} />
         <MenuTable restaurants={restaurants} />
         <Receipt />
       </div>
