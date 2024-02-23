@@ -6,10 +6,10 @@ import CartItemType from '../types/CartItemType';
 
 type CartProps = {
   cartItems: CartItemType[];
-  handleUpdateCart: () => void;
+  handleRemoveCartItem: (item: CartItemType) => void;
 };
 
-function Cart({ cartItems, handleUpdateCart }: CartProps) {
+function Cart({ cartItems, handleRemoveCartItem }: CartProps) {
   return (
     <div>
       <h2>점심바구니</h2>
@@ -17,7 +17,7 @@ function Cart({ cartItems, handleUpdateCart }: CartProps) {
         <CartItem
           key={`${uuidv4()}-${cartItem.id}`}
           cartItem={cartItem}
-          handleUpdateCart={handleUpdateCart}
+          handleRemoveCartItem={handleRemoveCartItem}
         />
       ))}
     </div>

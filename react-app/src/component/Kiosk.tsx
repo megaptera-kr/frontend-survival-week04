@@ -14,8 +14,8 @@ function Kiosk() {
   const [restaurants, setRestaurants] = useState<RestaurantType[]>([]);
   const [searchRestaurantName, setSearchRestaurantName] = useState<string>('');
   const [searchCategoryName, setSearchCategoryName] = useState<string>('');
+  const [isUpdateCart, setIsUpdateCart] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
-  const [updateCart, setUpdateCart] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -79,7 +79,7 @@ function Kiosk() {
     };
 
     loadCartFromLocalStorage();
-  }, [updateCart]);
+  }, [isUpdateCart]);
 
   const handleSearchRestaurantName = (value: string) => {
     setSearchRestaurantName(value.trim());
@@ -89,15 +89,33 @@ function Kiosk() {
     setSearchCategoryName(value);
   };
 
-  const handleUpdateCart = () => {
-    setUpdateCart((prev) => !prev);
+  const handleAddCartItem = (cartItem: CartItemType) => {
+    const data: CartItemType[] = JSON.parse(
+      localStorage.getItem('cart') || '[]',
+    );
+    localStorage.setItem('cart', JSON.stringify([...data, cartItem]));
+    setIsUpdateCart((prev) => !prev);
+  };
+
+  const handleRemoveCartItem = (cartItem: CartItemType) => {
+    const data: CartItemType[] = JSON.parse(
+      localStorage.getItem('cart') || '[]',
+    );
+    const updatedData: CartItemType[] = data.filter(
+      (item: CartItemType) => item.id !== cartItem.id,
+    );
+    localStorage.setItem('cart', JSON.stringify(updatedData));
+    setIsUpdateCart((prev) => !prev);
   };
 
   return (
     <div className='kiosk-container'>
       <h1>푸드코트 키오스크</h1>
       <div>
-        <Cart cartItems={cartItems} handleUpdateCart={handleUpdateCart} />
+        <Cart
+          cartItems={cartItems}
+          handleRemoveCartItem={handleRemoveCartItem}
+        />
         <MenuSearchBar
           categories={categories}
           handleSearchRestaurantName={handleSearchRestaurantName}
@@ -105,7 +123,7 @@ function Kiosk() {
         />
         <MenuTable
           restaurants={restaurants}
-          handleUpdateCart={handleUpdateCart}
+          handleAddCartItem={handleAddCartItem}
         />
         <Receipt />
       </div>
