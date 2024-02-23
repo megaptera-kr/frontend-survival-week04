@@ -1,4 +1,5 @@
 import Restaurant from '../types/RestaurantType';
+import RestaurantMenu from './RestaurantMenu';
 
 type RestaurantProps = {
   restaurant: Restaurant;
@@ -11,18 +12,9 @@ function RestaurantTableRow({ restaurant }: RestaurantProps) {
       <td>{restaurant.category}</td>
       <td>
         <ul>
-          <li>
-            <span>짜장면(8,000)</span>
-            <button type='button'>선택</button>
-          </li>
-          <li>
-            <span>짬뽕(8,000)</span>
-            <button type='button'>선택</button>
-          </li>
-          <li>
-            <span>차돌짬뽕(9,000원)</span>
-            <button type='button'>선택</button>
-          </li>
+          {restaurant.menu.map((menu) => (
+            <RestaurantMenu key={menu.id} restaurantMenu={menu} />
+          ))}
         </ul>
       </td>
     </tr>
