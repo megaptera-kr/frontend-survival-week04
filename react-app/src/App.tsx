@@ -1,6 +1,7 @@
 import './App.css';
 
 import OrderBox from './component/OrderBox';
+import MenuSearchBar from './component/MenuSearchBar';
 
 export default function App() {
   return (
@@ -8,27 +9,7 @@ export default function App() {
       <h1>푸드코트 키오스크</h1>
       <div className='container'>
         <OrderBox />
-        <div className='searchbar'>
-          <label htmlFor='input-search'>검색</label>
-          <input type='text' id='input-search' placeholder='식당 이름' />
-
-          <div className='category'>
-            <ul className='category-ul'>
-              <li className='category-li'>
-                <button type='button'>전체</button>
-              </li>
-              <li className='category-li'>
-                <button type='button'>중식</button>
-              </li>
-              <li className='category-li'>
-                <button type='button'>한식</button>
-              </li>
-              <li className='category-li'>
-                <button type='button'>일식</button>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <MenuSearchBar />
 
         <div className='menu-table'>
           <table>
