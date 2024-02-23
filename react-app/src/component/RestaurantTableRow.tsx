@@ -3,9 +3,10 @@ import RestaurantMenu from './RestaurantMenu';
 
 type RestaurantProps = {
   restaurant: Restaurant;
+  handleUpdateCart: () => void;
 };
 
-function RestaurantTableRow({ restaurant }: RestaurantProps) {
+function RestaurantTableRow({ restaurant, handleUpdateCart }: RestaurantProps) {
   return (
     <tr>
       <td>{restaurant.name}</td>
@@ -13,7 +14,11 @@ function RestaurantTableRow({ restaurant }: RestaurantProps) {
       <td>
         <ul>
           {restaurant.menu.map((menu) => (
-            <RestaurantMenu key={menu.id} restaurantMenu={menu} />
+            <RestaurantMenu
+              key={menu.id}
+              restaurantMenu={menu}
+              handleUpdateCart={handleUpdateCart}
+            />
           ))}
         </ul>
       </td>
