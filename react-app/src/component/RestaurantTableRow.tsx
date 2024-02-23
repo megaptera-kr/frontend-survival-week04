@@ -2,13 +2,17 @@ import RestaurantMenu from './RestaurantMenu';
 
 import RestaurantType from '../types/RestaurantType';
 import RestaurantMenuType from '../types/RestaurantMenuType';
+import CartItemType from '../types/CartItemType';
 
 type RestaurantProps = {
   restaurant: RestaurantType;
-  handleUpdateCart: () => void;
+  handleAddCartItem: (item: CartItemType) => void;
 };
 
-function RestaurantTableRow({ restaurant, handleUpdateCart }: RestaurantProps) {
+function RestaurantTableRow({
+  restaurant,
+  handleAddCartItem,
+}: RestaurantProps) {
   return (
     <tr>
       <td>{restaurant.name}</td>
@@ -19,7 +23,7 @@ function RestaurantTableRow({ restaurant, handleUpdateCart }: RestaurantProps) {
             <RestaurantMenu
               key={menu.id}
               restaurantMenu={menu}
-              handleUpdateCart={handleUpdateCart}
+              handleAddCartItem={handleAddCartItem}
             />
           ))}
         </ul>
