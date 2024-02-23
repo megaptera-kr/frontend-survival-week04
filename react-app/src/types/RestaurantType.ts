@@ -4,7 +4,7 @@ type Restaurant = {
   id: string;
   name: string;
   category: string;
-  menu: RestaurantMenu;
+  menu: RestaurantMenu[];
 };
 
 export default Restaurant;
