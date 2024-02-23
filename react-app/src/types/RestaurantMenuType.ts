@@ -1,7 +1,7 @@
-type RestaurantMenu = {
+type RestaurantMenuType = {
   id: string;
   name: string;
   price: number;
 };
 
-export default RestaurantMenu;
+export default RestaurantMenuType;

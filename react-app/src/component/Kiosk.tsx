@@ -5,18 +5,16 @@ import MenuTable from './MenuTable';
 import Cart from './Cart';
 import Receipt from './Receipt';
 
-import Category from '../types/CategoryType';
-import Restaurant from '../types/RestaurantType';
-import RestaurantMenu from '../types/RestaurantMenuType';
+import CategoryType from '../types/CategoryType';
+import RestaurantType from '../types/RestaurantType';
+import CartItemType from '../types/CartItemType';
 
 function Kiosk() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [restaurants, setRestaurants] = useState<RestaurantType[]>([]);
   const [searchRestaurantName, setSearchRestaurantName] = useState<string>('');
   const [searchCategoryName, setSearchCategoryName] = useState<string>('');
-  const [cartDataLocalStorage, setCartDataLocalStorage] = useState<
-    RestaurantMenu[]
-  >([]);
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [updateCart, setUpdateCart] = useState<boolean>(false);
 
   useEffect(() => {
@@ -30,7 +28,7 @@ function Kiosk() {
           );
         }
 
-        const data: Category[] = await response.json();
+        const data: CategoryType[] = await response.json();
         setCategories(data);
       } catch (error) {
         console.error('Error fetching categories data:', error);
@@ -41,7 +39,7 @@ function Kiosk() {
   }, []);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchRestaurants = async () => {
       const url = new URL('http://localhost:3000/restaurants');
       const params = new URLSearchParams();
 
@@ -58,22 +56,23 @@ function Kiosk() {
           );
         }
 
-        const data: Restaurant[] = await response.json();
+        const data: RestaurantType[] = await response.json();
         setRestaurants(data);
       } catch (error) {
         console.error('Error fetching restaurants data:', error);
       }
     };
 
-    fetchProducts();
+    fetchRestaurants();
   }, [searchRestaurantName, searchCategoryName]);
 
   useEffect(() => {
     const loadCartFromLocalStorage = () => {
       try {
-        const cartData = localStorage.getItem('cart');
-        const data: RestaurantMenu[] = cartData ? JSON.parse(cartData) : [];
-        setCartDataLocalStorage(data);
+        const data = localStorage.getItem('cart');
+        const items: CartItemType[] = data ? JSON.parse(data) : [];
+
+        setCartItems(items);
       } catch (error) {
         console.error('Error loading cart data from localStorage:', error);
       }
@@ -98,10 +97,7 @@ function Kiosk() {
     <div className='kiosk-container'>
       <h1>푸드코트 키오스크</h1>
       <div>
-        <Cart
-          cartDataLocalStorage={cartDataLocalStorage}
-          handleUpdateCart={handleUpdateCart}
-        />
+        <Cart cartItems={cartItems} handleUpdateCart={handleUpdateCart} />
         <MenuSearchBar
           categories={categories}
           handleSearchRestaurantName={handleSearchRestaurantName}

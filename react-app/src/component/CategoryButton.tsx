@@ -1,7 +1,7 @@
-import Category from '../types/CategoryType';
+import CategoryType from '../types/CategoryType';
 
 type CategoryButtonProps = {
-  category: Category | undefined;
+  category: CategoryType | undefined;
   handleSearchCategoryName: (value: string) => void;
 };
 
