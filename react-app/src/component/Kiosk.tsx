@@ -11,6 +11,7 @@ import Restaurant from '../types/RestaurantType';
 function Kiosk() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [categoryName, setCategoryName] = useState<string>('');
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -26,7 +27,7 @@ function Kiosk() {
         const data: Category[] = await response.json();
         setCategories(data);
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        console.error('Error fetching categories data:', error);
       }
     };
 
@@ -35,7 +36,12 @@ function Kiosk() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const url = 'http://localhost:3000/restaurants';
+      const url = new URL('http://localhost:3000/restaurants');
+      const params = new URLSearchParams();
+
+      params.append('categoryName', categoryName);
+      url.search = params.toString();
+
       try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -47,19 +53,26 @@ function Kiosk() {
         const data: Restaurant[] = await response.json();
         setRestaurants(data);
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        console.error('Error fetching restaurants data:', error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [categoryName]);
+
+  const handleCategoryName = (value: string) => {
+    setCategoryName(value);
+  };
 
   return (
     <div className='kiosk-container'>
       <h1>푸드코트 키오스크</h1>
       <div>
         <OrderBox />
-        <MenuSearchBar categories={categories} />
+        <MenuSearchBar
+          categories={categories}
+          handleCategoryName={handleCategoryName}
+        />
         <MenuTable restaurants={restaurants} />
         <Receipt />
       </div>

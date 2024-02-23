@@ -4,9 +4,10 @@ import Category from '../types/CategoryType';
 
 type MenuSearchBarProps = {
   categories: Category[];
+  handleCategoryName: (value: string) => void;
 };
 
-function MenuSearchBar({ categories }: MenuSearchBarProps) {
+function MenuSearchBar({ categories, handleCategoryName }: MenuSearchBarProps) {
   return (
     <div className='searchbar'>
       <label htmlFor='input-search'>검색</label>
@@ -14,9 +15,16 @@ function MenuSearchBar({ categories }: MenuSearchBarProps) {
 
       <div className='category'>
         <ul className='category-ul'>
-          <CategoryButton category={null} />
+          <CategoryButton
+            category={undefined}
+            handleCategoryName={handleCategoryName}
+          />
           {categories.map((category) => (
-            <CategoryButton key={category.id} category={category} />
+            <CategoryButton
+              key={category.id}
+              category={category}
+              handleCategoryName={handleCategoryName}
+            />
           ))}
         </ul>
       </div>
