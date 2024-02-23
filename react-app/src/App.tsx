@@ -3,6 +3,7 @@ import './App.css';
 import OrderBox from './component/OrderBox';
 import MenuSearchBar from './component/MenuSearchBar';
 import MenuTable from './component/MenuTable';
+import Receipt from './component/Receipt';
 
 export default function App() {
   return (
@@ -12,10 +13,7 @@ export default function App() {
         <OrderBox />
         <MenuSearchBar />
         <MenuTable />
-
-        <div>
-          <p>[영수증 나오는 곳]</p>
-        </div>
+        <Receipt />
       </div>
     </div>
   );
