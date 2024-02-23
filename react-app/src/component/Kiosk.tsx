@@ -17,6 +17,7 @@ function Kiosk() {
   const [cartDataLocalStorage, setCartDataLocalStorage] = useState<
     RestaurantMenu[]
   >([]);
+  const [updateCart, setUpdateCart] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -79,7 +80,7 @@ function Kiosk() {
     };
 
     loadCartFromLocalStorage();
-  }, []);
+  }, [updateCart]);
 
   const handleSearchRestaurantName = (value: string) => {
     setSearchRestaurantName(value.trim());
@@ -87,6 +88,10 @@ function Kiosk() {
 
   const handleSearchCategoryName = (value: string) => {
     setSearchCategoryName(value);
+  };
+
+  const handleUpdateCart = () => {
+    setUpdateCart((prev) => !prev);
   };
 
   return (
@@ -99,7 +104,10 @@ function Kiosk() {
           handleSearchRestaurantName={handleSearchRestaurantName}
           handleSearchCategoryName={handleSearchCategoryName}
         />
-        <MenuTable restaurants={restaurants} />
+        <MenuTable
+          restaurants={restaurants}
+          handleUpdateCart={handleUpdateCart}
+        />
         <Receipt />
       </div>
     </div>

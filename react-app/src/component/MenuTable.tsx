@@ -3,9 +3,10 @@ import RestaurantTableRow from './RestaurantTableRow';
 
 type MenuTableProps = {
   restaurants: Restaurant[];
+  handleUpdateCart: () => void;
 };
 
-function MenuTable({ restaurants }: MenuTableProps) {
+function MenuTable({ restaurants, handleUpdateCart }: MenuTableProps) {
   return (
     <div className='menu-table'>
       <table>
@@ -18,7 +19,11 @@ function MenuTable({ restaurants }: MenuTableProps) {
         </thead>
         <tbody>
           {restaurants.map((restaurant) => (
-            <RestaurantTableRow key={restaurant.id} restaurant={restaurant} />
+            <RestaurantTableRow
+              key={restaurant.id}
+              restaurant={restaurant}
+              handleUpdateCart={handleUpdateCart}
+            />
           ))}
         </tbody>
       </table>
