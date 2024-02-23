@@ -1,4 +1,12 @@
-function MenuSearchBar() {
+import CategoryButton from './CategoryButton';
+
+import Category from '../types/CategoryType';
+
+type MenuSearchBarProps = {
+  categories: Category[];
+};
+
+function MenuSearchBar({ categories }: MenuSearchBarProps) {
   return (
     <div className='searchbar'>
       <label htmlFor='input-search'>검색</label>
@@ -6,18 +14,10 @@ function MenuSearchBar() {
 
       <div className='category'>
         <ul className='category-ul'>
-          <li className='category-li'>
-            <button type='button'>전체</button>
-          </li>
-          <li className='category-li'>
-            <button type='button'>중식</button>
-          </li>
-          <li className='category-li'>
-            <button type='button'>한식</button>
-          </li>
-          <li className='category-li'>
-            <button type='button'>일식</button>
-          </li>
+          <CategoryButton category={null} />
+          {categories.map((category) => (
+            <CategoryButton key={category.id} category={category} />
+          ))}
         </ul>
       </div>
     </div>
