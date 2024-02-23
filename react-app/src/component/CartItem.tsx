@@ -1,14 +1,14 @@
 import RestaurantMenu from '../types/RestaurantMenuType';
 
-type OrderProps = {
-  restaurantMenu: RestaurantMenu;
+type CartItemProps = {
+  cartItem: RestaurantMenu;
 };
 
-export default function Order({ restaurantMenu }: OrderProps) {
+export default function CartItem({ cartItem }: CartItemProps) {
   return (
     <div>
       <span>
-        {restaurantMenu.name}({restaurantMenu.price})
+        {cartItem.name}({cartItem.price})
       </span>
       <button type='button'>취소</button>
     </div>
