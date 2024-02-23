@@ -16,7 +16,10 @@ function MenuSearchBar({
 }: MenuSearchBarProps) {
   return (
     <div className='searchbar'>
-      <SearchInput handleSearchRestaurantName={handleSearchRestaurantName} />
+      <SearchInput
+        placeholder='식당이름'
+        handleSearchRestaurantName={handleSearchRestaurantName}
+      />
       <div className='category'>
         <ul className='category-ul'>
           <CategoryButton
