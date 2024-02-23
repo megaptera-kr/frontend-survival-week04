@@ -1,0 +1,17 @@
+body {
+  display: block;
+  margin: 8px;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.category-ul {
+  display: flex;
+}
+
+.category-li {
+  margin-right: 1rem;
+}
