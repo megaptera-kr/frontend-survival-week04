@@ -2,19 +2,19 @@ import Category from '../types/CategoryType';
 
 type CategoryButtonProps = {
   category: Category | undefined;
-  handleCategoryName: (value: string) => void;
+  handleSearchCategoryName: (value: string) => void;
 };
 
 export default function CategoryButton({
   category,
-  handleCategoryName,
+  handleSearchCategoryName,
 }: CategoryButtonProps) {
   const handleClick = () => {
     let query = '';
     if (category) {
       query = category.name ?? '';
     }
-    handleCategoryName(query);
+    handleSearchCategoryName(query);
   };
 
   return (

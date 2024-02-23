@@ -11,7 +11,8 @@ import Restaurant from '../types/RestaurantType';
 function Kiosk() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [categoryName, setCategoryName] = useState<string>('');
+  const [searchRestaurantName, setSearchRestaurantName] = useState<string>('');
+  const [searchCategoryName, setSearchCategoryName] = useState<string>('');
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -39,7 +40,9 @@ function Kiosk() {
       const url = new URL('http://localhost:3000/restaurants');
       const params = new URLSearchParams();
 
-      params.append('categoryName', categoryName);
+      params.append('restaurantName', searchRestaurantName);
+      params.append('categoryName', searchCategoryName);
+
       url.search = params.toString();
 
       try {
@@ -58,10 +61,14 @@ function Kiosk() {
     };
 
     fetchProducts();
-  }, [categoryName]);
+  }, [searchRestaurantName, searchCategoryName]);
 
-  const handleCategoryName = (value: string) => {
-    setCategoryName(value);
+  const handleSearchRestaurantName = (value: string) => {
+    setSearchRestaurantName(value.trim());
+  };
+
+  const handleSearchCategoryName = (value: string) => {
+    setSearchCategoryName(value);
   };
 
   return (
@@ -71,7 +78,8 @@ function Kiosk() {
         <OrderBox />
         <MenuSearchBar
           categories={categories}
-          handleCategoryName={handleCategoryName}
+          handleSearchRestaurantName={handleSearchRestaurantName}
+          handleSearchCategoryName={handleSearchCategoryName}
         />
         <MenuTable restaurants={restaurants} />
         <Receipt />
