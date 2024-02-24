@@ -1,3 +1,5 @@
+import moneyformat from '../utils/common';
+
 import CartItemType from '../types/CartItemType';
 
 type CartItemProps = {
@@ -14,13 +16,17 @@ export default function CartItem({
   };
 
   return (
-    <div>
-      <span>
-        {cartItem.name}({cartItem.price})
+    <li style={{ display: 'flex', paddingBlock: '0.5rem' }}>
+      <span style={{ margin: '0px auto' }}>
+        {cartItem.name}({moneyformat(cartItem.price)}원)
       </span>
-      <button type='button' onClick={handleClick}>
+      <button
+        type='button'
+        style={{ marginLeft: '0.5rem' }}
+        onClick={handleClick}
+      >
         취소
       </button>
-    </div>
+    </li>
   );
 }
