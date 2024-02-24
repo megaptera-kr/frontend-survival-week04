@@ -9,6 +9,8 @@ import Receipt from './Receipt';
 import CategoryType from '../types/CategoryType';
 import RestaurantType from '../types/RestaurantType';
 import CartItemType from '../types/CartItemType';
+import OrderType from '../types/OrderType';
+import ReceiptType from '../types/ReceiptType';
 
 function Kiosk() {
   const [categories, setCategories] = useState<CategoryType[]>([]);
@@ -16,6 +18,10 @@ function Kiosk() {
   const [searchRestaurantName, setSearchRestaurantName] = useState<string>('');
   const [searchCategoryName, setSearchCategoryName] = useState<string>('');
   const [cartItems, setCartItems] = useLocalStorage<CartItemType[]>('cart', []);
+  const [receipt, setReceipt] = useLocalStorage<
+    ReceiptType | Record<string, never>
+  >('receipt', {});
+  const [isShowReceipt, setIsShowReceipt] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -85,7 +91,7 @@ function Kiosk() {
   };
 
   const handleOrder = (items: CartItemType[]) => {
-    const order = {
+    const order: OrderType = {
       menu: items.map((item: CartItemType) => ({
         id: item.id,
         name: item.name,
@@ -94,11 +100,41 @@ function Kiosk() {
       totalPrice: items.reduce((acc, cur) => acc + cur.price, 0),
     };
 
-    // Requset to server
+    if (!order) {
+      return;
+    }
 
-    // TODO: Remove commentation
-    // setCartItems([]);
+    const postOrders = async () => {
+      const url = new URL('http://localhost:3000/orders');
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(order),
+        });
+
+        if (!response.ok) {
+          throw new Error(
+            `Failed to post order data. Status: ${response.status}`,
+          );
+        }
+        const data: ReceiptType = await response.json();
+        setReceipt(data);
+        setIsShowReceipt(true);
+        setCartItems([]);
+      } catch (error) {
+        console.error('Error post order data:', error);
+      }
+    };
+
+    postOrders();
   };
+
+  const handleIsShowReceipt = () => setIsShowReceipt((prev) => !prev);
+  const handleRemoveReceipt = () => setReceipt({});
 
   return (
     <div className='kiosk-container'>
@@ -118,7 +154,12 @@ function Kiosk() {
           restaurants={restaurants}
           handleAddCartItem={handleAddCartItem}
         />
-        <Receipt />
+        <Receipt
+          receipt={receipt}
+          isShowReceipt={isShowReceipt}
+          handleIsShowReceipt={handleIsShowReceipt}
+          handleRemoveReceipt={handleRemoveReceipt}
+        />
       </div>
     </div>
   );
