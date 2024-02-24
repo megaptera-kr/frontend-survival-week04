@@ -22,6 +22,7 @@ export default function CartItem({
       </span>
       <button
         type='button'
+        name={cartItem.name}
         style={{ marginLeft: '0.5rem' }}
         onClick={handleClick}
       >

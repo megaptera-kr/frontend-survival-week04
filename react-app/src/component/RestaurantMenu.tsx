@@ -23,6 +23,7 @@ function RestaurantMenu({
       </span>
       <button
         type='button'
+        name={`#${restaurantMenu.name}`}
         style={{ marginLeft: '0.5rem' }}
         onClick={handleClick}
       >
