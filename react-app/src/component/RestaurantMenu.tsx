@@ -1,3 +1,5 @@
+import moneyformat from '../utils/common';
+
 import RestaurantMenuType from '../types/RestaurantMenuType';
 import CartItemType from '../types/CartItemType';
 
@@ -15,11 +17,15 @@ function RestaurantMenu({
   };
 
   return (
-    <li>
-      <span>
-        {restaurantMenu.name}({restaurantMenu.price})
+    <li style={{ display: 'flex', paddingBlock: '0.5rem' }}>
+      <span style={{ margin: '0px auto' }}>
+        {restaurantMenu.name}({moneyformat(restaurantMenu.price)}원)
       </span>
-      <button type='button' onClick={handleClick}>
+      <button
+        type='button'
+        style={{ marginLeft: '0.5rem' }}
+        onClick={handleClick}
+      >
         선택
       </button>
     </li>

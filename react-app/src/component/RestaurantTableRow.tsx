@@ -18,7 +18,7 @@ function RestaurantTableRow({
       <td>{restaurant.name}</td>
       <td>{restaurant.category}</td>
       <td>
-        <ul>
+        <ul style={{ listStyle: 'none' }}>
           {restaurant.menu.map((menu: RestaurantMenuType) => (
             <RestaurantMenu
               key={menu.id}

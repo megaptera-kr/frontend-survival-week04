@@ -15,7 +15,9 @@ export default function SearchInput({
 
   return (
     <>
-      <label htmlFor='input-search'>검색</label>
+      <label htmlFor='input-search' style={{ paddingRight: '1rem' }}>
+        검색
+      </label>
       <input
         type='text'
         id={`input-${uuidv4()}}`}

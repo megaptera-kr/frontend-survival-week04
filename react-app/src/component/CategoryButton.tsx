@@ -18,7 +18,7 @@ export default function CategoryButton({
   };
 
   return (
-    <li className='category-li'>
+    <li className='category-li' style={{ marginRight: '1rem' }}>
       <button type='button' onClick={handleClick}>
         {category ? category.name : '전체'}
       </button>
