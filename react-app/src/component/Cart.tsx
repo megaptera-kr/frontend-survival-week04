@@ -7,10 +7,14 @@ import CartItemType from '../types/CartItemType';
 type CartProps = {
   cartItems: CartItemType[];
   handleRemoveCartItem: (item: CartItemType) => void;
+  handleOrder: (items: CartItemType[]) => void;
 };
 
-function Cart({ cartItems, handleRemoveCartItem }: CartProps) {
+function Cart({ cartItems, handleRemoveCartItem, handleOrder }: CartProps) {
   const totalPrice = cartItems.reduce((acc, cur) => acc + cur.price, 0);
+  const handleClick = () => {
+    handleOrder(cartItems);
+  };
 
   return (
     <div>
@@ -22,7 +26,9 @@ function Cart({ cartItems, handleRemoveCartItem }: CartProps) {
           handleRemoveCartItem={handleRemoveCartItem}
         />
       ))}
-      <button type='submit'>합계: {totalPrice}원 주문</button>
+      <button type='submit' onClick={handleClick}>
+        합계: {totalPrice}원 주문
+      </button>
     </div>
   );
 }

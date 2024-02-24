@@ -84,6 +84,22 @@ function Kiosk() {
     );
   };
 
+  const handleOrder = (items: CartItemType[]) => {
+    const order = {
+      menu: items.map((item: CartItemType) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+      })),
+      totalPrice: items.reduce((acc, cur) => acc + cur.price, 0),
+    };
+
+    // Requset to server
+
+    // TODO: Remove commentation
+    // setCartItems([]);
+  };
+
   return (
     <div className='kiosk-container'>
       <h1>푸드코트 키오스크</h1>
@@ -91,6 +107,7 @@ function Kiosk() {
         <Cart
           cartItems={cartItems}
           handleRemoveCartItem={handleRemoveCartItem}
+          handleOrder={handleOrder}
         />
         <MenuSearchBar
           categories={categories}
