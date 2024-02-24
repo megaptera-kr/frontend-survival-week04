@@ -15,16 +15,13 @@ function MenuSearchBar({
   handleSearchCategoryName,
 }: MenuSearchBarProps) {
   return (
-    <div className='searchbar'>
+    <div>
       <SearchInput
         placeholder='식당 이름'
         handleSearchRestaurantName={handleSearchRestaurantName}
       />
-      <div className='category'>
-        <ul
-          className='category-ul'
-          style={{ listStyle: 'none', display: 'flex', padding: '0px' }}
-        >
+      <div>
+        <ul style={{ listStyle: 'none', display: 'flex', padding: '0px' }}>
           <CategoryButton
             category={undefined}
             handleSearchCategoryName={handleSearchCategoryName}
