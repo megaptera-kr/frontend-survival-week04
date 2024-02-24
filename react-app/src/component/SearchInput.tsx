@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 type SearchInputProps = {
   placeholder: string;
   handleSearchRestaurantName: (value: string) => void;
@@ -20,7 +18,7 @@ export default function SearchInput({
       </label>
       <input
         type='text'
-        id={`input-${uuidv4()}}`}
+        id='input-search'
         placeholder={placeholder}
         onChange={handleChange}
       />
