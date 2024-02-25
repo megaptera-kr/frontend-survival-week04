@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useInterval, useLocalStorage } from 'usehooks-ts';
 
 import MenuSearchBar from './MenuSearchBar';
@@ -40,6 +40,7 @@ function Kiosk() {
     ReceiptType | Record<string, never>
   >('receipt', {});
   const [isShowReceipt, setIsShowReceipt] = useState<boolean>(false);
+  const receiptRef = useRef<HTMLDivElement>(null);
 
   const handleOrder = (items: CartItemType[]) => {
     const order: OrderType = {
@@ -76,6 +77,9 @@ function Kiosk() {
         setReceipt(data);
         setIsShowReceipt(true);
         handleRemoveAllCartItem();
+        if (receiptRef.current) {
+          receiptRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
       } catch (error) {
         setReceipt({});
         setIsShowReceipt(false);
@@ -111,7 +115,11 @@ function Kiosk() {
           restaurants={restaurants}
           handleAddCartItem={handleAddCartItem}
         />
-        <Receipt receipt={receipt} isShowReceipt={isShowReceipt} />
+        <Receipt
+          receipt={receipt}
+          isShowReceipt={isShowReceipt}
+          receiptRef={receiptRef}
+        />
       </div>
     </div>
   );

@@ -5,11 +5,12 @@ import ReceiptType from '../types/ReceiptType';
 type ReceiptProps = {
   receipt: ReceiptType | Record<string, never>;
   isShowReceipt: boolean;
+  receiptRef: React.RefObject<HTMLDivElement>;
 };
 
-function Receipt({ receipt, isShowReceipt }: ReceiptProps) {
+function Receipt({ receipt, isShowReceipt, receiptRef }: ReceiptProps) {
   return (
-    <div>
+    <div className='receipt-container' ref={receiptRef}>
       {!isShowReceipt ? (
         <p>[영수증 나오는 곳]</p>
       ) : (
