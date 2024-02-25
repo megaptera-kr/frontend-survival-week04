@@ -14,14 +14,11 @@ export default function Foods({
   choiceFoods,
   setChoiceFoods,
 }: FoodsProps) {
-  const newId = useRef(0);
+  // const newId = useRef(0);
   const newkey = useRef(0);
 
-  const handelCreateClick = (name: string, price: number) => {
-    setChoiceFoods([
-      ...choiceFoods,
-      { id: (newId.current += 1).toString(), name, price },
-    ]);
+  const handelCreateClick = (food: Food) => {
+    setChoiceFoods([...choiceFoods, food]);
     newkey.current += 1;
   };
 
@@ -46,12 +43,17 @@ export default function Foods({
             {btnName === '선택' ? (
               <button
                 type="button"
-                onClick={() => handelCreateClick(name, price)}
+                name={`#${name}`}
+                onClick={() => handelCreateClick(it)}
               >
                 {btnName}
               </button>
             ) : (
-              <button type="button" onClick={() => handleRemoveClick(id)}>
+              <button
+                type="button"
+                name={`#${name}`}
+                onClick={() => handleRemoveClick(id)}
+              >
                 {btnName}
               </button>
             )}

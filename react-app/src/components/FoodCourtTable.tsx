@@ -43,11 +43,16 @@ export default function FoodCourtTable() {
   const foodTotalPrice = totalPrice(choiceFoods);
 
   useInterval(() => {
-    setReceipt(emptyReceipt);
+    if (receipt.id) {
+      setReceipt(emptyReceipt);
+    }
   }, 5000);
 
   const handleSubmitOrder = () => {
-    setChoiceFoods([]);
+    if (!choiceFoods.length) {
+      return;
+    }
+
     const FetchRequest = async () => {
       const request = await fetch('http://localhost:3000/orders', {
         method: 'post',
@@ -65,6 +70,7 @@ export default function FoodCourtTable() {
     };
 
     FetchRequest();
+    setChoiceFoods([]);
   };
 
   return (
@@ -78,16 +84,13 @@ export default function FoodCourtTable() {
           setChoiceFoods={setChoiceFoods}
         />
         <div>
-          {!choiceFoods.length ? (
-            <p>점심바구니가 비어있어요! 음식을 선택해주세요!</p>
-          ) : (
-            <button type="button" onClick={handleSubmitOrder}>
-              {`합계 주문 ${foodTotalPrice.toLocaleString()}원!`}
-            </button>
-          )}
+          <button type="button" onClick={handleSubmitOrder}>
+            {' 합계: '}
+            {!choiceFoods.length ? 0 : foodTotalPrice.toLocaleString()}
+            {'원 주문 '}
+          </button>
         </div>
       </div>
-      <ReceiptTable receipts={receipt} />
       <div className="Restaurant">
         <SearchBar
           categories={filterCategories}
@@ -101,6 +104,7 @@ export default function FoodCourtTable() {
           setChoiceFoods={setChoiceFoods}
         />
       </div>
+      <ReceiptTable receipts={receipt} />
     </div>
   );
 }
