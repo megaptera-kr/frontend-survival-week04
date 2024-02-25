@@ -88,6 +88,7 @@ function Kiosk() {
   useInterval(
     () => {
       setIsShowReceipt(false);
+      setReceipt({});
     },
     isShowReceipt ? 5000 : null,
   );
