@@ -14,6 +14,7 @@ const useFilteredRestaurants = () => {
       .then((data: Restaurant[]) => {
         setRestaurants(data);
       });
+    res();
   }, []);
 
   const filteredRestaurants = useMemo(() => restaurants.filter((restaurant) => {
