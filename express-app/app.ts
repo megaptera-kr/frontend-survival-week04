@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import RestaurantController from './src/service/restaurants-controller';
+import RestaurantController from './src/service/restaurantsController';
+import OrderController from './src/service/orderController';
 
 
 const port = 8080;
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 });
 
 RestaurantController(app)
+OrderController(app)
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
