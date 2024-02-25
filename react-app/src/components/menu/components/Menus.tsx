@@ -32,7 +32,7 @@ export default function Menus({ menus, type = 'menu' }: MenusProps) {
           </span>
           {type !== 'receipt' && (
             <button
-              name={menu.name}
+              name={`#${menu.name}`}
               type="button"
               style={{ marginLeft: '5px' }}
               onClick={() => handleSelectMenu(menu)}
