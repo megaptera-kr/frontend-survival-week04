@@ -9,7 +9,7 @@ const useFilteredRestaurants = () => {
   });
 
   useEffect(() => {
-    fetch('http://localhost:3000/restaurants')
+    const res = async () => fetch('http://localhost:3000/restaurants')
       .then((response) => response.json())
       .then((data: Restaurant[]) => {
         setRestaurants(data);
