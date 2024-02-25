@@ -1,8 +1,6 @@
 import Receipt from '../../../types/Receipt';
 import Menus from '../../menu/components/Menus';
 
-import getTotalPrice from '../../cart/utils/totalPrice';
-
 type ReceiptItemProrps = {
   receipt: Receipt
 }
@@ -21,9 +19,9 @@ export default function ReceiptItem({ receipt }: ReceiptItemProrps) {
       <h2>주문목록</h2>
       <Menus menus={receipt.menu} type="receipt" />
       <h4>
-        총 가격 :
+        총 가격:
         {' '}
-        {getTotalPrice(receipt.menu)}
+        {receipt.totalPrice.toLocaleString()}
         원
       </h4>
     </div>
