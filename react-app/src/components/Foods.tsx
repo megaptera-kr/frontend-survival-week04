@@ -26,10 +26,8 @@ export default function Foods({
   };
 
   const handleRemoveClick = (targetId: string) => {
-    const filterChoiceFoods = choiceFoods.filter(
-      (choiceFood) => choiceFood.id !== targetId
-    );
-    setChoiceFoods(filterChoiceFoods);
+    const filterFoods = choiceFoods.filter((food) => food.id !== targetId);
+    setChoiceFoods(filterFoods);
   };
 
   return (
