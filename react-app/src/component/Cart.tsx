@@ -30,7 +30,11 @@ function Cart({ cartItems, handleRemoveCartItem, handleOrder }: CartProps) {
           />
         ))}
       </ul>
-      <button type='submit' onClick={handleClick}>
+      <button
+        type='submit'
+        onClick={handleClick}
+        disabled={cartItems.length < 1}
+      >
         합계: {moneyformat(totalPrice)}원 주문
       </button>
     </div>
