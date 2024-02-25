@@ -22,6 +22,7 @@ export default function ReceiptItem({ receipt }: ReceiptItemProrps) {
       <Menus menus={receipt.menu} type="receipt" />
       <h4>
         총 가격 :
+        {' '}
         {getTotalPrice(receipt.menu)}
         원
       </h4>
