@@ -8,19 +8,13 @@ import OrderBasket from './OrderBasket';
 import useOrder from '../hooks/useOrder';
 
 export default function FilterableRestaurantTable() {
-  const { filteredRestaurants, restaurantFilter, setRestaurantFilter } = useFilteredRestaurants();
+  const {
+    filteredRestaurants, restaurantFilter, handleCategoryClick, handleSearch,
+  } = useFilteredRestaurants();
   const {
     basket, handleClickMenu, handleRemoveMenuFromBasket,
     handlePostOrder, isShowReceipt, totalPrice, receiptData,
   } = useOrder();
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRestaurantFilter({ ...restaurantFilter, name: e.target.value });
-  };
-
-  const handleCategoryClick = (category: RestaurantCategoryWithAll) => {
-    setRestaurantFilter({ ...restaurantFilter, category });
-  };
 
   return (
     <>

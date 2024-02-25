@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { RestaurantFilter, Restaurant } from '../types';
+import { RestaurantFilter, Restaurant, RestaurantCategoryWithAll } from '../types';
 
 const useFilteredRestaurants = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -34,7 +34,17 @@ const useFilteredRestaurants = () => {
     return nameFilter && categoryFilter;
   }), [restaurantFilter, restaurants]);
 
-  return { restaurantFilter, setRestaurantFilter, filteredRestaurants };
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRestaurantFilter({ ...restaurantFilter, name: e.target.value });
+  };
+
+  const handleCategoryClick = (category: RestaurantCategoryWithAll) => {
+    setRestaurantFilter({ ...restaurantFilter, category });
+  };
+
+  return {
+    restaurantFilter, setRestaurantFilter, filteredRestaurants, handleSearch, handleCategoryClick,
+  };
 };
 
 export default useFilteredRestaurants;
