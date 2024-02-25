@@ -9,12 +9,23 @@ const useFilteredRestaurants = () => {
   });
 
   useEffect(() => {
-    const res = async () => fetch('http://localhost:3000/restaurants')
-      .then((response) => response.json())
-      .then((data: Restaurant[]) => {
+    const fetchRestaurants = async () => {
+      const url = new URL('http://localhost:3000/restaurants');
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch restaurants data. Status: ${response.status}`,
+          );
+        }
+        const data: Restaurant[] = await response.json();
         setRestaurants(data);
-      });
-    res();
+      } catch (error) {
+        setRestaurants([]);
+      }
+    };
+
+    fetchRestaurants();
   }, []);
 
   const filteredRestaurants = useMemo(() => restaurants.filter((restaurant) => {
