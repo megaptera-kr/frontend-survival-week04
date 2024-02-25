@@ -5,7 +5,7 @@ import ReceiptContainer from './components/receipt/ReceiptContainer';
 import useFetchrestaurants from './hooks/useFetchrestaurants';
 
 export default function App() {
-  const { restaurants } = useFetchrestaurants();
+  const restaurants = useFetchrestaurants();
 
   return (
     <div>
