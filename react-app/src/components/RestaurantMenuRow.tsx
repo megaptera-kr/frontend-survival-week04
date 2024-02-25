@@ -1,9 +1,14 @@
+import { RestaurantMenu } from '../types';
+
 interface RestaurantMenuRowProps {
-  name: string;
-  price: number;
+  menu: RestaurantMenu;
+  handleClickMenu: (menu: RestaurantMenu) => void;
 }
 
-export default function RestaurantMenuRow({ name, price }:RestaurantMenuRowProps) {
+export default function RestaurantMenuRow({ menu, handleClickMenu }:RestaurantMenuRowProps) {
+  const { id, name, price } = menu;
+  const current = Date.now().toLocaleString();
+  const menuId = `${current}#${id}`;
   return (
     <ul
       style={{
@@ -16,7 +21,7 @@ export default function RestaurantMenuRow({ name, price }:RestaurantMenuRowProps
         {price}
         원)
       </li>
-      <button type="button">선택</button>
+      <button type="button" onClick={() => handleClickMenu({ ...menu, id: menuId })}>선택</button>
     </ul>
   );
 }
