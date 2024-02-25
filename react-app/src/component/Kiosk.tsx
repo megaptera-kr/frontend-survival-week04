@@ -43,6 +43,10 @@ function Kiosk() {
   const receiptRef = useRef<HTMLDivElement>(null);
 
   const handleOrder = (items: CartItemType[]) => {
+    if (items.length < 1) {
+      return;
+    }
+
     const order: OrderType = {
       menu: items.map((item: CartItemType) => ({
         id: item.id,
