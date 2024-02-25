@@ -59,7 +59,7 @@ const restaurants : Restaurant[] = [
     ],
   },
   {
-    id: '5',
+    id: '6',
     category: '일식',
     name: '혹등고래카레',
     menu: [

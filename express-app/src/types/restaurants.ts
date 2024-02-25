@@ -1,4 +1,4 @@
-export type RestaurantCategory = '한식' | '중식' | '일식' | '양식'
+export type RestaurantCategory = '한식' | '중식' | '일식'
 
 export type RestaurantMenu = {
   id: string
