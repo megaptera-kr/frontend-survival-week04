@@ -1,5 +1,3 @@
-import { useInterval } from 'usehooks-ts';
-
 import moneyformat from '../utils/common';
 
 import ReceiptType from '../types/ReceiptType';
@@ -7,23 +5,9 @@ import ReceiptType from '../types/ReceiptType';
 type ReceiptProps = {
   receipt: ReceiptType | Record<string, never>;
   isShowReceipt: boolean;
-  handleIsShowReceipt: () => void;
-  handleRemoveReceipt: () => void;
 };
 
-function Receipt({
-  receipt,
-  isShowReceipt,
-  handleIsShowReceipt,
-  handleRemoveReceipt,
-}: ReceiptProps) {
-  useInterval(() => {
-    if (isShowReceipt) {
-      handleIsShowReceipt();
-      handleRemoveReceipt();
-    }
-  }, 5000);
-
+function Receipt({ receipt, isShowReceipt }: ReceiptProps) {
   return (
     <div>
       {!isShowReceipt ? (
@@ -48,7 +32,7 @@ function Receipt({
             <ul style={{ listStyle: 'none', padding: '0px' }}>
               {receipt.menu.map((item) => (
                 <li key={item.id}>
-                  {item.name}({item.price}원)
+                  {item.name}({moneyformat(item.price)}원)
                 </li>
               ))}
             </ul>

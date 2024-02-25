@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
+import { useInterval, useLocalStorage } from 'usehooks-ts';
 
 import MenuSearchBar from './MenuSearchBar';
 import MenuTable from './MenuTable';
@@ -85,8 +85,12 @@ function Kiosk() {
     postOrders();
   };
 
-  const handleIsShowReceipt = () => setIsShowReceipt((prev) => !prev);
-  const handleRemoveReceipt = () => setReceipt({});
+  useInterval(
+    () => {
+      setIsShowReceipt(false);
+    },
+    isShowReceipt ? 5000 : null,
+  );
 
   return (
     <div className='kiosk-container'>
@@ -106,12 +110,7 @@ function Kiosk() {
           restaurants={restaurants}
           handleAddCartItem={handleAddCartItem}
         />
-        <Receipt
-          receipt={receipt}
-          isShowReceipt={isShowReceipt}
-          handleIsShowReceipt={handleIsShowReceipt}
-          handleRemoveReceipt={handleRemoveReceipt}
-        />
+        <Receipt receipt={receipt} isShowReceipt={isShowReceipt} />
       </div>
     </div>
   );
