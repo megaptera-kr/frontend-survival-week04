@@ -1,11 +1,15 @@
-import { Restaurant } from '../types';
+import { Restaurant, RestaurantMenu } from '../types';
 import RestaurantMenuRow from './RestaurantMenuRow';
 
 interface RestaurantTableProps {
   filteredRestaurants: Restaurant[];
+  handleClickMenu: (menu: RestaurantMenu) => void;
 }
 
-export default function RestaurantTable({ filteredRestaurants }:RestaurantTableProps) {
+export default function RestaurantTable({
+  filteredRestaurants,
+  handleClickMenu,
+}:RestaurantTableProps) {
   return (
     <table>
       <thead>
@@ -24,7 +28,7 @@ export default function RestaurantTable({ filteredRestaurants }:RestaurantTableP
             <td>{category}</td>
             <td>
               {menus.map((menu) => (
-                <RestaurantMenuRow key={menu.id} name={menu.name} price={menu.price} />
+                <RestaurantMenuRow key={menu.id} menu={menu} handleClickMenu={handleClickMenu} />
               ))}
             </td>
           </tr>
