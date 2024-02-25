@@ -4,7 +4,7 @@ import RestaurantController from './src/service/restaurantsController';
 import OrderController from './src/service/orderController';
 
 
-const port = 8080;
+const port = 3000;
 
 const app = express();
 
