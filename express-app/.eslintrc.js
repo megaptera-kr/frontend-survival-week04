@@ -3,23 +3,19 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: [
-    'airbnb',
-    'plugin:@typescript-eslint/recommended',
-  ],
-  overrides: [
-    {
-      extends: [
-      ],
-      files: [
-        '*.ts',
-        '*.tsx',
-      ],
-    },
-  ],
+  extends: ['airbnb', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
+  },
+  plugins: ['@typescript-eslint'],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   rules: {
     indent: ['error', 2],
