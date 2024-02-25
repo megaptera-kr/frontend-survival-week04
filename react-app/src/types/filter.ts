@@ -1,6 +1,6 @@
 import { RestaurantCategoryWithAll } from './restaurants';
 
-export type CategoryFilter = {
+export type RestaurantFilter = {
   name: string;
   category: RestaurantCategoryWithAll
 }

@@ -1,15 +1,15 @@
 import { useState, useMemo, useEffect } from 'react';
-import { CategoryFilter, Restaurant } from '../types';
+import { RestaurantFilter, Restaurant } from '../types';
 
 const useFilteredRestaurants = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [filter, setFilter] = useState<CategoryFilter>({
+  const [restaurantFilter, setRestaurantFilter] = useState<RestaurantFilter>({
     name: '',
     category: '전체',
   });
 
   useEffect(() => {
-    const fetchRestaurants = fetch('http://localhost:3000/restaurants')
+    fetch('http://localhost:3000/restaurants')
       .then((response) => response.json())
       .then((data: Restaurant[]) => {
         setRestaurants(data);
@@ -17,12 +17,12 @@ const useFilteredRestaurants = () => {
   }, []);
 
   const filteredRestaurants = useMemo(() => restaurants.filter((restaurant) => {
-    const nameFilter = filter.name.trim() === '' || restaurant.name.includes(filter.name);
-    const categoryFilter = filter.category === '전체' || restaurant.category === filter.category;
+    const nameFilter = restaurantFilter.name.trim() === '' || restaurant.name.includes(restaurantFilter.name);
+    const categoryFilter = restaurantFilter.category === '전체' || restaurant.category === restaurantFilter.category;
     return nameFilter && categoryFilter;
-  }), [filter, restaurants]);
+  }), [restaurantFilter, restaurants]);
 
-  return { filter, setFilter, filteredRestaurants };
+  return { restaurantFilter, setRestaurantFilter, filteredRestaurants };
 };
 
 export default useFilteredRestaurants;
