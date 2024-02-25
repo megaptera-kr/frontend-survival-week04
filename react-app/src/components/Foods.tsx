@@ -18,12 +18,14 @@ export default function Foods({
   const newkey = useRef(0);
 
   const handelCreateClick = (name: string, price: number) => {
-    setChoiceFoods([...choiceFoods, { id: newId.current++, name, price }]);
+    setChoiceFoods([
+      ...choiceFoods,
+      { id: (newId.current += 1).toString(), name, price },
+    ]);
+    newkey.current += 1;
   };
 
   const handleRemoveClick = (targetId: string) => {
-    console.log(targetId);
-
     const filterChoiceFoods = choiceFoods.filter(
       (choiceFood) => choiceFood.id !== targetId
     );
@@ -32,29 +34,32 @@ export default function Foods({
 
   return (
     <ul>
-      {menu.map((it) => (
-        <li key={`origin_${it.id}_${newkey.current++}`}>
-          <span>
-            {it.name}
-            {' ( '}
-            {it.price.toLocaleString()}
-            {' 원 '}
-            {' ) '}
-          </span>
-          {btnName === '선택' ? (
-            <button
-              type="button"
-              onClick={() => handelCreateClick(it.name, it.price)}
-            >
-              {btnName}
-            </button>
-          ) : (
-            <button type="button" onClick={() => handleRemoveClick(it.id)}>
-              {btnName}
-            </button>
-          )}
-        </li>
-      ))}
+      {menu.map((it) => {
+        const { id, name, price } = it;
+        return (
+          <li key={`${id}_${name}_${price}_${newkey}`}>
+            <span>
+              {name}
+              {' ( '}
+              {price.toLocaleString()}
+              {' 원 '}
+              {' ) '}
+            </span>
+            {btnName === '선택' ? (
+              <button
+                type="button"
+                onClick={() => handelCreateClick(name, price)}
+              >
+                {btnName}
+              </button>
+            ) : (
+              <button type="button" onClick={() => handleRemoveClick(id)}>
+                {btnName}
+              </button>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 }

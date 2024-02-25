@@ -3,6 +3,12 @@ li {
    list-style: none;
 }
 
+.App {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+}
+
 .FoodCourtTable {
    padding: 20px;
 }
@@ -14,5 +20,3 @@ li {
    width: 200px;
    justify-content: space-between;
 }
-
-.TextField {}

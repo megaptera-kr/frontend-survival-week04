@@ -1,5 +1,4 @@
 import FoodCourtTable from './components/FoodCourtTable';
-import './App.css';
 
 export default function App() {
   return (
