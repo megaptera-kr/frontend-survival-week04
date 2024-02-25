@@ -31,10 +31,11 @@ export default function Receipt({ receiptData }:ReceiptProps) {
             </li>
           ))}
         </ul>
-        <h3>총금액</h3>
+
         <p>
-          {totalPrice.toLocaleString()}
+          총 가격:
           {' '}
+          {totalPrice.toLocaleString()}
           원
         </p>
       </article>

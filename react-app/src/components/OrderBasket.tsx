@@ -44,9 +44,9 @@ export default function OrderBasket({
         </button>
       </section>
       {isShowReceipt
-      && (
-        <Receipt receiptData={receiptData} />
-      )}
+        ? (
+          <Receipt receiptData={receiptData} />
+        ) : <p style={{ color: 'white' }}>영수증 나오는 곳</p>}
     </>
   );
 }

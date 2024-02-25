@@ -21,7 +21,7 @@ export default function RestaurantMenuRow({ menu, handleClickMenu }:RestaurantMe
         {price}
         원)
       </li>
-      <button type="button" onClick={() => handleClickMenu({ ...menu, id: menuId })}>선택</button>
+      <button type="button" name={`#${name}`} onClick={() => handleClickMenu({ ...menu, id: menuId })}>선택</button>
     </ul>
   );
 }
